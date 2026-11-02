@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "phases": { "arrived": {}, "offer-seen": {}, "clothes-sold": {}, "player-equipped": {}, "commission-accepted": {}, "potion-received": {}, "commission-completed": {} },
+  "order": ["arrived", "offer-seen", "clothes-sold", "player-equipped", "commission-accepted", "potion-received", "commission-completed"],
+  "gold": { "clothes-sale": 120, "outfit-price": 120, "commission-reward": 80 },
+  "transitions": {
+    "see-offer": { "from": "arrived", "to": "offer-seen", "requires": "male", "gold": null, "direction": 0 },
+    "sell-clothes": { "from": "offer-seen", "to": "clothes-sold", "requires": "male", "gold": "clothes-sale", "direction": 1 },
+    "receive-outfit": { "from": "clothes-sold", "to": "player-equipped", "requires": "male-with-gold", "gold": "outfit-price", "direction": -1 },
+    "accept-commission": { "from": "player-equipped", "to": "commission-accepted", "requires": "male", "gold": null, "direction": 0 },
+    "return-music-box": { "from": "commission-accepted", "to": "potion-received", "requires": "male-with-training", "gold": "commission-reward", "direction": 1 },
+    "use-potion": { "from": "potion-received", "to": "commission-completed", "requires": "male", "gold": null, "direction": 0 }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "note": "The tournament ring's view (2026-10-19): the plaza's midground V1 view (withNativeCityMidground(NATIVE_CITY_WORLD).views.V1) without its ground — projection, actor height, presentation and bounds only. The arena and the bracket's headless bouts stand their fighters on a fixed straight line with no ground test, so they need no walkable polygons; reading this instead of the whole world keeps the village's world data (gzip ~2 MB) off the arena's direct link. test/city-tournament-bout.test.ts keeps it equal to the computed view.",
+  "version": 1,
+  "viewId": "V1",
+  "name": "블랙손 광장",
+  "presentation": "midground-plate",
+  "image": {
+    "path": "art/village/midground-v1/plate.webp",
+    "width": 1920,
+    "height": 1080
+  },
+  "projection": {
+    "origin": [
+      1184.4640731811523,
+      -2014.1570091247559
+    ],
+    "x": [
+      16.731834411621094,
+      2.1508312225341797
+    ],
+    "y": [
+      -7.802238464355469,
+      4.611940383911133
+    ]
+  },
+  "playBounds": [
+    [
+      136.85591175148522,
+      226.84632262160102
+    ],
+    [
+      625.6937596768589,
+      357.82345094537385
+    ],
+    [
+      544.3425721865516,
+      661.4252001796467
+    ],
+    [
+      55.504724261177905,
+      530.4480718558739
+    ]
+  ],
+  "spawn": [
+    234.5196260468834,
+    519.3941805396669
+  ],
+  "focus": [
+    201.1008587860074,
+    460.0282801943208
+  ],
+  "actorHeightPx": 149.06950607781928
+}

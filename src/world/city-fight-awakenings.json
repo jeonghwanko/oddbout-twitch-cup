@@ -1,0 +1,394 @@
+{
+  "followUps": {
+    "bearSpirit": {
+      "note": "2026-10-23 KUMA's 「곰의 철퇴」 (plan 4.1 - 'this mask is not for show'): his slam holds him; the light bear behind him claws him three times (hold), its uppercut throws him up (launch), the iron ball falls from the sky onto him (spike), its paw stamps him lying there (down).",
+      "contactShare": 0.35,
+      "holdMs": 320,
+      "beats": [
+        {
+          "kind": "hold",
+          "atMs": 260,
+          "count": 3,
+          "everyMs": 180,
+          "share": 0.06,
+          "hitStopMs": 70,
+          "holdMs": 300
+        },
+        {
+          "kind": "launch",
+          "atMs": 820,
+          "share": 0.14,
+          "hitStopMs": 200
+        },
+        {
+          "kind": "spike",
+          "atMs": 1250,
+          "share": 0.15,
+          "hitStopMs": 170
+        },
+        {
+          "kind": "down",
+          "afterDownMs": 150,
+          "maxWaitMs": 1300,
+          "share": 0.18,
+          "hitStopMs": 200
+        }
+      ]
+    },
+    "blossom": {
+      "note": "2026-10-23 YUME's 「천근추 낙화장」 (plan 4.2 - sleeves in the petals): her drop holds him; four sleeve lashes (hold), the whirlwind kick throws him up (launch), three lashes up there (air), the thousand-pound drop drives him down (spike), a flick on his brow lying there (down).",
+      "contactShare": 0.3,
+      "holdMs": 300,
+      "beats": [
+        {
+          "kind": "hold",
+          "atMs": 220,
+          "count": 4,
+          "everyMs": 100,
+          "share": 0.04,
+          "hitStopMs": 50,
+          "holdMs": 260
+        },
+        {
+          "kind": "launch",
+          "atMs": 700,
+          "share": 0.12,
+          "hitStopMs": 190
+        },
+        {
+          "kind": "air",
+          "atMs": 900,
+          "count": 3,
+          "everyMs": 100,
+          "share": 0.04,
+          "hitStopMs": 50,
+          "liftBodies": 0.05
+        },
+        {
+          "kind": "spike",
+          "atMs": 1400,
+          "share": 0.14,
+          "hitStopMs": 170
+        },
+        {
+          "kind": "down",
+          "afterDownMs": 200,
+          "maxWaitMs": 1300,
+          "share": 0.16,
+          "hitStopMs": 220
+        }
+      ]
+    },
+    "spotlightSteal": {
+      "note": "2026-10-23 BRAVOW's 「시선 강탈」 (plan 4.15 - the doge's colourful words): his charge holds him; three flashes while he poses (hold), the medal's uppercut (launch), the slam (spike), the gold medal on him lying there (down).",
+      "contactShare": 0.3,
+      "holdMs": 300,
+      "beats": [
+        {
+          "kind": "hold",
+          "atMs": 250,
+          "count": 3,
+          "everyMs": 200,
+          "share": 0.06,
+          "hitStopMs": 80,
+          "holdMs": 300
+        },
+        {
+          "kind": "launch",
+          "atMs": 900,
+          "share": 0.14,
+          "hitStopMs": 200
+        },
+        {
+          "kind": "spike",
+          "atMs": 1250,
+          "share": 0.12,
+          "hitStopMs": 170
+        },
+        {
+          "kind": "down",
+          "afterDownMs": 200,
+          "maxWaitMs": 1300,
+          "share": 0.26,
+          "hitStopMs": 240
+        }
+      ]
+    },
+    "tremble": {
+      "note": "2026-10-23 BEOTIM's 「끝까지 버팀」 (plan 4.16 - the trembling dog): his shaking shove holds him; five trembling counters (hold), the desperate shove (launch), the pratfall on him lying there (down).",
+      "contactShare": 0.3,
+      "holdMs": 300,
+      "beats": [
+        {
+          "kind": "hold",
+          "atMs": 220,
+          "count": 5,
+          "everyMs": 100,
+          "share": 0.05,
+          "hitStopMs": 50,
+          "holdMs": 300
+        },
+        {
+          "kind": "launch",
+          "atMs": 900,
+          "share": 0.2,
+          "hitStopMs": 220
+        },
+        {
+          "kind": "down",
+          "afterDownMs": 200,
+          "maxWaitMs": 1400,
+          "share": 0.25,
+          "hitStopMs": 240
+        }
+      ]
+    },
+    "encore": {
+      "note": "2026-10-23 KUNGJJAK's 「앙코르 피날레」 (plan 4.18 - played off by the keyboard cat): his slam holds him; boom, tss, boom, tss on the beat (hold), the crescendo (launch), the arpeggio (air), the last chord (spike), played off lying there (down).",
+      "contactShare": 0.3,
+      "holdMs": 300,
+      "beats": [
+        {
+          "kind": "hold",
+          "atMs": 250,
+          "count": 4,
+          "everyMs": 250,
+          "share": 0.05,
+          "hitStopMs": 70,
+          "holdMs": 300
+        },
+        {
+          "kind": "launch",
+          "atMs": 1250,
+          "share": 0.14,
+          "hitStopMs": 200
+        },
+        {
+          "kind": "air",
+          "atMs": 1450,
+          "count": 3,
+          "everyMs": 100,
+          "share": 0.03,
+          "hitStopMs": 45,
+          "liftBodies": 0.05
+        },
+        {
+          "kind": "spike",
+          "atMs": 1900,
+          "share": 0.1,
+          "hitStopMs": 170
+        },
+        {
+          "kind": "down",
+          "afterDownMs": 200,
+          "maxWaitMs": 1300,
+          "share": 0.17,
+          "hitStopMs": 230
+        }
+      ]
+    },
+    "thatsFar": {
+      "note": "2026-10-23 SIKEUNDUNG's 「여기까지라고」 (plan 4.19 - the grumpy cat's one word): his shove holds him; the line on the floor, two hisses (hold), the swat (launch), a tap on him lying there (down) - '싫어.'",
+      "contactShare": 0.3,
+      "holdMs": 360,
+      "beats": [
+        {
+          "kind": "hold",
+          "atMs": 300,
+          "count": 2,
+          "everyMs": 250,
+          "share": 0.1,
+          "hitStopMs": 100,
+          "holdMs": 300
+        },
+        {
+          "kind": "hold",
+          "atMs": 800,
+          "share": 0.1,
+          "hitStopMs": 100,
+          "holdMs": 350
+        },
+        {
+          "kind": "launch",
+          "atMs": 1100,
+          "share": 0.2,
+          "hitStopMs": 220
+        },
+        {
+          "kind": "down",
+          "afterDownMs": 220,
+          "maxWaitMs": 1400,
+          "share": 0.2,
+          "hitStopMs": 260
+        }
+      ]
+    },
+    "doodleReach": {
+      "note": "2026-10-23 DULDUL's 「두 뼘 더」 (plan 4.20 - the doodle comic): his reach holds him; four stretched doodle arms (hold), the spring's uppercut (launch), two up there (air), the drop (spike), the sprout on him lying there (down).",
+      "contactShare": 0.3,
+      "holdMs": 300,
+      "beats": [
+        {
+          "kind": "hold",
+          "atMs": 250,
+          "count": 4,
+          "everyMs": 150,
+          "share": 0.05,
+          "hitStopMs": 60,
+          "holdMs": 300
+        },
+        {
+          "kind": "launch",
+          "atMs": 950,
+          "share": 0.14,
+          "hitStopMs": 200
+        },
+        {
+          "kind": "air",
+          "atMs": 1150,
+          "count": 2,
+          "everyMs": 100,
+          "share": 0.04,
+          "hitStopMs": 50,
+          "liftBodies": 0.05
+        },
+        {
+          "kind": "spike",
+          "atMs": 1500,
+          "share": 0.1,
+          "hitStopMs": 170
+        },
+        {
+          "kind": "down",
+          "afterDownMs": 200,
+          "maxWaitMs": 1300,
+          "share": 0.18,
+          "hitStopMs": 230
+        }
+      ]
+    },
+    "huh": {
+      "note": "2026-10-23 EORIDUNG's 「방금 그거 뭐야」 (plan 4.21 - the huh cat): his push holds him; 'huh?' and 'huh??' (hold), the high leap back and the two-paw pounce (launch), the drive down (spike), '?!' over him lying there (down).",
+      "contactShare": 0.3,
+      "holdMs": 360,
+      "beats": [
+        {
+          "kind": "hold",
+          "atMs": 300,
+          "share": 0.08,
+          "hitStopMs": 120,
+          "holdMs": 300
+        },
+        {
+          "kind": "hold",
+          "atMs": 550,
+          "share": 0.08,
+          "hitStopMs": 120,
+          "holdMs": 500
+        },
+        {
+          "kind": "launch",
+          "atMs": 1000,
+          "share": 0.16,
+          "hitStopMs": 200
+        },
+        {
+          "kind": "spike",
+          "atMs": 1350,
+          "share": 0.14,
+          "hitStopMs": 180
+        },
+        {
+          "kind": "down",
+          "afterDownMs": 200,
+          "maxWaitMs": 1300,
+          "share": 0.24,
+          "hitStopMs": 260
+        }
+      ]
+    },
+    "rainbow": {
+      "note": "2026-10-23 QUICKCAT's 「무지개 혜성」 (plan 4.17 - the 8-bit rainbow cat): her comet holds him; the arch throws him up (launch), six rainbow passes cut through him (air), the comet drives him down (spike), the arch over him lying there (down).",
+      "contactShare": 0.3,
+      "holdMs": 420,
+      "beats": [
+        {
+          "kind": "launch",
+          "atMs": 350,
+          "share": 0.12,
+          "hitStopMs": 180
+        },
+        {
+          "kind": "air",
+          "atMs": 600,
+          "count": 6,
+          "everyMs": 100,
+          "share": 0.04,
+          "hitStopMs": 45,
+          "liftBodies": 0.05
+        },
+        {
+          "kind": "spike",
+          "atMs": 1400,
+          "share": 0.12,
+          "hitStopMs": 160
+        },
+        {
+          "kind": "down",
+          "afterDownMs": 200,
+          "maxWaitMs": 1300,
+          "share": 0.22,
+          "hitStopMs": 200
+        }
+      ]
+    }
+  },
+  "characters": {
+    "kuma": {
+      "name": "village.fightSuper.kuma",
+      "staging": "bearSpirit",
+      "followUp": "bearSpirit"
+    },
+    "yume": {
+      "name": "village.fightSuper.yume",
+      "staging": "blossom",
+      "followUp": "blossom"
+    },
+    "bravow": {
+      "name": "village.fightSuper.bravow",
+      "staging": "spotlightSteal",
+      "followUp": "spotlightSteal"
+    },
+    "beotim": {
+      "name": "village.fightSuper.beotim",
+      "staging": "tremble",
+      "followUp": "tremble"
+    },
+    "quickcat": {
+      "name": "village.fightSuper.quickcat",
+      "staging": "rainbow",
+      "followUp": "rainbow"
+    },
+    "kungjjak": {
+      "name": "village.fightSuper.kungjjak",
+      "staging": "encore",
+      "followUp": "encore"
+    },
+    "sikeundung": {
+      "name": "village.fightSuper.sikeundung",
+      "staging": "thatsFar",
+      "followUp": "thatsFar"
+    },
+    "duldul": {
+      "name": "village.fightSuper.duldul",
+      "staging": "doodleReach",
+      "followUp": "doodleReach"
+    },
+    "eoridung": {
+      "name": "village.fightSuper.eoridung",
+      "staging": "huh",
+      "followUp": "huh"
+    }
+  },
+  "note": "Shared arena battle tuning for the nine built-in fighters."
+}

@@ -1,0 +1,199 @@
+{
+  "gather": {
+    "image": "smash-gather.webp",
+    "frameWidth": 170,
+    "frameHeight": 170,
+    "columns": 4,
+    "rows": 2,
+    "durationsMs": [
+      44,
+      38,
+      34,
+      30,
+      26,
+      22,
+      26
+    ],
+    "pivot": [
+      0.5,
+      0.5
+    ]
+  },
+  "swing": {
+    "image": "smash-swing.webp",
+    "frameWidth": 250,
+    "frameHeight": 260,
+    "columns": 5,
+    "rows": 3,
+    "durationsMs": [
+      16,
+      16,
+      18,
+      20,
+      24,
+      26,
+      28,
+      30,
+      32,
+      34,
+      36,
+      40,
+      44
+    ],
+    "pivot": [
+      0.308,
+      0.8115384615384615
+    ],
+    "releaseMs": 70
+  },
+  "contact": {
+    "image": "smash-contact.webp",
+    "frameWidth": 160,
+    "frameHeight": 150,
+    "columns": 6,
+    "rows": 2,
+    "durationsMs": [
+      25,
+      22,
+      22,
+      20,
+      20,
+      20,
+      22,
+      22,
+      24,
+      26,
+      27
+    ],
+    "pivot": [
+      0.58125,
+      0.4866666666666667
+    ]
+  },
+  "dust": {
+    "image": "smash-dust.webp",
+    "frameWidth": 384,
+    "frameHeight": 160,
+    "columns": 2,
+    "rows": 4,
+    "durationsMs": [
+      33,
+      33,
+      40,
+      40,
+      45,
+      50,
+      55,
+      60
+    ],
+    "pivot": [
+      0.5,
+      0.9
+    ]
+  },
+  "impact": {
+    "image": "smash-impact.webp",
+    "frameWidth": 384,
+    "frameHeight": 384,
+    "columns": 3,
+    "rows": 2,
+    "durationsMs": [
+      33,
+      33,
+      34,
+      33,
+      33,
+      34
+    ],
+    "pivot": [
+      0.5,
+      0.5
+    ]
+  },
+  "shatter": {
+    "image": "smash-shatter.webp",
+    "frameWidth": 384,
+    "frameHeight": 384,
+    "columns": 3,
+    "rows": 2,
+    "durationsMs": [
+      33,
+      33,
+      34,
+      33,
+      33,
+      34
+    ],
+    "pivot": [
+      0.5,
+      0.5
+    ]
+  },
+  "skid": {
+    "image": "smash-skid.webp",
+    "frameWidth": 384,
+    "frameHeight": 128,
+    "columns": 2,
+    "rows": 2,
+    "durationsMs": [
+      33,
+      40,
+      50,
+      60
+    ],
+    "pivot": [
+      0.7,
+      0.898
+    ]
+  },
+  "puff": {
+    "image": "smash-puff.webp",
+    "frameWidth": 384,
+    "frameHeight": 128,
+    "columns": 2,
+    "rows": 2,
+    "durationsMs": [
+      33,
+      40,
+      50,
+      60
+    ],
+    "pivot": [
+      0.5,
+      0.898
+    ]
+  },
+  "crescent": {
+    "image": "smash-crescent.webp",
+    "frameWidth": 512,
+    "frameHeight": 512,
+    "columns": 3,
+    "rows": 2,
+    "durationsMs": [
+      0,
+      90,
+      50,
+      45,
+      40,
+      40
+    ],
+    "pivot": [
+      0.92,
+      0.34
+    ]
+  },
+  "crack": {
+    "image": "smash-crack.webp",
+    "frameWidth": 1536,
+    "frameHeight": 1024,
+    "columns": 1,
+    "rows": 1,
+    "durationsMs": [
+      100000
+    ],
+    "pivot": [
+      0.5,
+      0.5
+    ]
+  }
+}

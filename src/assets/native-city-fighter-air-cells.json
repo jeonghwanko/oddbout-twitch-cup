@@ -1,0 +1,564 @@
+{
+  "note": "tools/art/measure-fighter-air-cells.py 가 굽는다(2026-10-23) — 띄워진 몸의 fall 칸마다 머리–발 축(머리가 아래면 +)·원본 칸에서 머리 쪽·그림 중심(원점 기준 몸 높이)·돌려도 되는 최대각. NativeCityAirReaction.",
+  "clips": {
+    "native-city-kuma-ortho-20261007-ball-20261018-side_left-fall": {
+      "fighter": "kuma",
+      "cells": {
+        "0": {
+          "axisDeg": -82.6,
+          "head": 1,
+          "center": [
+            0.091,
+            -0.5
+          ],
+          "limitDeg": 30,
+          "elongation": 2.38
+        },
+        "1": {
+          "axisDeg": 0,
+          "head": 1,
+          "center": [
+            0.026,
+            -0.511
+          ],
+          "limitDeg": 75,
+          "elongation": 1.47
+        },
+        "2": {
+          "axisDeg": -12.2,
+          "head": 1,
+          "center": [
+            0.292,
+            -0.557
+          ],
+          "limitDeg": 30,
+          "elongation": 1.94
+        },
+        "3": {
+          "axisDeg": 11.7,
+          "head": 1,
+          "center": [
+            0.336,
+            -0.246
+          ],
+          "limitDeg": 30,
+          "elongation": 2.85
+        },
+        "4": {
+          "axisDeg": 1.2,
+          "head": 1,
+          "center": [
+            0.36,
+            -0.08
+          ],
+          "limitDeg": 75,
+          "elongation": 4.13
+        },
+        "5": {
+          "axisDeg": -42.1,
+          "head": 1,
+          "center": [
+            0.272,
+            -0.458
+          ],
+          "limitDeg": 30,
+          "elongation": 3.04
+        },
+        "6": {
+          "axisDeg": 1.0,
+          "head": 1,
+          "center": [
+            0.333,
+            -0.27
+          ],
+          "limitDeg": 75,
+          "elongation": 3.35
+        },
+        "7": {
+          "axisDeg": 3.3,
+          "head": 1,
+          "center": [
+            0.347,
+            -0.157
+          ],
+          "limitDeg": 75,
+          "elongation": 4.12
+        },
+        "8": {
+          "axisDeg": 3.2,
+          "head": 1,
+          "center": [
+            0.306,
+            -0.11
+          ],
+          "limitDeg": 75,
+          "elongation": 4.35
+        }
+      }
+    },
+    "native-city-yume-side-20261011-fall": {
+      "fighter": "yume",
+      "cells": {
+        "0": {
+          "axisDeg": -74.0,
+          "head": -1,
+          "center": [
+            0.305,
+            -0.471
+          ],
+          "limitDeg": 30,
+          "elongation": 1.69
+        },
+        "1": {
+          "axisDeg": -85.4,
+          "head": -1,
+          "center": [
+            -0.044,
+            -0.454
+          ],
+          "limitDeg": 30,
+          "elongation": 1.99
+        },
+        "2": {
+          "axisDeg": -38.4,
+          "head": -1,
+          "center": [
+            -0.15,
+            -0.63
+          ],
+          "limitDeg": 30,
+          "elongation": 1.84
+        },
+        "3": {
+          "axisDeg": -5.4,
+          "head": -1,
+          "center": [
+            -0.191,
+            -0.265
+          ],
+          "limitDeg": 30,
+          "elongation": 1.67
+        },
+        "4": {
+          "axisDeg": -7.4,
+          "head": -1,
+          "center": [
+            -0.272,
+            -0.16
+          ],
+          "limitDeg": 75,
+          "elongation": 3.95
+        }
+      }
+    },
+    "native-city-bravow-side-20261023-fall": {
+      "fighter": "bravow",
+      "cells": {
+        "0": {
+          "axisDeg": 0,
+          "head": -1,
+          "center": [
+            0.061,
+            -0.441
+          ],
+          "limitDeg": 75,
+          "elongation": 1.52
+        },
+        "1": {
+          "axisDeg": 0,
+          "head": -1,
+          "center": [
+            -0.004,
+            -0.5
+          ],
+          "limitDeg": 75,
+          "elongation": 1.57
+        },
+        "2": {
+          "axisDeg": 2.7,
+          "head": -1,
+          "center": [
+            -0.001,
+            -0.272
+          ],
+          "limitDeg": 30,
+          "elongation": 2.04
+        },
+        "3": {
+          "axisDeg": -6.7,
+          "head": -1,
+          "center": [
+            0.05,
+            -0.199
+          ],
+          "limitDeg": 30,
+          "elongation": 2.47
+        }
+      }
+    },
+    "native-city-beotim-side-20261023-fall": {
+      "fighter": "beotim",
+      "cells": {
+        "0": {
+          "axisDeg": 0,
+          "head": -1,
+          "center": [
+            0.108,
+            -0.47
+          ],
+          "limitDeg": 75,
+          "elongation": 1.48
+        },
+        "1": {
+          "axisDeg": 0,
+          "head": -1,
+          "center": [
+            -0.002,
+            -0.566
+          ],
+          "limitDeg": 75,
+          "elongation": 1.36
+        },
+        "2": {
+          "axisDeg": -6.2,
+          "head": -1,
+          "center": [
+            -0.002,
+            -0.249
+          ],
+          "limitDeg": 30,
+          "elongation": 2.15
+        },
+        "3": {
+          "axisDeg": -1.6,
+          "head": -1,
+          "center": [
+            0.035,
+            -0.189
+          ],
+          "limitDeg": 30,
+          "elongation": 2.32
+        }
+      }
+    },
+    "native-city-quickcat-side-20261023-fall": {
+      "fighter": "quickcat",
+      "cells": {
+        "0": {
+          "axisDeg": 0,
+          "head": -1,
+          "center": [
+            -0.222,
+            -0.762
+          ],
+          "limitDeg": 75,
+          "elongation": 1.58
+        },
+        "1": {
+          "axisDeg": 47.6,
+          "head": -1,
+          "center": [
+            -0.265,
+            -0.712
+          ],
+          "limitDeg": 30,
+          "elongation": 1.65
+        },
+        "2": {
+          "axisDeg": 0.8,
+          "head": -1,
+          "center": [
+            -0.232,
+            -0.445
+          ],
+          "limitDeg": 30,
+          "elongation": 1.72
+        },
+        "3": {
+          "axisDeg": -0.9,
+          "head": -1,
+          "center": [
+            -0.268,
+            -0.398
+          ],
+          "limitDeg": 30,
+          "elongation": 2.05
+        }
+      }
+    },
+    "native-city-kungjjak-side-20261023-fall": {
+      "fighter": "kungjjak",
+      "cells": {
+        "0": {
+          "axisDeg": 0,
+          "head": -1,
+          "center": [
+            -0.092,
+            -0.444
+          ],
+          "limitDeg": 75,
+          "elongation": 1.48
+        },
+        "1": {
+          "axisDeg": -6.7,
+          "head": -1,
+          "center": [
+            -0.004,
+            -0.408
+          ],
+          "limitDeg": 30,
+          "elongation": 1.66
+        },
+        "2": {
+          "axisDeg": 1.0,
+          "head": -1,
+          "center": [
+            -0.002,
+            -0.218
+          ],
+          "limitDeg": 30,
+          "elongation": 2.26
+        },
+        "3": {
+          "axisDeg": -5.2,
+          "head": -1,
+          "center": [
+            -0.002,
+            -0.179
+          ],
+          "limitDeg": 30,
+          "elongation": 3.06
+        }
+      }
+    },
+    "native-city-sikeundung-side-20261023-fall": {
+      "fighter": "sikeundung",
+      "cells": {
+        "0": {
+          "axisDeg": -88.9,
+          "head": -1,
+          "center": [
+            -0.032,
+            -0.442
+          ],
+          "limitDeg": 30,
+          "elongation": 1.83
+        },
+        "1": {
+          "axisDeg": -38.1,
+          "head": -1,
+          "center": [
+            -0.002,
+            -0.399
+          ],
+          "limitDeg": 30,
+          "elongation": 1.87
+        },
+        "2": {
+          "axisDeg": -1.9,
+          "head": -1,
+          "center": [
+            -0.002,
+            -0.201
+          ],
+          "limitDeg": 30,
+          "elongation": 2.73
+        },
+        "3": {
+          "axisDeg": -6.2,
+          "head": -1,
+          "center": [
+            -0.001,
+            -0.188
+          ],
+          "limitDeg": 30,
+          "elongation": 3.1
+        },
+        "4": {
+          "axisDeg": -10.4,
+          "head": -1,
+          "center": [
+            -0.002,
+            -0.206
+          ],
+          "limitDeg": 30,
+          "elongation": 2.18
+        },
+        "5": {
+          "axisDeg": -81.8,
+          "head": -1,
+          "center": [
+            -0.086,
+            -0.438
+          ],
+          "limitDeg": 30,
+          "elongation": 1.88
+        }
+      }
+    },
+    "native-city-duldul-side-20261023-fall": {
+      "fighter": "duldul",
+      "cells": {
+        "0": {
+          "axisDeg": -74.5,
+          "head": -1,
+          "center": [
+            -0.02,
+            -0.42
+          ],
+          "limitDeg": 30,
+          "elongation": 2.07
+        },
+        "1": {
+          "axisDeg": -14.8,
+          "head": -1,
+          "center": [
+            -0.001,
+            -0.504
+          ],
+          "limitDeg": 30,
+          "elongation": 2.38
+        },
+        "2": {
+          "axisDeg": 25.9,
+          "head": -1,
+          "center": [
+            -0.002,
+            -0.289
+          ],
+          "limitDeg": 30,
+          "elongation": 1.83
+        },
+        "3": {
+          "axisDeg": -6.0,
+          "head": -1,
+          "center": [
+            0.105,
+            -0.168
+          ],
+          "limitDeg": 75,
+          "elongation": 3.54
+        }
+      }
+    },
+    "native-city-eoridung-side-20261023-fall": {
+      "fighter": "eoridung",
+      "cells": {
+        "0": {
+          "axisDeg": -62.5,
+          "head": -1,
+          "center": [
+            -0.077,
+            -0.475
+          ],
+          "limitDeg": 30,
+          "elongation": 1.77
+        },
+        "1": {
+          "axisDeg": -14.1,
+          "head": -1,
+          "center": [
+            -0.004,
+            -0.571
+          ],
+          "limitDeg": 30,
+          "elongation": 1.92
+        },
+        "2": {
+          "axisDeg": 2.1,
+          "head": -1,
+          "center": [
+            -0.002,
+            -0.226
+          ],
+          "limitDeg": 30,
+          "elongation": 2.39
+        },
+        "3": {
+          "axisDeg": -4.7,
+          "head": -1,
+          "center": [
+            -0.002,
+            -0.208
+          ],
+          "limitDeg": 30,
+          "elongation": 2.63
+        },
+        "4": {
+          "axisDeg": 0.6,
+          "head": -1,
+          "center": [
+            -0.001,
+            -0.194
+          ],
+          "limitDeg": 30,
+          "elongation": 2.35
+        }
+      }
+    },
+    "native-city-female-bikini-fight-20261019-side-ko-p1": {
+      "cells": {
+        "0": {
+          "axisDeg": -87.0,
+          "head": -1,
+          "center": [
+            -0.042,
+            -0.512
+          ],
+          "limitDeg": 75,
+          "elongation": 4.09
+        },
+        "1": {
+          "axisDeg": -65.5,
+          "head": -1,
+          "center": [
+            -0.134,
+            -0.468
+          ],
+          "limitDeg": 30,
+          "elongation": 2.16
+        },
+        "2": {
+          "axisDeg": -46.4,
+          "head": -1,
+          "center": [
+            0.228,
+            -0.519
+          ],
+          "limitDeg": 30,
+          "elongation": 2.58
+        },
+        "3": {
+          "axisDeg": -46.4,
+          "head": -1,
+          "center": [
+            0.228,
+            -0.519
+          ],
+          "limitDeg": 30,
+          "elongation": 2.58
+        },
+        "4": {
+          "axisDeg": 17.1,
+          "head": -1,
+          "center": [
+            0.004,
+            -0.308
+          ],
+          "limitDeg": 30,
+          "elongation": 2.14
+        },
+        "5": {
+          "axisDeg": 2.5,
+          "head": -1,
+          "center": [
+            0.001,
+            -0.167
+          ],
+          "limitDeg": 75,
+          "elongation": 4.09
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,268 @@
+{
+  "machineWidthWorldPx": 150,
+  "placement": {
+    "anchor": [
+      320,
+      536.65
+    ],
+    "depthInWidths": 0.62,
+    "cabinetHeightInWidths": 0.86,
+    "standDistancePlan": 16,
+    "design": "assets/art/native-city-cat-vending-placement-20261013/design-and-orthos.webp"
+  },
+  "views": {
+    "sheet": {
+      "key": "native-city-cat-vending-views",
+      "path": "art/village/otherworld/native-city-cat-vending-views.webp",
+      "frameWidth": 521,
+      "frameHeight": 598,
+      "columns": 4,
+      "rows": 2
+    },
+    "frontNormalPlanDeg": 65.0,
+    "elevationDeg": 16.0,
+    "frames": [
+      {
+        "view": "front",
+        "phi": 0,
+        "frame": 0
+      },
+      {
+        "view": "front_right",
+        "phi": 45,
+        "frame": 1
+      },
+      {
+        "view": "side_right",
+        "phi": 90,
+        "frame": 2
+      },
+      {
+        "view": "back_right",
+        "phi": 135,
+        "frame": 3
+      },
+      {
+        "view": "back",
+        "phi": 180,
+        "frame": 4
+      },
+      {
+        "view": "back_left",
+        "phi": 225,
+        "frame": 5
+      },
+      {
+        "view": "side_left",
+        "phi": 270,
+        "frame": 6
+      },
+      {
+        "view": "front_left",
+        "phi": 315,
+        "frame": 7
+      }
+    ],
+    "origin": {
+      "x": 260.5,
+      "y": 524.71
+    },
+    "machineWidthPx": 420,
+    "earHeightW": 1.2848,
+    "sha256": "aad2667a621198bb58e8ee836431433a6c0cde4a94eb0afa4f3ec1ff20c554fd"
+  },
+  "landing": {
+    "sheet": {
+      "key": "native-city-cat-vending-landing",
+      "path": "art/village/otherworld/native-city-cat-vending-landing.webp",
+      "frameWidth": 396,
+      "frameHeight": 801,
+      "columns": 5,
+      "rows": 2
+    },
+    "clip": "clip-landing-a.mp4",
+    "fall": [
+      {
+        "frame": 0,
+        "clipFrame": 20,
+        "holdMs": null,
+        "bakedLiftInWidths": 0.6429
+      },
+      {
+        "frame": 1,
+        "clipFrame": 22,
+        "holdMs": 67,
+        "bakedLiftInWidths": 0.3581
+      },
+      {
+        "frame": 2,
+        "clipFrame": 24,
+        "holdMs": 33,
+        "bakedLiftInWidths": -0.0174
+      }
+    ],
+    "impact": [
+      {
+        "frame": 3,
+        "clipFrame": 28,
+        "holdMs": 100,
+        "scaleX": 1.05,
+        "scaleY": 0.94
+      },
+      {
+        "frame": 4,
+        "clipFrame": 29,
+        "holdMs": 83,
+        "scaleX": 1.025,
+        "scaleY": 0.97
+      },
+      {
+        "frame": 5,
+        "clipFrame": 30,
+        "holdMs": 50,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "frame": 6,
+        "clipFrame": 31,
+        "holdMs": 50,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "frame": 7,
+        "clipFrame": 33,
+        "holdMs": 67,
+        "scaleX": 0.985,
+        "scaleY": 1.03
+      },
+      {
+        "frame": 8,
+        "clipFrame": 35,
+        "holdMs": 83,
+        "scaleX": 1,
+        "scaleY": 1
+      },
+      {
+        "frame": 9,
+        "clipFrame": 36,
+        "holdMs": 117,
+        "scaleX": 1,
+        "scaleY": 1
+      }
+    ],
+    "origin": {
+      "x": 194.62,
+      "y": 765.44
+    },
+    "machineWidthPx": 363.508,
+    "sha256": "d512724cce5ccedcdcb719a3734f0ed69820af7949253d8b9f1d4fd247e9b4bf"
+  },
+  "cinematic": {
+    "_note": "Hand-authored. Timeline reviewed by the game-animator agent, effects by the vfx-artist agent (2026-10-12); 2026-10-12 user: it must slam down from high in the sky. Contact at drop.atMs + drop.fallMs.",
+    "turnMs": 600,
+    "shot": {
+      "wideZoom": 0.55,
+      "impactZoom": 0.78,
+      "punchZoom": 0.8,
+      "punchReturnMs": 200,
+      "kickPx": 8,
+      "lookUpPx": 110,
+      "releaseMs": 700
+    },
+    "rift": {
+      "openAtMs": 350,
+      "openMs": 300,
+      "pulses": [
+        [
+          650,
+          0.5
+        ],
+        [
+          1150,
+          1.0
+        ]
+      ],
+      "pulseMs": 140,
+      "pulseGain": 0.45,
+      "heightInWidths": 4.3,
+      "closeAtMs": 1450,
+      "closeMs": 100
+    },
+    "pillar": {
+      "strikeAtMs": 800,
+      "strikeMs": 110,
+      "strikeShakePx": 4,
+      "strikeShakeMs": 180,
+      "strikeRingMs": 320
+    },
+    "drop": {
+      "atMs": 1250,
+      "fallMs": 380,
+      "startLiftInWidths": 2.9,
+      "emergeMs": 100,
+      "emergeMid": [
+        1.04,
+        0.98
+      ],
+      "emergeStart": [
+        0.8,
+        1.15
+      ],
+      "stretchY": 1.08,
+      "stretchX": 0.96,
+      "fountainFrontPx": 70,
+      "streakInWidths": 1.6
+    },
+    "impact": {
+      "hitstopMs": 100,
+      "flashFrames": [
+        0.45,
+        0.15
+      ],
+      "shakePx": 12,
+      "shakeMs": 380,
+      "shakeVertical": 0.8,
+      "ringMs": 500,
+      "ringStartInWidths": 0.55,
+      "ringRadiusInWidths": 3.4,
+      "dustMs": 800,
+      "dustCount": 8,
+      "debrisMs": 750,
+      "debrisCount": 12,
+      "crackFadeMs": 1600,
+      "crackResidual": 0.25,
+      "echoDelayMs": 70,
+      "splashCount": 6,
+      "splashMs": 500,
+      "crackPeak": 0.85
+    },
+    "settleTailMs": 350,
+    "startle": {
+      "radiusInWidths": 4.5,
+      "hops": [
+        [
+          18,
+          220
+        ],
+        [
+          6,
+          160
+        ]
+      ],
+      "emoteMs": 600,
+      "emotePopMs": 100,
+      "emoteFadeMs": 120
+    },
+    "letter": {
+      "bodyPx": 230,
+      "holdMs": 100
+    }
+  },
+  "provenance": {
+    "tool": "tools/art/cat-vending (sprite-gen 2.19 + Grok Imagine)",
+    "sources": "assets/art/native-city-cat-vending-ortho16-20261012",
+    "ledger": "grok-ledger.jsonl in the source folder"
+  }
+}

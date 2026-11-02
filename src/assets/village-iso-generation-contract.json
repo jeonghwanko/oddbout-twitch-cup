@@ -1,0 +1,275 @@
+{
+  "version": 3,
+  "projection": {
+    "type": "isometric-2to1",
+    "tileWidth": 64,
+    "tileHeight": 32
+  },
+  "generation": {
+    "backgroundPixelRatio": 1,
+    "buildingPixelRatio": 2,
+    "floorOwner": "runtime-tile-layer",
+    "buildingBackdrop": "transparent"
+  },
+  "assets": {
+    "blackthorne-manor": {
+      "placementId": "mansion",
+      "source": {
+        "file": "blackthorne-manor-floorless-v2-source.webp",
+        "sha256": "c7ca63b7597f11c598e2ed43fd9bc32509a47045bfc5c1051b6abd3e371e833d",
+        "width": 1364,
+        "height": 960,
+        "anchor": {
+          "x": 588.006,
+          "y": 953.44
+        },
+        "maxBottomContactWidthRatio": 0.2
+      },
+      "runtime": {
+        "id": "blackthorne-manor-line-v3",
+        "width": 640,
+        "height": 480,
+        "content": {
+          "left": 8,
+          "top": 33,
+          "width": 624,
+          "height": 439
+        },
+        "anchor": {
+          "x": 277,
+          "y": 469
+        },
+        "renderScale": 0.59904,
+        "renderOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "backgroundLot": {
+        "centerTile": {
+          "u": 4.7,
+          "v": 4.15
+        },
+        "width": 7.92,
+        "depth": 7.92
+      },
+      "backgroundPatch": {
+        "file": "blackthorne-empty-lot-patch-v2-source.webp",
+        "sha256": "70e3d139a58cb3b6b2eced5bfc76a5e9643a633c676b326e799fd0d9825cf80d",
+        "width": 240,
+        "height": 200,
+        "artLeft": 860,
+        "artTop": 30
+      },
+      "foundationSocket": {
+        "uSpan": 7.92,
+        "vSpan": 5.76,
+        "alignment": "front-edge-of-background-lot",
+        "frontOffsetFromActor": {
+          "u": 2.16,
+          "v": 0.36
+        },
+        "entranceNotchEdge": "max-v",
+        "bottomEnvelopeAlphaThreshold": 64,
+        "bottomEnvelopeMinimumSpanRatio": 0.75,
+        "bottomEnvelopeToleranceTiles": 0.01
+      },
+      "fitToleranceWorldPx": 1
+    },
+    "royal-auction-house": {
+      "placementId": "auction-house",
+      "source": {
+        "file": "royal-auction-iso-corrected-source.webp",
+        "sha256": "e6997863a0f710f5bd4a5a545bd405de35b2517f2f6578a6f4c3100b2f0b94a1",
+        "width": 1444,
+        "height": 850,
+        "anchor": {
+          "x": 722,
+          "y": 850
+        }
+      },
+      "runtime": {
+        "id": "royal-auction-line-v3",
+        "width": 544,
+        "height": 432,
+        "content": {
+          "left": 8,
+          "top": 113,
+          "width": 528,
+          "height": 311
+        },
+        "anchor": {
+          "x": 272,
+          "y": 424
+        },
+        "renderScale": 0.65352,
+        "renderOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "backgroundLot": {
+        "centerTile": {
+          "u": 14.64,
+          "v": -0.36
+        },
+        "width": 10.08,
+        "depth": 10.08
+      },
+      "foundationSocket": {
+        "uSpan": 5.88,
+        "vSpan": 5.88,
+        "alignment": "front-edge-of-background-lot",
+        "frontOffsetFromActor": {
+          "u": 1.68,
+          "v": 1.68
+        },
+        "entranceNotchEdge": "max-v",
+        "bottomEnvelopeAlphaThreshold": 64,
+        "bottomEnvelopeMinimumSpanRatio": 0.75,
+        "bottomEnvelopeToleranceTiles": 0.01
+      }
+    },
+    "thieves-guild": {
+      "placementId": "thieves-guild",
+      "source": {
+        "file": "thieves-guild-iso-corrected-source.webp",
+        "sha256": "2b34a53cc59754321faa263d750a1fd72e520db7c9f442d771598431f25fe527",
+        "width": 1286,
+        "height": 930,
+        "anchor": {
+          "x": 609.655,
+          "y": 930
+        }
+      },
+      "runtime": {
+        "id": "thieves-guild-line-v3",
+        "width": 480,
+        "height": 384,
+        "content": {
+          "left": 8,
+          "top": 40,
+          "width": 464,
+          "height": 336
+        },
+        "anchor": {
+          "x": 228,
+          "y": 376
+        },
+        "renderScale": 0.304,
+        "renderOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "backgroundLot": {
+        "centerTile": {
+          "u": 1.5,
+          "v": 15.5
+        },
+        "width": 6,
+        "depth": 6
+      },
+      "foundationSocket": {
+        "uSpan": 3,
+        "vSpan": 2.5,
+        "alignment": "front-edge-of-background-lot",
+        "frontOffsetFromActor": {
+          "u": 0.5,
+          "v": 0.25
+        },
+        "entranceNotchEdge": "front-corner",
+        "bottomEnvelopeAlphaThreshold": 64,
+        "bottomEnvelopeMinimumSpanRatio": 0.75,
+        "bottomEnvelopeToleranceTiles": 0.01
+      }
+    },
+    "training-passage": {
+      "placementId": "tutorial",
+      "source": {
+        "file": "training-passage-iso-corrected-source.webp",
+        "sha256": "b73c986bbe23c5d038d6059be9d7d10a96ca56afa2922d51e2cf135dfa7e1391",
+        "width": 1249,
+        "height": 997,
+        "anchor": {
+          "x": 487.188,
+          "y": 997
+        }
+      },
+      "runtime": {
+        "id": "training-passage-line-v3",
+        "width": 416,
+        "height": 288,
+        "content": {
+          "left": 38,
+          "top": 8,
+          "width": 341,
+          "height": 272
+        },
+        "anchor": {
+          "x": 171,
+          "y": 280
+        },
+        "renderScale": 0.65,
+        "renderOffset": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "backgroundLot": {
+        "centerTile": {
+          "u": 10.7,
+          "v": 20.375
+        },
+        "width": 3.9,
+        "depth": 4.55
+      },
+      "foundationSocket": {
+        "uSpan": 3.9,
+        "vSpan": 4.55,
+        "alignment": "front-edge-of-background-lot",
+        "frontOffsetFromActor": {
+          "u": 0.65,
+          "v": 0.65
+        },
+        "entranceNotchEdge": "max-v",
+        "bottomEnvelopeAlphaThreshold": 64,
+        "bottomEnvelopeMinimumSpanRatio": 0.75,
+        "bottomEnvelopeToleranceTiles": 0.01
+      }
+    },
+    "magpie-fountain": {
+      "placementId": "fountain",
+      "source": {
+        "file": "magpie-fountain-line-v3-source.webp",
+        "sha256": "7ec76a899a9fc1eff203b4552f8d9c63e7e714d5f9c6c9d7cf4aba65925038c2",
+        "width": 805,
+        "height": 803,
+        "anchor": {
+          "x": 404.025,
+          "y": 803
+        }
+      },
+      "runtime": {
+        "id": "magpie-fountain-line-v3",
+        "width": 352,
+        "height": 256,
+        "content": {
+          "left": 56,
+          "top": 8,
+          "width": 241,
+          "height": 240
+        },
+        "anchor": {
+          "x": 177,
+          "y": 248
+        },
+        "renderScale": 0.672,
+        "renderOffset": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    }
+  }
+}

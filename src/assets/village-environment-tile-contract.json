@@ -1,0 +1,323 @@
+{
+  "version": 1,
+  "projection": {
+    "type": "isometric-2to1",
+    "tileWidth": 64,
+    "tileHeight": 32,
+    "pivot": "ground-center"
+  },
+  "terrain": {
+    "source": {
+      "path": "../assets/art-archive/village-isometric-v4/source/heist-haven-terrain-atlas-v4-source.webp",
+      "sha256": "3bf70db9803419a2c697a350c02b47ac0d240a67a362441ed95e3bfd6d101e1d",
+      "width": 1448,
+      "height": 1086,
+      "columns": 4,
+      "rows": 4
+    },
+    "runtime": {
+      "id": "heist-haven-terrain-tiles-v4",
+      "path": "art/village/iso-v4/heist-haven-terrain-tiles-v4.webp",
+      "frameWidth": 320,
+      "frameHeight": 192,
+      "columns": 4,
+      "rows": 4,
+      "renderScale": 0.444444,
+      "moduleSpanTiles": 2
+    },
+    "frames": [
+      "grass-clean",
+      "grass-clover",
+      "grass-flowers",
+      "grass-worn",
+      "paving-clean",
+      "paving-cracked",
+      "paving-moss",
+      "paving-brass",
+      "earth-dry",
+      "earth-pebbles",
+      "earth-cart-wear",
+      "earth-damp",
+      "garden-soil",
+      "garden-herbs",
+      "garden-flowers",
+      "garden-groundcover"
+    ]
+  },
+  "props": {
+    "source": {
+      "path": "../assets/art-archive/village-isometric-v4/source/heist-haven-prop-atlas-floorless-v4-source.webp",
+      "sha256": "9d850d23abe4112989902554679e79994fac41de96b624e292f35da92f7c4ae3",
+      "width": 1536,
+      "height": 1024,
+      "columns": 4,
+      "rows": 3
+    },
+    "runtime": {
+      "id": "heist-haven-environment-props-v4",
+      "path": "art/village/iso-v4/heist-haven-environment-props-v4.webp",
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "columns": 4,
+      "rows": 3,
+      "renderScale": 0.42
+    },
+    "frames": [
+      "conifer",
+      "broadleaf",
+      "flowering-shrub",
+      "hedge-corner",
+      "banner-lamp",
+      "bench",
+      "direction-sign",
+      "herb-planter",
+      "market-stall",
+      "market-supplies",
+      "handcart",
+      "notice-kiosk"
+    ]
+  },
+  "edgeBuildings": {
+    "source": {
+      "path": "../assets/art-archive/village-isometric-v4/source/heist-haven-edge-buildings-v4-source.webp",
+      "sha256": "176ac42863b2577d47a3d9ae10f32a6a30f8de584f8dabfd5557ca56196410b3",
+      "width": 1774,
+      "height": 887,
+      "columns": 4,
+      "rows": 2
+    },
+    "runtime": {
+      "id": "heist-haven-edge-buildings-v4",
+      "path": "art/village/iso-v4/heist-haven-edge-buildings-v4.webp",
+      "frameWidth": 384,
+      "frameHeight": 384,
+      "columns": 4,
+      "rows": 2,
+      "renderScale": 0.42
+    },
+    "frames": [
+      "townhouse",
+      "workshop",
+      "inn",
+      "warehouse",
+      "garden-cottage",
+      "observatory-office",
+      "records-gatehouse",
+      "carriage-shed"
+    ]
+  },
+  "lotMaterials": {
+    "mansion": [
+      "paving-clean",
+      "paving-clean",
+      "paving-clean",
+      "paving-clean",
+      "paving-clean",
+      "paving-clean",
+      "paving-cracked",
+      "paving-clean",
+      "paving-moss",
+      "paving-clean",
+      "paving-brass",
+      "paving-clean"
+    ],
+    "auction-house": [
+      "paving-clean",
+      "paving-clean",
+      "paving-brass",
+      "paving-clean",
+      "paving-clean",
+      "paving-moss",
+      "paving-clean",
+      "paving-clean",
+      "paving-brass",
+      "paving-clean"
+    ],
+    "thieves-guild": [
+      "earth-dry",
+      "earth-dry",
+      "earth-pebbles",
+      "earth-dry",
+      "grass-worn",
+      "earth-dry",
+      "earth-pebbles",
+      "earth-dry",
+      "paving-cracked",
+      "earth-dry"
+    ],
+    "tutorial": [
+      "earth-cart-wear",
+      "earth-dry",
+      "earth-dry",
+      "earth-pebbles",
+      "earth-dry",
+      "earth-cart-wear",
+      "earth-dry",
+      "earth-pebbles"
+    ]
+  },
+  "propPlacements": [
+    {
+      "id": "manor-back-lamp",
+      "frame": "banner-lamp",
+      "tile": {
+        "u": 0.26,
+        "v": 3.01
+      },
+      "scale": 0.82
+    },
+    {
+      "id": "manor-back-bench",
+      "frame": "bench",
+      "tile": {
+        "u": 3.8,
+        "v": 2.05
+      },
+      "scale": 0.82
+    },
+    {
+      "id": "manor-herb-planter",
+      "frame": "herb-planter",
+      "tile": {
+        "u": 6.08,
+        "v": 2.11
+      },
+      "scale": 0.74
+    },
+    {
+      "id": "manor-direction-sign",
+      "frame": "direction-sign",
+      "tile": {
+        "u": 9.14,
+        "v": 2.11
+      },
+      "scale": 0.72
+    },
+    {
+      "id": "auction-back-lamp",
+      "frame": "banner-lamp",
+      "tile": {
+        "u": 10.356,
+        "v": -3.972
+      },
+      "scale": 0.8
+    },
+    {
+      "id": "auction-back-planter",
+      "frame": "herb-planter",
+      "tile": {
+        "u": 12.96,
+        "v": -3.972
+      },
+      "scale": 0.7
+    },
+    {
+      "id": "auction-notice",
+      "frame": "notice-kiosk",
+      "tile": {
+        "u": 16.488,
+        "v": -3.804
+      },
+      "scale": 0.72
+    },
+    {
+      "id": "auction-side-bench",
+      "frame": "bench",
+      "tile": {
+        "u": 10.692,
+        "v": -0.192
+      },
+      "scale": 0.75
+    },
+    {
+      "id": "auction-shrub",
+      "frame": "flowering-shrub",
+      "tile": {
+        "u": 11.532,
+        "v": 3.0
+      },
+      "scale": 0.66
+    },
+    {
+      "id": "guild-market",
+      "frame": "market-stall",
+      "tile": {
+        "u": -0.3,
+        "v": 14.4
+      },
+      "scale": 0.8
+    },
+    {
+      "id": "guild-supplies",
+      "frame": "market-supplies",
+      "tile": {
+        "u": 1.0,
+        "v": 14.6
+      },
+      "scale": 0.72
+    },
+    {
+      "id": "guild-back-lamp",
+      "frame": "banner-lamp",
+      "tile": {
+        "u": -0.9,
+        "v": 16.2
+      },
+      "scale": 0.78
+    },
+    {
+      "id": "guild-side-bench",
+      "frame": "bench",
+      "tile": {
+        "u": 0.15,
+        "v": 17.5
+      },
+      "scale": 0.72
+    },
+    {
+      "id": "guild-planter",
+      "frame": "herb-planter",
+      "tile": {
+        "u": 2.7,
+        "v": 14.2
+      },
+      "scale": 0.68
+    },
+    {
+      "id": "training-cart",
+      "frame": "handcart",
+      "tile": {
+        "u": 12.0,
+        "v": 23.56
+      },
+      "scale": 0.7
+    },
+    {
+      "id": "training-shrub",
+      "frame": "flowering-shrub",
+      "tile": {
+        "u": 13.3,
+        "v": 21.74
+      },
+      "scale": 0.62
+    },
+    {
+      "id": "training-sign",
+      "frame": "direction-sign",
+      "tile": {
+        "u": 16.225,
+        "v": 23.105
+      },
+      "scale": 0.68
+    },
+    {
+      "id": "training-lamp",
+      "frame": "banner-lamp",
+      "tile": {
+        "u": 16.03,
+        "v": 26.095
+      },
+      "scale": 0.74
+    }
+  ]
+}

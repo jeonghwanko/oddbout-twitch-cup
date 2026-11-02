@@ -1,0 +1,36 @@
+import { defineTranslation } from "../../catalog";
+import type { INPUT_EN } from "./en";
+
+/** `input` 이름공간의 한국어. 키와 문맥 주석은 기준 언어 표(./en.ts)에 있다. */
+export const INPUT_KO = defineTranslation<typeof INPUT_EN>({
+  "input.padA": "패드 A",
+  "input.padB": "패드 B",
+  "input.padR1": "패드 R1",
+  "input.padX": "패드 X",
+  "input.cityFight": "도시 대결",
+  "input.hud.leftStick": "왼쪽 스틱",
+  "input.hud.move": "움직이기",
+  "input.hud.leave": "나가기",
+  "input.hud.leaveTutorial": "튜토리얼 나가기",
+  "input.hud.mute": "음소거",
+  "input.hud.controlsGuide": "조작법 보기",
+  "input.context.pickpocket": "소매치기",
+  "input.context.intel": "정보",
+  "input.context.subdue": "무력화",
+  "input.context.ghostBid": "유령 호가 · 홀을 들썩이기",
+  "input.context.swapFake": "가품과 바꿔치기",
+  "input.context.grabAlarm": "강탈 · 경보",
+  "input.context.recover": "회수",
+  "input.context.keepStealing": "계속 훔치기",
+  "input.context.steal": "훔치기",
+  "input.context.exit": "출구",
+  "input.context.escape": "탈출",
+  "input.context.hide": "숨기",
+  "input.context.leaveCover": "나오기",
+  "input.context.enterVent": "환기구 진입",
+  "input.context.ladder": "사다리",
+  "input.context.throwRope": "줄 던지기",
+  "input.context.pullChandelier": "샹들리에 줄 당기기",
+  "input.context.startCaper": "괴도 연쇄극 시작",
+  "input.context.dragBody": "몸 끌기 · 이동",
+});

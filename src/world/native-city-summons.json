@@ -1,0 +1,257 @@
+{
+  "kinds": {
+    "crane": {
+      "motion": "fly",
+      "spawn": {
+        "from": "ahead",
+        "gapStrides": 0.4,
+        "tellMs": 0
+      },
+      "speedStridesPerSec": 3.6,
+      "halfLengthStrides": 0.25,
+      "liftShare": 0.68,
+      "high": true,
+      "lifeMs": 6000,
+      "maxLive": 2,
+      "damage": 0.3,
+      "consumeOn": [
+        "hit",
+        "block",
+        "ko"
+      ],
+      "grade": "white",
+      "playerHit": {
+        "defendAs": "fast",
+        "answers": {
+          "dodge": true,
+          "parry": false,
+          "vault": true
+        },
+        "tier": "light",
+        "contact": "hook",
+        "invulnerableMs": 200,
+        "stunMs": 260,
+        "knockbackStrides": 0.5
+      },
+      "bout": {
+        "tier": "light"
+      },
+      "reflect": {
+        "damage": 3,
+        "poise": 3,
+        "leadMs": 160,
+        "tailMs": 140
+      }
+    },
+    "sportsCar": {
+      "motion": "drive",
+      "spawn": {
+        "from": "behind",
+        "gapStrides": -1.2,
+        "tellMs": 700
+      },
+      "speedStridesPerSec": 9,
+      "halfLengthStrides": 1.6,
+      "liftShare": 0,
+      "lifeMs": 6000,
+      "maxLive": 1,
+      "damage": 0.9,
+      "consumeOn": [],
+      "grade": "gold",
+      "playerHit": {
+        "defendAs": "dash",
+        "answers": {
+          "dodge": true,
+          "parry": false,
+          "vault": true
+        },
+        "tier": "dash",
+        "contact": "stone",
+        "invulnerableMs": 820,
+        "stunMs": 420,
+        "knockbackStrides": 3.5,
+        "launch": true,
+        "knockdown": true,
+        "lieMs": 480
+      },
+      "bout": {
+        "tier": "heavy",
+        "launchStrides": 3.5
+      }
+    },
+    "roadster": {
+      "motion": "strike",
+      "spawn": {
+        "from": "behind",
+        "gapStrides": -1.0,
+        "tellMs": 900
+      },
+      "strike": {
+        "travelMs": 900,
+        "chargeMs": 450,
+        "activeMs": 420,
+        "recoverMs": 700
+      },
+      "speedStridesPerSec": 0,
+      "halfLengthStrides": 1.15,
+      "liftShare": 1.25,
+      "lifeMs": 4200,
+      "maxLive": 1,
+      "damage": 1.0,
+      "consumeOn": [],
+      "grade": "gold",
+      "playerHit": {
+        "defendAs": "dash",
+        "answers": {
+          "dodge": true,
+          "parry": false,
+          "vault": true,
+          "guard": false
+        },
+        "tier": "dash",
+        "contact": "stone",
+        "invulnerableMs": 820,
+        "stunMs": 420,
+        "knockbackStrides": 4,
+        "launch": true,
+        "knockdown": true,
+        "lieMs": 520
+      },
+      "bout": {
+        "tier": "heavy",
+        "launchStrides": 4
+      }
+    },
+    "bolt": {
+      "motion": "fly",
+      "spawn": {
+        "from": "ahead",
+        "gapStrides": 0.15,
+        "tellMs": 0
+      },
+      "speedStridesPerSec": 15,
+      "halfLengthStrides": 0.45,
+      "liftShare": 0.62,
+      "high": true,
+      "lifeMs": 1500,
+      "maxLive": 1,
+      "damage": 0.5,
+      "consumeOn": [
+        "hit",
+        "block",
+        "ko"
+      ],
+      "grade": "gold",
+      "playerHit": {
+        "defendAs": "dash",
+        "answers": {
+          "dodge": true,
+          "parry": false,
+          "vault": true
+        },
+        "tier": "heavy",
+        "contact": "hook",
+        "invulnerableMs": 520,
+        "stunMs": 640,
+        "knockbackStrides": 1.1
+      },
+      "bout": {
+        "tier": "heavy"
+      },
+      "reflect": {
+        "damage": 4,
+        "poise": 4,
+        "leadMs": 120,
+        "tailMs": 120,
+        "note": "2026-10-20 (the Rivals reference): batted back by a C or V swung into it (a tighter window - it is fast); it crackles out on its caster."
+      }
+    },
+    "drill": {
+      "motion": "strike",
+      "spawn": {
+        "from": "target",
+        "gapStrides": 0,
+        "tellMs": 680
+      },
+      "strike": {
+        "travelMs": 0,
+        "chargeMs": 0,
+        "activeMs": 300,
+        "recoverMs": 560
+      },
+      "speedStridesPerSec": 0,
+      "halfLengthStrides": 0.7,
+      "liftShare": 0,
+      "lifeMs": 2000,
+      "maxLive": 1,
+      "damage": 0.85,
+      "consumeOn": [],
+      "grade": "gold",
+      "playerHit": {
+        "defendAs": "dash",
+        "answers": {
+          "dodge": true,
+          "parry": false,
+          "vault": true,
+          "guard": false
+        },
+        "tier": "dash",
+        "contact": "stone",
+        "invulnerableMs": 820,
+        "stunMs": 420,
+        "knockbackStrides": 1.2,
+        "launch": true,
+        "knockdown": true,
+        "lieMs": 500
+      },
+      "bout": {
+        "tier": "heavy",
+        "launchStrides": 2
+      }
+    },
+    "bullet": {
+      "motion": "fly",
+      "spawn": {
+        "from": "ahead",
+        "gapStrides": 0.1,
+        "tellMs": 0
+      },
+      "speedStridesPerSec": 24,
+      "halfLengthStrides": 0.25,
+      "liftShare": 0.62,
+      "high": true,
+      "lifeMs": 700,
+      "maxLive": 3,
+      "damage": 0.32,
+      "consumeOn": [
+        "hit",
+        "block",
+        "ko"
+      ],
+      "grade": "gold",
+      "playerHit": {
+        "defendAs": "fast",
+        "answers": {
+          "dodge": true,
+          "parry": false,
+          "vault": true
+        },
+        "tier": "light",
+        "contact": "hook",
+        "invulnerableMs": 160,
+        "stunMs": 300,
+        "knockbackStrides": 0.45
+      },
+      "bout": {
+        "tier": "light"
+      },
+      "reflect": {
+        "damage": 2,
+        "poise": 2,
+        "leadMs": 100,
+        "tailMs": 100,
+        "note": "2026-10-25: a C or V swung into it bats it back (the tightest window — it is the fastest); it stings its marksman."
+      }
+    }
+  }
+}

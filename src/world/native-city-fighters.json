@@ -1,0 +1,539 @@
+{
+  "fighters": {
+    "yume": {
+      "airChase": {
+        "maxStrides": 3.5,
+        "landGapStrides": 0.05,
+        "reachStrides": 0.9,
+        "passStrides": 0.3,
+        "damageScale": 0.5,
+        "launchEnder": 0.5,
+        "note": "2026-10-22 추천 2번(모든 선수 공중 콤보): 연타의 마지막 타가 절반쯤 상대를 띄우고(launchEnder) 뛰어올라 공중 소매 채찍·선풍퇴, 천근추 장타로 내리꽂는다. 그림은 팩 airCombo·airCombo3(GPT 한 줄, tools/art/fighter-gpt/add_air_combo.py)."
+      },
+      "pack": "src/assets/native-city-yume-side-runtime.json",
+      "slamShockwave": {
+        "reachExtraStrides": 1.0
+      },
+      "post": [
+        {
+          "at": [
+            258,
+            577
+          ],
+          "pauseMs": 2600,
+          "face": [
+            -1,
+            0
+          ]
+        },
+        {
+          "at": [
+            271,
+            577
+          ],
+          "pauseMs": 1900
+        }
+      ],
+      "bodyScale": 0.95,
+      "footprint": "player",
+      "sideScroll": true,
+      "hp": 44,
+      "damageScale": 0.3,
+      "cooldownMs": [
+        250,
+        450
+      ],
+      "attackMix": {
+        "slam": 0.4,
+        "combo": 0.5,
+        "fast": 0.1
+      },
+      "specialAction": "combo",
+      "reach": {
+        "share": 0.7,
+        "minExtraStrides": 0.6,
+        "maxExtraStrides": 2.4
+      }
+    },
+    "bravow": {
+      "pack": "src/assets/native-city-bravow-side-runtime.json",
+      "roster": "guest",
+      "post": [
+        {
+          "at": [
+            276.08,
+            511.76
+          ],
+          "pauseMs": 2600,
+          "face": [
+            -0.9063,
+            0.4226
+          ]
+        }
+      ],
+      "bodyScale": 0.88,
+      "footprint": "player",
+      "sideScroll": true,
+      "hp": 44,
+      "damageScale": 0.3,
+      "cooldownMs": [
+        150,
+        300
+      ],
+      "attackMix": {
+        "slam": 0.3,
+        "combo": 0.5,
+        "fast": 0.2
+      },
+      "specialAction": "combo",
+      "superAction": "dash",
+      "reach": {
+        "share": 0.85,
+        "minExtraStrides": 0.6,
+        "maxExtraStrides": 0.9
+      },
+      "airChase": {
+        "maxStrides": 3.5,
+        "landGapStrides": 0.05,
+        "reachStrides": 0.9,
+        "passStrides": 0.3,
+        "damageScale": 0.5,
+        "launchEnder": 0.5,
+        "note": "2026-10-23 ODDBOUT 01~07: 연타의 마지막 타가 절반쯤 상대를 띄우고(launchEnder), 기술이 띄우면 그 뒤로도 뛰어올라 공중 콤보. 그림은 팩 airCombo·airCombo3."
+      },
+      "skill": {
+        "kind": "feint",
+        "action": "dash",
+        "everyAttacks": 2,
+        "inRangeEveryAttacks": 1,
+        "weight": 0.6,
+        "startStrides": 3.0,
+        "minGapStrides": 1.2,
+        "topSpeedStrides": 9,
+        "maxTravelStrides": 4.5,
+        "branchShare": 0.5,
+        "aiShare": 0.4,
+        "launches": true,
+        "note": "2026-10-23 시선 페인트 (Drive 기획서): 귀를 세우고 어깨를 낮춘 으스대는 곁눈질이 예고다. 박차고 돌진해 끝까지 가면 가슴으로 들이받아 띄우고, 분기점에서 멈추면(사람은 X 한 번 더, AI는 시드 몫) 뒤꿈치로 미끄러지며 윙크한다 — 멈춘 자리가 빈틈이다."
+      },
+      "superSkill": {
+        "note": "2026-10-23 필살기 시선 강탈: 별 선글라스를 내려 쓰고 눈부시게 돌진하는 페인트의 큰 형태. 큰 형태는 멈추지 않고 늘 들이받는다(kumaSkillFeintDecides)."
+      },
+      "note": "ODDBOUT 01 브라보우(2026-10-23, 우리 디자인 B안: 별 선글라스·금메달). 박수를 받아야 힘이 나는 시바견 복서. 라이벌 버팀."
+    },
+    "beotim": {
+      "pack": "src/assets/native-city-beotim-side-runtime.json",
+      "roster": "guest",
+      "post": [
+        {
+          "at": [
+            276.08,
+            511.76
+          ],
+          "pauseMs": 2600,
+          "face": [
+            -0.9063,
+            0.4226
+          ]
+        }
+      ],
+      "bodyScale": 0.8,
+      "footprint": "player",
+      "sideScroll": true,
+      "hp": 48,
+      "damageScale": 0.3,
+      "cooldownMs": [
+        150,
+        300
+      ],
+      "attackMix": {
+        "slam": 0.3,
+        "combo": 0.5,
+        "fast": 0.2
+      },
+      "specialAction": "combo",
+      "superAction": "slam",
+      "reach": {
+        "share": 0.85,
+        "minExtraStrides": 0.6,
+        "maxExtraStrides": 0.9
+      },
+      "airChase": {
+        "maxStrides": 3.5,
+        "landGapStrides": 0.05,
+        "reachStrides": 0.9,
+        "passStrides": 0.3,
+        "damageScale": 0.5,
+        "launchEnder": 0.5,
+        "note": "2026-10-23 ODDBOUT 01~07: 연타의 마지막 타가 절반쯤 상대를 띄우고(launchEnder), 기술이 띄우면 그 뒤로도 뛰어올라 공중 콤보. 그림은 팩 airCombo·airCombo3."
+      },
+      "skill": {
+        "kind": "counter",
+        "action": "slam",
+        "everyAttacks": 3,
+        "weight": 0.5,
+        "startStrides": 1.0,
+        "minGapStrides": 0,
+        "reachStrides": 0.7,
+        "launches": true,
+        "note": "2026-10-23 늦었지만 반격 (Drive 기획서): 앞발로 얼굴을 가리고 눈을 질끈 감은 자세가 예고다. 창 안에 정면 근접 타격을 받으면 막고 한 박자 늦게 앞발을 내질러 띄운다. 빈 반격은 한쪽 눈을 뜨고 확인한다(빈틈)."
+      },
+      "superSkill": {
+        "note": "2026-10-23 필살기 끝까지 버팀: 반격의 큰 형태(웅크려 덜덜 떨다 온몸으로 밀치기)."
+      },
+      "note": "ODDBOUT 02 버팀(2026-10-23, 우리 디자인 B안: 줄무늬 응원 목도리). 겁 많은 통통한 강아지, 버티다 늦게 되받아친다. 라이벌 브라보우."
+    },
+    "quickcat": {
+      "pack": "src/assets/native-city-quickcat-side-runtime.json",
+      "roster": "guest",
+      "post": [
+        {
+          "at": [
+            276.08,
+            511.76
+          ],
+          "pauseMs": 2600,
+          "face": [
+            -0.9063,
+            0.4226
+          ]
+        }
+      ],
+      "bodyScale": 0.6,
+      "footprint": "kuma",
+      "sideScroll": true,
+      "hp": 40,
+      "damageScale": 0.3,
+      "cooldownMs": [
+        150,
+        300
+      ],
+      "attackMix": {
+        "slam": 0.3,
+        "combo": 0.5,
+        "fast": 0.2
+      },
+      "specialAction": "combo",
+      "superAction": "dash",
+      "reach": {
+        "share": 0.85,
+        "minExtraStrides": 0.6,
+        "maxExtraStrides": 0.9
+      },
+      "airChase": {
+        "maxStrides": 3.5,
+        "landGapStrides": 0.05,
+        "reachStrides": 0.9,
+        "passStrides": 0.3,
+        "damageScale": 0.5,
+        "launchEnder": 0.5,
+        "note": "2026-10-23 ODDBOUT 01~07: 연타의 마지막 타가 절반쯤 상대를 띄우고(launchEnder), 기술이 띄우면 그 뒤로도 뛰어올라 공중 콤보. 그림은 팩 airCombo·airCombo3."
+      },
+      "skill": {
+        "kind": "flight",
+        "action": "dash",
+        "everyAttacks": 2,
+        "inRangeEveryAttacks": 1,
+        "weight": 0.6,
+        "startStrides": 3.0,
+        "minGapStrides": 1.2,
+        "topSpeedStrides": 11,
+        "maxTravelStrides": 5.5,
+        "launches": true,
+        "note": "2026-10-23 무지개 항로 (Drive 기획서): 무지개 꼬리가 터져 나오며 앞을 가리키는 것이 예고다. 정해진 끝까지 몸을 뚫고 날아가며 한 번 닿아 띄운다. 공중에서 제동하고 몸을 바로 하는 동안이 빈틈이다."
+      },
+      "superSkill": {
+        "note": "2026-10-23 필살기 무지개 혜성: 비행의 큰 형태(긴 무지개 혜성)."
+      },
+      "note": "ODDBOUT 03 퀵캣(2026-10-23, 우리 디자인 B안: 마카롱 몸통). 땅에 서지 않고 늘 떠 있는 고양이(원점에 떠 있는 높이가 들어 있다). 몸이 길어 발밑은 kuma."
+    },
+    "kungjjak": {
+      "pack": "src/assets/native-city-kungjjak-side-runtime.json",
+      "roster": "guest",
+      "post": [
+        {
+          "at": [
+            276.08,
+            511.76
+          ],
+          "pauseMs": 2600,
+          "face": [
+            -0.9063,
+            0.4226
+          ]
+        }
+      ],
+      "bodyScale": 0.8,
+      "footprint": "player",
+      "sideScroll": true,
+      "hp": 44,
+      "damageScale": 0.3,
+      "cooldownMs": [
+        150,
+        300
+      ],
+      "attackMix": {
+        "slam": 0.3,
+        "combo": 0.5,
+        "fast": 0.2
+      },
+      "specialAction": "combo",
+      "superAction": "slam",
+      "reach": {
+        "share": 0.85,
+        "minExtraStrides": 0.6,
+        "maxExtraStrides": 0.9
+      },
+      "airChase": {
+        "maxStrides": 3.5,
+        "landGapStrides": 0.05,
+        "reachStrides": 0.9,
+        "passStrides": 0.3,
+        "damageScale": 0.5,
+        "launchEnder": 0.5,
+        "note": "2026-10-23 ODDBOUT 01~07: 연타의 마지막 타가 절반쯤 상대를 띄우고(launchEnder), 기술이 띄우면 그 뒤로도 뛰어올라 공중 콤보. 그림은 팩 airCombo·airCombo3."
+      },
+      "summons": [
+        {
+          "kind": "bolt",
+          "weight": 0.8,
+          "everyAttacks": 1,
+          "minGapStrides": 0.4,
+          "startStrides": 4.0,
+          "note": "2026-10-23 퇴장 리듬 (Drive 기획서): 건반을 눌러 날린 음표 한 묶음이 곧게 날아가 부딪히면 터진다(번개 화살 규칙에 그의 그림, 그의 summon 클립). 사람이 조종하면 X가 이 소환이다."
+        }
+      ],
+      "note": "ODDBOUT 04 쿵짝(2026-10-23, 우리 디자인 B안: 선글라스·음표 셔츠·흰 건반을 키타처럼 멘다). 고유 기술 대신 음표 소환. 필살기는 강타."
+    },
+    "sikeundung": {
+      "pack": "src/assets/native-city-sikeundung-side-runtime.json",
+      "roster": "guest",
+      "post": [
+        {
+          "at": [
+            276.08,
+            511.76
+          ],
+          "pauseMs": 2600,
+          "face": [
+            -0.9063,
+            0.4226
+          ]
+        }
+      ],
+      "bodyScale": 0.74,
+      "footprint": "player",
+      "sideScroll": true,
+      "hp": 48,
+      "damageScale": 0.3,
+      "cooldownMs": [
+        150,
+        300
+      ],
+      "attackMix": {
+        "slam": 0.3,
+        "combo": 0.5,
+        "fast": 0.2
+      },
+      "specialAction": "combo",
+      "superAction": "slam",
+      "reach": {
+        "share": 0.85,
+        "minExtraStrides": 0.6,
+        "maxExtraStrides": 0.9
+      },
+      "airChase": {
+        "maxStrides": 3.5,
+        "landGapStrides": 0.05,
+        "reachStrides": 0.9,
+        "passStrides": 0.3,
+        "damageScale": 0.5,
+        "launchEnder": 0.5,
+        "note": "2026-10-23 ODDBOUT 01~07: 연타의 마지막 타가 절반쯤 상대를 띄우고(launchEnder), 기술이 띄우면 그 뒤로도 뛰어올라 공중 콤보. 그림은 팩 airCombo·airCombo3."
+      },
+      "skill": {
+        "kind": "brace",
+        "action": "slam",
+        "everyAttacks": 3,
+        "weight": 0.5,
+        "startStrides": 1.0,
+        "minGapStrides": 0,
+        "reachStrides": 0.85,
+        "followMs": 450,
+        "aiFollowMs": 120,
+        "launches": true,
+        "note": "2026-10-23 여기까지 (Drive 기획서): 팔짱을 더 조이고 뒷발을 박는 것이 예고다. 버티는 동안 정면 근접 타격을 막고, 다시 누르면(AI는 곧장) 두 앞발로 밀어내 띄운다. 팔을 다시 꼬는 동안이 빈틈이다."
+      },
+      "superSkill": {
+        "note": "2026-10-23 필살기 여기까지라고: 버티기의 큰 형태(털을 부풀리고 하악대며 온몸으로 밀어낸다)."
+      },
+      "note": "ODDBOUT 05 시큰둥(2026-10-23, 우리 디자인 B안: 회색 포인트·노란 눈·접힌 귀). 무엇에도 감동하지 않는 고양이. 작업명 칼퇴에서 바꿨다(회사원 개그 없음). 라이벌 어리둥."
+    },
+    "duldul": {
+      "pack": "src/assets/native-city-duldul-side-runtime.json",
+      "roster": "guest",
+      "post": [
+        {
+          "at": [
+            276.08,
+            511.76
+          ],
+          "pauseMs": 2600,
+          "face": [
+            -0.9063,
+            0.4226
+          ]
+        }
+      ],
+      "bodyScale": 0.95,
+      "footprint": "player",
+      "sideScroll": true,
+      "hp": 42,
+      "damageScale": 0.3,
+      "cooldownMs": [
+        150,
+        300
+      ],
+      "attackMix": {
+        "slam": 0.3,
+        "combo": 0.5,
+        "fast": 0.2
+      },
+      "specialAction": "combo",
+      "superAction": "slam",
+      "reach": {
+        "share": 0.85,
+        "minExtraStrides": 0.6,
+        "maxExtraStrides": 0.9
+      },
+      "airChase": {
+        "maxStrides": 3.5,
+        "landGapStrides": 0.05,
+        "reachStrides": 0.9,
+        "passStrides": 0.3,
+        "damageScale": 0.5,
+        "launchEnder": 0.5,
+        "note": "2026-10-23 ODDBOUT 01~07: 연타의 마지막 타가 절반쯤 상대를 띄우고(launchEnder), 기술이 띄우면 그 뒤로도 뛰어올라 공중 콤보. 그림은 팩 airCombo·airCombo3."
+      },
+      "skill": {
+        "kind": "stretch",
+        "action": "slam",
+        "everyAttacks": 2,
+        "inRangeEveryAttacks": 1,
+        "weight": 0.6,
+        "startStrides": 1.5,
+        "minGapStrides": 0.7,
+        "reachStrides": 1.6,
+        "innerStrides": 0.3,
+        "note": "2026-10-23 한 뼘 더 (Drive 기획서): 팔이 용수철처럼 감기는 것이 예고다. 쭈욱 뻗은 주먹 끝만 닿고(가까우면 지나쳐 헛친다) 팔을 감아 들이는 동안이 빈틈이다. 2026-10-23 수치 다듬기: 안쪽 한계 0.7→0.3·사거리 1.45→1.6(헛친 50번 중 30번이 싸움 거리 0.5~0.6보에서 지나친 주먹이었다)."
+      },
+      "superSkill": {
+        "note": "2026-10-23 필살기 두 뼘 더: 늘이기의 큰 형태(두 팔을 함께 뻗는다)."
+      },
+      "note": "ODDBOUT 06 둘둘(2026-10-23, 우리 디자인 B안: 새싹 하나를 단 연두색 낙서). 국수 같은 팔다리."
+    },
+    "eoridung": {
+      "pack": "src/assets/native-city-eoridung-side-runtime.json",
+      "roster": "guest",
+      "post": [
+        {
+          "at": [
+            276.08,
+            511.76
+          ],
+          "pauseMs": 2600,
+          "face": [
+            -0.9063,
+            0.4226
+          ]
+        }
+      ],
+      "bodyScale": 0.72,
+      "footprint": "player",
+      "sideScroll": true,
+      "hp": 44,
+      "damageScale": 0.3,
+      "cooldownMs": [
+        150,
+        300
+      ],
+      "attackMix": {
+        "slam": 0.3,
+        "combo": 0.5,
+        "fast": 0.2
+      },
+      "specialAction": "combo",
+      "superAction": "combo",
+      "reach": {
+        "share": 0.85,
+        "minExtraStrides": 0.6,
+        "maxExtraStrides": 0.9
+      },
+      "airChase": {
+        "maxStrides": 3.5,
+        "landGapStrides": 0.05,
+        "reachStrides": 0.9,
+        "passStrides": 0.3,
+        "damageScale": 0.5,
+        "launchEnder": 0.5,
+        "note": "2026-10-23 ODDBOUT 01~07: 연타의 마지막 타가 절반쯤 상대를 띄우고(launchEnder), 기술이 띄우면 그 뒤로도 뛰어올라 공중 콤보. 그림은 팩 airCombo·airCombo3."
+      },
+      "skill": {
+        "kind": "recoil",
+        "action": "combo",
+        "everyAttacks": 2,
+        "weight": 0.6,
+        "startStrides": 1.4,
+        "minGapStrides": 0.3,
+        "reachStrides": 1.05,
+        "backStrides": 1.1,
+        "aiShare": 0.5,
+        "note": "2026-10-23 방금 뭐였지 (Drive 기획서): 귀를 펴고 턱이 떨어지는 것이 예고다. 뒤로 깡총 물러나 굳었다가 다시 누르면(AI는 판단) 앞발로 콕 찌르고, 너무 뻗었다 당기는 동안이 빈틈이다. 물러날 때 무적은 없다."
+      },
+      "superSkill": {
+        "reachStrides": 1.35,
+        "note": "2026-10-23 필살기 방금 그거 뭐야: 물러났다 찌르기의 큰 형태(높이 펄쩍 물러났다 두 앞발로 크게 밀기)."
+      },
+      "note": "ODDBOUT 07 어리둥(2026-10-23, 우리 디자인 B안: 회색 줄무늬 귀와 꼬리). 늘 놀라 있는 고양이. 라이벌 시큰둥."
+    }
+  },
+  "stage": {
+    "halfWidthScreens": 1,
+    "padBodies": 1.3,
+    "feetAt": 0.82,
+    "zoomRange": [
+      0.7,
+      1.5
+    ],
+    "followMs": 140,
+    "reachFollowMs": 30,
+    "reachPunchRoom": 0.07,
+    "camera": {
+      "deadZoneShare": 0.12,
+      "edgeShare": 0.1,
+      "bodyHalfWidth": 0.3,
+      "centerFollowMs": 380,
+      "edgeFollowMs": 160,
+      "maxPanScreensPerSec": 0.25
+    },
+    "barsShare": 0.065,
+    "barsMs": 320,
+    "zoomScale": 1.2,
+    "drawnTopAt": 0.2,
+    "airFeetAt": 0.9,
+    "clipOccludedShare": 0.15,
+    "clipStepStrides": 0.5,
+    "turnMs": 420,
+    "spectators": {
+      "depthStrides": [
+        5.5,
+        7,
+        8.5
+      ],
+      "clearStrides": 2.5,
+      "spreadStrides": 1.5,
+      "repickStrides": 1.2
+    }
+  },
+  "competitive": {}
+}

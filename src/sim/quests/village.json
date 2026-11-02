@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "chapters": { "rosaline-commission": {}, "clockwork-bird": {}, "calling-cards": {} },
+  "order": ["outfit-merchant-greeting", "outfit-thief-costume", "outfit-training-music-box", "outfit-music-box-delivery", "clockmaker-introduction", "blackthorne-turned-away", "blackthorne-guest-list", "manor-clockwork-bird", "clockmaker-bird-return", "calling-card-campaign"],
+  "steps": {
+    "outfit-merchant-greeting": { "after": null, "character": "male", "chapter": "rosaline-commission", "target": "merchant", "objective": "offer-seen" },
+    "outfit-thief-costume": { "after": "outfit-merchant-greeting", "character": "male", "chapter": "rosaline-commission", "target": "merchant", "objective": "commission-accepted" },
+    "outfit-training-music-box": { "after": "outfit-thief-costume", "character": "male", "chapter": "rosaline-commission", "target": "training", "objective": "training-completed" },
+    "outfit-music-box-delivery": { "after": "outfit-training-music-box", "character": "male", "chapter": "rosaline-commission", "target": "merchant", "objective": "commission-completed" },
+    "clockmaker-introduction": { "after": "outfit-music-box-delivery", "character": "all", "chapter": "clockwork-bird", "target": "clockmaker", "objective": "clockmaker-introduced" },
+    "blackthorne-turned-away": { "after": "clockmaker-introduction", "character": "all", "chapter": "clockwork-bird", "target": "manor", "objective": "turned-away" },
+    "blackthorne-guest-list": { "after": "blackthorne-turned-away", "character": "all", "chapter": "clockwork-bird", "target": "remaining-guest-task", "objective": "guest-list-ready" },
+    "manor-clockwork-bird": { "after": "blackthorne-guest-list", "character": "all", "chapter": "clockwork-bird", "target": "manor", "objective": "bird-recovered" },
+    "clockmaker-bird-return": { "after": "manor-clockwork-bird", "character": "all", "chapter": "clockwork-bird", "target": "clockmaker", "objective": "bird-returned" },
+    "calling-card-campaign": { "after": "clockmaker-bird-return", "character": "all", "chapter": "calling-cards", "target": "expedition", "objective": "campaign-completed" }
+  }
+}

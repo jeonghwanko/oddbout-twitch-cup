@@ -1,0 +1,66 @@
+{
+  "camera": {
+    "fov": 35,
+    "near": 0.1,
+    "far": 10000,
+    "skyOrthographicFov": 65,
+    "orbit": {
+      "minTurnMs": 300,
+      "anchor": [
+        0.55,
+        0.78
+      ]
+    },
+    "zoom": {
+      "default": 1.3,
+      "min": 0.75,
+      "max": 2,
+      "step": 1.15
+    }
+  },
+  "distance": {
+    "start": 110,
+    "range": 240,
+    "strength": 0.24,
+    "highlightRetention": 0.65
+  },
+  "sun": {
+    "direction": [
+      0.85,
+      0.53
+    ],
+    "slope": 0.65
+  },
+  "lighting": {
+    "ambient": 0.8,
+    "sunStrength": 0.5,
+    "lightRamp": {
+      "first": [
+        0.08,
+        0.32
+      ],
+      "second": [
+        0.48,
+        0.72
+      ],
+      "firstWeight": 0.38
+    }
+  },
+  "sky": {
+    "cloudTurnsPerMs": 8.333333333333334e-8
+  },
+  "npr": {
+    "exposure": 1.045,
+    "ambientTint": 0.06,
+    "keyTint": 0.06,
+    "castTint": 0.08,
+    "formTint": 0.025,
+    "aoStrength": 0.82,
+    "paintedRange": [
+      0.025,
+      0.38
+    ],
+    "edgeWidth": 0.7,
+    "edgeOpacity": 0.1
+  }
+}

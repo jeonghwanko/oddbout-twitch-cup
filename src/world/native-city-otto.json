@@ -1,0 +1,270 @@
+{
+  "hp": 16,
+  "bodyScale": 1.1,
+  "reaction": {
+    "flightMs": 470,
+    "liftBodies": 0.22,
+    "contactMs": 16,
+    "braceMs": 90,
+    "landMs": 90,
+    "recoverMs": 260,
+    "ko": {
+      "strides": 3,
+      "flightMs": 620,
+      "liftBodies": 0.4,
+      "settleMs": 600
+    }
+  },
+  "hitDamage": 2,
+  "invulnerableMs": 80,
+  "playerHit": {
+    "invulnerableMs": 800,
+    "stunMs": 250,
+    "knockbackStrides": 0.72,
+    "answers": {
+      "dodge": true,
+      "vault": true,
+      "parry": true
+    }
+  },
+  "halfHp": 8,
+  "playerDamageShare": 0.2,
+  "bodyStrides": 0.6,
+  "approachSpeedShare": 0.7,
+  "rearArcDeg": 180,
+  "snagArcDeg": 240,
+  "buttonFumbleMs": 1200,
+  "patterns": {
+    "sweep": {
+      "windupMs": 850,
+      "aimLockMs": 550,
+      "activeMs": 180,
+      "recoveryMs": 1100,
+      "neutralMs": 300,
+      "arcDeg": 120,
+      "reachB": 3.2
+    },
+    "drive": {
+      "pullStrides": 0.65,
+      "windupMs": 1000,
+      "aimLockMs": 700,
+      "activeMs": 320,
+      "recoveryMs": 1250,
+      "snagRecoveryMs": 2200,
+      "neutralMs": 350,
+      "travelB": 3.8,
+      "widthB": 1.4
+    },
+    "reverse": {
+      "windupMs": 900,
+      "aimLockMs": 600,
+      "activeMs": 200,
+      "recoveryMs": 1300,
+      "neutralMs": 350,
+      "arcDeg": 100,
+      "reachB": 2.8,
+      "offsetDeg": 40
+    }
+  },
+  "lastHand": {
+    "note": "A landed hook alone starts the finisher. Pull and shoulder weight transfer are its anticipation, not extra damage. The overhead contact is independently dodgeable/blockable, with no retarget or extra travel. Two scoring contacts maximum per execution; the existing 800 ms protection and 250 ms stun stay unchanged.",
+    "windupMs": 900,
+    "aimLockMs": 0,
+    "activeMs": 310,
+    "arcDeg": 80,
+    "reachB": 2.8
+  },
+  "chains": {
+    "note": "The first contact uses patterns. These are its two continuations, with the original locked aim and no new approach. Only the final contact opens recovery. Existing 800 ms hit protection remains; a whole execution can score at most twice.",
+    "maxScoringContacts": 2,
+    "sweep": [
+      {
+        "windupMs": 140,
+        "aimLockMs": 0,
+        "activeMs": 100,
+        "arcDeg": 70,
+        "reachB": 2.5
+      },
+      {
+        "windupMs": 840,
+        "aimLockMs": 0,
+        "activeMs": 240,
+        "arcDeg": 120,
+        "reachB": 3.2
+      }
+    ],
+    "reverse": [
+      {
+        "windupMs": 120,
+        "aimLockMs": 0,
+        "activeMs": 160,
+        "arcDeg": 100,
+        "reachB": 2.8
+      },
+      {
+        "windupMs": 620,
+        "aimLockMs": 0,
+        "activeMs": 310,
+        "arcDeg": 80,
+        "reachB": 2.8
+      }
+    ]
+  },
+  "lateTempo": {
+    "note": "The late loop (below halfHp, after the fumble) tells faster (2026-10-17 fight film review: eight equal beats, no rise to the KO): each tell is tellScale of its length, the cut taken from before the aim lock - the locked tail (the read, the tremble, the pickpocket's capture window) keeps its length; the rest between attacks is neutralMs. ottoTellTiming / ottoNeutralMs.",
+    "tellScale": 0.85,
+    "neutralMs": 200
+  },
+  "sequence": {
+    "opening": [
+      "sweep",
+      "sweep",
+      "drive"
+    ],
+    "loop": [
+      "sweep",
+      "drive",
+      "sweep"
+    ],
+    "late": [
+      "sweep",
+      "reverse",
+      "drive"
+    ]
+  },
+  "barrier": {
+    "holdMs": 600,
+    "reachStrides": 1.2
+  },
+  "snag": {
+    "radiusStrides": 1.1,
+    "minTravelB": 0.5
+  },
+  "places": {
+    "home": [
+      388,
+      492
+    ],
+    "cart": [
+      374,
+      486
+    ],
+    "barrier": [
+      403,
+      493
+    ],
+    "snagSlot": [
+      413,
+      489
+    ],
+    "sample": [
+      369,
+      499
+    ],
+    "arenaCenter": [
+      390,
+      492
+    ],
+    "leashStrides": 10
+  },
+  "operationThreshold": {
+    "viewId": "V4",
+    "stopId": "trade-square"
+  },
+  "hitsPerOpening": {
+    "recovery": 1,
+    "snag": 2
+  },
+  "approachGiveUpMs": 2600,
+  "pickpocket": {
+    "captureWindowMs": 300
+  },
+  "stage": {
+    "through": "home",
+    "toward": "snagSlot",
+    "halfStrides": 12,
+    "leashMarginStrides": 0.5,
+    "openingsIgnoreFacing": true
+  },
+  "groundSlam": {
+    "note": "The six rising rock piles share their positions and fight clock with collision and the floor warning. One contact per slam, never hook plus rock. Walls clip the line of eruptions. Motion settles fast while the wave continues.",
+    "motionMs": 90,
+    "intervalMs": 40,
+    "hitDelayMs": 20,
+    "hitWindowMs": 90,
+    "startReach": 0.55,
+    "spacingReach": 0.34,
+    "widths": [
+      1,
+      1.1,
+      1.22,
+      1.2,
+      1.08,
+      0.9
+    ],
+    "halfLengthB": 0.8,
+    "halfWidthB": 0.6,
+    "knockbackStrides": 2.1,
+    "stunMs": 420,
+    "freezeMs": 70,
+    "contactHeight": 0.32,
+    "lieMs": 480,
+    "slide": {
+      "strides": 0.32,
+      "ms": 260
+    },
+    "landingFx": {
+      "dustScale": 1.65,
+      "thumpPx": 5,
+      "thumpMs": 180,
+      "thumpVerticalShare": 0.9
+    }
+  },
+  "seizureLanding": {
+    "dustScale": 1.15,
+    "thumpPx": 3,
+    "thumpMs": 110,
+    "thumpVerticalShare": 0.85
+  },
+  "contactFeel": {
+    "sweep": [
+      {
+        "tier": "heavy",
+        "freezeMs": 60,
+        "contactMs": 35
+      },
+      {
+        "tier": "light",
+        "freezeMs": 40,
+        "contactMs": 20
+      },
+      {
+        "tier": "slam",
+        "freezeMs": 100,
+        "contactMs": 60
+      }
+    ],
+    "reverse": [
+      {
+        "tier": "heavy",
+        "freezeMs": 60,
+        "contactMs": 0
+      },
+      {
+        "tier": "heavy",
+        "freezeMs": 65,
+        "contactMs": 0
+      },
+      {
+        "tier": "slam",
+        "freezeMs": 70,
+        "contactMs": 0
+      }
+    ],
+    "drive": {
+      "tier": "heavy",
+      "freezeMs": 65,
+      "contactMs": 0
+    }
+  }
+}

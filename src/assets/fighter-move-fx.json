@@ -1,0 +1,1072 @@
+{
+  "effects": {
+    "starGlint": {
+      "sheet": "oddboutBravow",
+      "frames": [
+        0,
+        2
+      ],
+      "frameMs": [
+        80,
+        140
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "size": 0.35,
+      "fade": true
+    },
+    "starBurst": {
+      "sheet": "oddboutBravow",
+      "frames": [
+        0,
+        1,
+        2
+      ],
+      "frameMs": [
+        40,
+        80,
+        140
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "size": 0.6,
+      "fade": true
+    },
+    "runDust": {
+      "sheet": "oddboutBravow",
+      "frames": [
+        3,
+        4,
+        5
+      ],
+      "frameMs": [
+        50,
+        90,
+        130
+      ],
+      "pivot": [
+        0.78,
+        0.9
+      ],
+      "size": 0.6,
+      "fade": true
+    },
+    "nervousSweat": {
+      "sheet": "oddboutBeotim",
+      "frames": [
+        0,
+        1,
+        2
+      ],
+      "loopMs": 110,
+      "pivot": [
+        0.5,
+        0.55
+      ],
+      "size": 0.8
+    },
+    "counterBurst": {
+      "sheet": "oddboutBeotim",
+      "frames": [
+        4,
+        5
+      ],
+      "frameMs": [
+        80,
+        130
+      ],
+      "pivot": [
+        0.15,
+        0.5
+      ],
+      "size": 0.4,
+      "fade": true
+    },
+    "sparkleTrail": {
+      "sheet": "oddboutQuickcat",
+      "frames": [
+        0,
+        1,
+        2
+      ],
+      "frameMs": [
+        80,
+        140,
+        160
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "size": 0.35,
+      "fade": true
+    },
+    "sparkleBurst": {
+      "sheet": "oddboutQuickcat",
+      "frames": [
+        4,
+        5
+      ],
+      "frameMs": [
+        90,
+        150
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "size": 0.42,
+      "fade": true
+    },
+    "notePuff": {
+      "sheet": "oddboutKungjjak",
+      "frames": [
+        0,
+        1,
+        2
+      ],
+      "frameMs": [
+        45,
+        90,
+        150
+      ],
+      "pivot": [
+        0.42,
+        0.56
+      ],
+      "size": 0.45,
+      "fade": true
+    },
+    "chordRing": {
+      "sheet": "oddboutKungjjak",
+      "frames": [
+        3,
+        4,
+        5
+      ],
+      "frameMs": [
+        50,
+        110,
+        170
+      ],
+      "pivot": [
+        0.5,
+        0.85
+      ],
+      "size": 1.15,
+      "fade": true
+    },
+    "angrySteam": {
+      "sheet": "oddboutSikeundung",
+      "frames": [
+        0,
+        1,
+        2
+      ],
+      "frameMs": [
+        60,
+        130,
+        170
+      ],
+      "pivot": [
+        0.5,
+        0.9
+      ],
+      "size": 0.5,
+      "fade": true
+    },
+    "shoveDust": {
+      "sheet": "oddboutSikeundung",
+      "frames": [
+        3,
+        4,
+        5
+      ],
+      "frameMs": [
+        50,
+        100,
+        140
+      ],
+      "pivot": [
+        0.2,
+        0.9
+      ],
+      "size": 0.8,
+      "fade": true
+    },
+    "springWiggle": {
+      "sheet": "oddboutDuldul",
+      "frames": [
+        0,
+        1
+      ],
+      "loopMs": 90,
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "size": 0.45
+    },
+    "snapLines": {
+      "sheet": "oddboutDuldul",
+      "frames": [
+        2
+      ],
+      "frameMs": [
+        160
+      ],
+      "pivot": [
+        0.15,
+        0.5
+      ],
+      "size": 0.8,
+      "fade": true
+    },
+    "fistRing": {
+      "sheet": "oddboutDuldul",
+      "frames": [
+        4,
+        5
+      ],
+      "frameMs": [
+        90,
+        140
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "size": 0.45,
+      "fade": true
+    },
+    "startlePop": {
+      "sheet": "oddboutEoridung",
+      "frames": [
+        0,
+        1,
+        2
+      ],
+      "frameMs": [
+        50,
+        110,
+        150
+      ],
+      "pivot": [
+        0.5,
+        0.9
+      ],
+      "size": 0.4,
+      "fade": true
+    },
+    "pokeSparkle": {
+      "sheet": "oddboutEoridung",
+      "frames": [
+        3
+      ],
+      "frameMs": [
+        150
+      ],
+      "pivot": [
+        0.45,
+        0.66
+      ],
+      "size": 0.4,
+      "fade": true
+    },
+    "landingDust": {
+      "sheet": "oddboutEoridung",
+      "frames": [
+        4,
+        5
+      ],
+      "frameMs": [
+        90,
+        150
+      ],
+      "pivot": [
+        0.5,
+        0.9
+      ],
+      "size": 0.8,
+      "fade": true
+    },
+    "starScatter": {
+      "sheet": "oddboutBravow",
+      "frames": [
+        2
+      ],
+      "frameMs": [
+        170
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "size": 0.5,
+      "fade": true
+    },
+    "noteFloat": {
+      "sheet": "oddboutKungjjak",
+      "frames": [
+        2
+      ],
+      "frameMs": [
+        220
+      ],
+      "pivot": [
+        0.3,
+        0.7
+      ],
+      "size": 0.45,
+      "fade": true
+    }
+  },
+  "fighters": {
+    "bravow": [
+      {
+        "clip": "skill",
+        "cells": [
+          "skTell"
+        ],
+        "effect": "starGlint",
+        "at": [
+          0.29,
+          0.65
+        ]
+      },
+      {
+        "clip": "skill",
+        "cells": [
+          "skLaunch"
+        ],
+        "effect": "runDust",
+        "at": [
+          -0.3,
+          0
+        ],
+        "layer": "behind"
+      },
+      {
+        "clip": "skill",
+        "cells": [
+          "skRun1",
+          "skRun2"
+        ],
+        "on": "trail",
+        "everyMs": 70,
+        "effect": "runDust",
+        "at": [
+          -0.35,
+          0
+        ],
+        "layer": "behind",
+        "scale": 0.8
+      },
+      {
+        "clip": "skill",
+        "cells": [
+          "skStruck"
+        ],
+        "effect": "starScatter",
+        "at": [
+          0.07,
+          0.55
+        ]
+      },
+      {
+        "clip": "skill",
+        "cells": [
+          "skStop"
+        ],
+        "effect": "runDust",
+        "at": [
+          0.3,
+          0
+        ],
+        "layer": "behind",
+        "scale": 0.9
+      },
+      {
+        "clip": "skill",
+        "cells": [
+          "skWink"
+        ],
+        "effect": "starGlint",
+        "at": [
+          0.43,
+          0.64
+        ],
+        "scale": 0.8
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "superTell"
+        ],
+        "effect": "starBurst",
+        "at": [
+          0.43,
+          0.64
+        ],
+        "scale": 0.55
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "superRun1",
+          "superRun2"
+        ],
+        "on": "trail",
+        "everyMs": 60,
+        "effect": "runDust",
+        "at": [
+          -0.3,
+          0
+        ],
+        "layer": "behind",
+        "scale": 0.9
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "superRun1",
+          "superRun2"
+        ],
+        "on": "trail",
+        "everyMs": 110,
+        "effect": "starGlint",
+        "at": [
+          -0.44,
+          0.31
+        ],
+        "layer": "behind",
+        "scale": 0.8
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "superStop"
+        ],
+        "effect": "runDust",
+        "at": [
+          0.3,
+          0
+        ],
+        "layer": "behind"
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "skWink"
+        ],
+        "effect": "starGlint",
+        "at": [
+          0.43,
+          0.64
+        ],
+        "scale": 0.8
+      },
+      {
+        "clip": "entrance",
+        "cells": [
+          "medalFlick"
+        ],
+        "effect": "starGlint",
+        "at": [
+          0,
+          0.64
+        ],
+        "scale": 0.8
+      }
+    ],
+    "beotim": [
+      {
+        "clip": "skill",
+        "cells": [
+          "skWindow"
+        ],
+        "on": "hold",
+        "effect": "nervousSweat",
+        "at": [
+          0.15,
+          0.7
+        ]
+      },
+      {
+        "clip": "skill",
+        "cells": [
+          "skStrike"
+        ],
+        "effect": "counterBurst",
+        "at": [
+          0.8,
+          0.54
+        ]
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "superWindow"
+        ],
+        "on": "hold",
+        "effect": "nervousSweat",
+        "at": [
+          0.08,
+          0.52
+        ]
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "superStrike"
+        ],
+        "effect": "counterBurst",
+        "at": [
+          0.93,
+          0.47
+        ]
+      },
+      {
+        "clip": "entrance",
+        "cells": [
+          "skFlinch"
+        ],
+        "on": "hold",
+        "effect": "nervousSweat",
+        "at": [
+          0.27,
+          0.68
+        ]
+      },
+      {
+        "clip": "airCombo",
+        "cells": [
+          "skStrike"
+        ],
+        "effect": "counterBurst",
+        "at": [
+          0.8,
+          0.54
+        ]
+      },
+      {
+        "clip": "airCombo3",
+        "cells": [
+          "skStrike"
+        ],
+        "effect": "counterBurst",
+        "at": [
+          0.8,
+          0.54
+        ]
+      }
+    ],
+    "quickcat": [
+      {
+        "clip": "skill",
+        "cells": [
+          "skRun1",
+          "skRun2"
+        ],
+        "on": "trail",
+        "everyMs": 70,
+        "effect": "sparkleTrail",
+        "at": [
+          -1.15,
+          0.63
+        ]
+      },
+      {
+        "clip": "skill",
+        "cells": [
+          "skBonk"
+        ],
+        "effect": "sparkleBurst",
+        "at": [
+          0.22,
+          1.18
+        ]
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "superComet",
+          "superComet2"
+        ],
+        "on": "trail",
+        "everyMs": 50,
+        "effect": "sparkleTrail",
+        "at": [
+          -1.3,
+          0.55
+        ],
+        "scale": 1.3
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "skBonk"
+        ],
+        "effect": "sparkleBurst",
+        "at": [
+          0.22,
+          1.18
+        ],
+        "scale": 1.3
+      },
+      {
+        "clip": "entrance",
+        "cells": [
+          "skRun1",
+          "skRun2"
+        ],
+        "on": "trail",
+        "everyMs": 90,
+        "effect": "sparkleTrail",
+        "at": [
+          -1.15,
+          0.63
+        ]
+      }
+    ],
+    "kungjjak": [
+      {
+        "clip": "combo",
+        "cells": [
+          "c1Hit"
+        ],
+        "effect": "noteFloat",
+        "at": [
+          0.5,
+          0.7
+        ],
+        "scale": 0.8
+      },
+      {
+        "clip": "combo",
+        "cells": [
+          "c2Hit"
+        ],
+        "effect": "noteFloat",
+        "at": [
+          0.49,
+          0.55
+        ],
+        "scale": 0.8
+      },
+      {
+        "clip": "combo",
+        "cells": [
+          "c3Hit"
+        ],
+        "effect": "noteFloat",
+        "at": [
+          0.55,
+          0.77
+        ],
+        "scale": 0.8
+      },
+      {
+        "clip": "combo",
+        "cells": [
+          "c4Hit"
+        ],
+        "effect": "noteFloat",
+        "at": [
+          0.84,
+          0.72
+        ],
+        "scale": 1.1
+      },
+      {
+        "clip": "slam",
+        "cells": [
+          "sImpact"
+        ],
+        "effect": "chordRing",
+        "at": [
+          0.35,
+          0
+        ],
+        "layer": "behind"
+      },
+      {
+        "clip": "entrance",
+        "cells": [
+          "skSwingHit"
+        ],
+        "effect": "notePuff",
+        "at": [
+          0.52,
+          0.65
+        ]
+      },
+      {
+        "clip": "airCombo",
+        "cells": [
+          "skSwingHit"
+        ],
+        "effect": "noteFloat",
+        "at": [
+          0.52,
+          0.8
+        ]
+      },
+      {
+        "clip": "airCombo3",
+        "cells": [
+          "skSwingHit"
+        ],
+        "effect": "noteFloat",
+        "at": [
+          0.52,
+          0.8
+        ]
+      }
+    ],
+    "sikeundung": [
+      {
+        "clip": "skill",
+        "cells": [
+          "skGlare"
+        ],
+        "effect": "angrySteam",
+        "at": [
+          0.3,
+          0.74
+        ]
+      },
+      {
+        "clip": "skill",
+        "cells": [
+          "skShove"
+        ],
+        "effect": "shoveDust",
+        "at": [
+          0.2,
+          0
+        ],
+        "layer": "behind"
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "skGlare"
+        ],
+        "effect": "angrySteam",
+        "at": [
+          0.3,
+          0.74
+        ]
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "superShove"
+        ],
+        "effect": "shoveDust",
+        "at": [
+          0.2,
+          0
+        ],
+        "layer": "behind",
+        "scale": 1.1
+      },
+      {
+        "clip": "entrance",
+        "cells": [
+          "skGlare"
+        ],
+        "effect": "angrySteam",
+        "at": [
+          0.3,
+          0.74
+        ]
+      },
+      {
+        "clip": "airCombo",
+        "cells": [
+          "skShove"
+        ],
+        "effect": "shoveDust",
+        "at": [
+          0.2,
+          0
+        ],
+        "layer": "behind",
+        "scale": 0.8
+      },
+      {
+        "clip": "airCombo3",
+        "cells": [
+          "skShove"
+        ],
+        "effect": "shoveDust",
+        "at": [
+          0.2,
+          0
+        ],
+        "layer": "behind",
+        "scale": 0.8
+      }
+    ],
+    "duldul": [
+      {
+        "clip": "skill",
+        "cells": [
+          "skCoil"
+        ],
+        "on": "hold",
+        "effect": "springWiggle",
+        "at": [
+          0.2,
+          0.6
+        ]
+      },
+      {
+        "clip": "skill",
+        "cells": [
+          "skStrike"
+        ],
+        "effect": "fistRing",
+        "at": [
+          0.72,
+          0.64
+        ]
+      },
+      {
+        "clip": "skill",
+        "cells": [
+          "skSnap"
+        ],
+        "effect": "snapLines",
+        "at": [
+          0.08,
+          0.6
+        ]
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "superCoil"
+        ],
+        "on": "hold",
+        "effect": "springWiggle",
+        "at": [
+          0.17,
+          0.5
+        ],
+        "scale": 1.2
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "superStrike"
+        ],
+        "effect": "fistRing",
+        "at": [
+          1.02,
+          0.63
+        ]
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "skSnap"
+        ],
+        "effect": "snapLines",
+        "at": [
+          0.08,
+          0.6
+        ],
+        "scale": 1.2
+      }
+    ],
+    "eoridung": [
+      {
+        "clip": "skill",
+        "cells": [
+          "skTell"
+        ],
+        "effect": "startlePop",
+        "at": [
+          0.05,
+          0.92
+        ]
+      },
+      {
+        "clip": "skill",
+        "cells": [
+          "skWait"
+        ],
+        "effect": "landingDust",
+        "at": [
+          0,
+          0
+        ],
+        "layer": "behind"
+      },
+      {
+        "clip": "skill",
+        "cells": [
+          "skDouble"
+        ],
+        "effect": "startlePop",
+        "at": [
+          0.1,
+          1
+        ],
+        "scale": 0.8
+      },
+      {
+        "clip": "skill",
+        "cells": [
+          "skReady"
+        ],
+        "effect": "pokeSparkle",
+        "at": [
+          0.3,
+          0.57
+        ]
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "superCrouch"
+        ],
+        "effect": "startlePop",
+        "at": [
+          0.3,
+          0.5
+        ],
+        "scale": 1.2
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "skWait"
+        ],
+        "effect": "landingDust",
+        "at": [
+          0,
+          0
+        ],
+        "layer": "behind",
+        "scale": 1.4
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "skDouble"
+        ],
+        "effect": "startlePop",
+        "at": [
+          0.1,
+          1
+        ],
+        "scale": 0.8
+      },
+      {
+        "clip": "superSkill",
+        "cells": [
+          "skReady"
+        ],
+        "effect": "pokeSparkle",
+        "at": [
+          0.3,
+          0.55
+        ],
+        "scale": 1.3
+      },
+      {
+        "clip": "entrance",
+        "cells": [
+          "skDouble"
+        ],
+        "effect": "startlePop",
+        "at": [
+          0.1,
+          1
+        ],
+        "scale": 0.8
+      }
+    ]
+  },
+  "lights": {},
+  "sheets": {
+    "oddboutBravow": {
+      "image": "oddbout-bravow.webp",
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "columns": 3,
+      "rows": 2
+    },
+    "oddboutBeotim": {
+      "image": "oddbout-beotim.webp",
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "columns": 3,
+      "rows": 2
+    },
+    "oddboutQuickcat": {
+      "image": "oddbout-quickcat.webp",
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "columns": 3,
+      "rows": 2
+    },
+    "oddboutKungjjak": {
+      "image": "oddbout-kungjjak.webp",
+      "frameWidth": 288,
+      "frameHeight": 288,
+      "columns": 3,
+      "rows": 2
+    },
+    "oddboutSikeundung": {
+      "image": "oddbout-sikeundung.webp",
+      "frameWidth": 288,
+      "frameHeight": 288,
+      "columns": 3,
+      "rows": 2
+    },
+    "oddboutDuldul": {
+      "image": "oddbout-duldul.webp",
+      "frameWidth": 288,
+      "frameHeight": 288,
+      "columns": 3,
+      "rows": 2
+    },
+    "oddboutEoridung": {
+      "image": "oddbout-eoridung.webp",
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "columns": 3,
+      "rows": 2
+    },
+    "comicReactions": {
+      "image": "comic-reactions.webp",
+      "frameWidth": 256,
+      "frameHeight": 192,
+      "columns": 3,
+      "rows": 3
+    },
+    "oddboutIce": {
+      "image": "oddbout-ice.webp",
+      "frameWidth": 256,
+      "frameHeight": 256,
+      "columns": 3,
+      "rows": 2
+    },
+    "oddboutDirt": {
+      "image": "oddbout-dirt.webp",
+      "frameWidth": 300,
+      "frameHeight": 200,
+      "columns": 3,
+      "rows": 3
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "art/village/plaza-pizza-art-v1/prop-wood.webp": {
+    "path": "art/village/plaza-tavern-art-v1/prop-wood.webp",
+    "sha256": "d735e855f593604fac7e861033f053cb1f4d76238587c0eec50236c99f22f586"
+  },
+  "art/village/plaza-pizza-art-v1/prop-materials.webp": {
+    "path": "art/village/plaza-tavern-art-v1/prop-materials.webp",
+    "sha256": "bf710c1bcffc1a99b93f2ca21cf7cdab8714e9ab676025e3ed61b34b28ca58db"
+  },
+  "art/village/plaza-pizza-art-v1/roof.webp": {
+    "path": "art/village/plaza-fruit-art-v1/roof.webp",
+    "sha256": "32766837b2c44cdc5087b6a42d32213edac26dfd6a5f768344464517cf62b300"
+  },
+  "art/village/plaza-pizza-art-v1/gable.webp": {
+    "path": "art/village/plaza-fruit-art-v1/gable.webp",
+    "sha256": "3e956dfc89b287aefe753767791d5c4b57b57ad51f5399be8211c5f89c8cf323"
+  }
+}

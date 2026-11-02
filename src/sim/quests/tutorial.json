@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "first": "arrival",
+  "order": [
+    "arrival",
+    "hide",
+    "observe",
+    "snuff",
+    "steal",
+    "lure",
+    "wait",
+    "escape"
+  ],
+  "beats": {
+    "arrival": {
+      "title": "하인 통로",
+      "goal": "낮은 짐짝을 넘고 질주해 의상실까지 가세요.",
+      "checkpoint": {
+        "x": 120,
+        "floor": "service"
+      },
+      "objective": {
+        "reached": "arrival",
+        "requires": [
+          {
+            "condition": "jumped",
+            "retry": {
+              "text": "낮은 짐짝을 넘어 보세요.",
+              "actions": [
+                "jump"
+              ]
+            }
+          },
+          {
+            "condition": "ran",
+            "retry": {
+              "text": "질주 키를 누른 채 의상실까지 달리세요.",
+              "actions": [
+                "run",
+                "right"
+              ]
+            }
+          }
+        ],
+        "complete": "좋아요. 점프 뒤 질주까지 익혔습니다. 이제 경비를 속일 차례입니다."
+      },
+      "next": "hide"
+    },
+    "hide": {
+      "title": "의상실",
+      "goal": "휘파람으로 경비를 돌리고 옷장을 이용해 지나가세요.",
+      "checkpoint": {
+        "x": 720,
+        "floor": "service"
+      },
+      "resetGuardIds": [
+        "tutorial-hide-guard"
+      ],
+      "objective": {
+        "reached": "hide",
+        "requires": [
+          {
+            "condition": "hide-misdirection",
+            "retry": {
+              "text": "휘파람으로 경비를 돌리고 옷장을 이용해 지나가 보세요.",
+              "actions": [
+                "whistle",
+                "hide"
+              ]
+            }
+          }
+        ],
+        "complete": "경비가 소리를 보는 동안 등 뒤로 빠져나왔습니다."
+      },
+      "next": "observe"
+    },
+    "observe": {
+      "title": "시계 복도",
+      "goal": "감시 로봇의 범위를 읽고 포착되지 않은 채 지하로 내려가세요.",
+      "checkpoint": {
+        "x": 1400,
+        "floor": "service"
+      },
+      "resetGuardIds": [
+        "tutorial-hide-guard",
+        "tutorial-clock-guard"
+      ],
+      "objective": {
+        "reached": "observe",
+        "requires": [],
+        "complete": "반복되는 시야를 읽고 지하로 내려왔습니다."
+      },
+      "next": "snuff"
+    },
+    "snuff": {
+      "title": "전등실",
+      "goal": "등을 끄고 어둠 속으로 복도를 건너세요.",
+      "checkpoint": {
+        "x": 2018,
+        "floor": "basement"
+      },
+      "resetGuardIds": [
+        "tutorial-clock-guard",
+        "tutorial-basement-guard"
+      ],
+      "objective": {
+        "reached": "snuff",
+        "requires": [
+          {
+            "condition": "lamp-snuffed",
+            "retry": {
+              "text": "램프 곁에서 끝까지 눌러 불을 끈 뒤 복도를 건너세요.",
+              "actions": [
+                "snuff"
+              ]
+            }
+          }
+        ],
+        "complete": "꺼진 등 아래의 어둠을 통과했습니다."
+      },
+      "next": "steal"
+    },
+    "steal": {
+      "title": "압수품 창고",
+      "goal": "상호작용을 끝까지 유지해 회중시계를 되찾고 환기구로 2층에 오르세요.",
+      "checkpoint": {
+        "x": 1320,
+        "floor": "basement"
+      },
+      "resetGuardIds": [
+        "tutorial-basement-guard"
+      ],
+      "objective": {
+        "reached": "steal",
+        "requires": [
+          {
+            "condition": "carrying-pocketwatch",
+            "retry": {
+              "text": "회중시계는 버리지 말고 자루에 넣어 오세요.",
+              "actions": []
+            }
+          },
+          {
+            "condition": "used-vent",
+            "retry": {
+              "text": "창고 왼쪽 환기구로 들어가 보세요.",
+              "actions": [
+                "up",
+                "interact"
+              ]
+            }
+          }
+        ],
+        "complete": "성공적으로 환기구를 사용해 탈출하였습니다."
+      },
+      "next": "lure"
+    },
+    "lure": {
+      "title": "전시 복도",
+      "goal": "유인구를 경비 너머 바닥에 던져 소리로 유인하세요.",
+      "checkpoint": {
+        "x": 350,
+        "floor": "gallery"
+      },
+      "resetGuardIds": [
+        "tutorial-lure-guard",
+        "tutorial-warden"
+      ],
+      "objective": {
+        "reached": "lure",
+        "requires": [
+          {
+            "condition": "lure-response",
+            "retry": {
+              "text": "유인구나 무력화로 경비를 비운 뒤 지나가세요.",
+              "actions": [
+                "throw",
+                "interact"
+              ]
+            }
+          }
+        ],
+        "complete": "경비의 빈틈을 만들어 전시 복도를 통과했습니다.",
+        "stuck": [
+          {
+            "condition": "lure-retry-possible",
+            "retry": {
+              "text": "유인구를 모두 썼습니다. 더 오래 눌러 경비 너머를 노려 보세요.",
+              "actions": [
+                "throw"
+              ]
+            }
+          }
+        ]
+      },
+      "next": "wait"
+    },
+    "wait": {
+      "title": "반장실 앞",
+      "goal": "경비반장이 진행 반대편을 보는 동안 질주해 다락으로 오르세요.",
+      "checkpoint": {
+        "x": "warden-approach",
+        "floor": "gallery"
+      },
+      "resetGuardIds": [
+        "tutorial-lure-guard",
+        "tutorial-warden"
+      ],
+      "objective": {
+        "reached": "wait",
+        "requires": [],
+        "complete": "경비반장의 시선을 피해 안전 창으로 다락에 올랐습니다."
+      },
+      "next": "escape"
+    },
+    "escape": {
+      "title": "마지막 유물 경보",
+      "goal": "목표 유물을 훔쳐 옥상 창으로 탈출하세요.",
+      "checkpoint": {
+        "x": 1900,
+        "floor": "attic"
+      },
+      "resetGuardIds": [
+        "tutorial-bruiser"
+      ],
+      "objective": {
+        "reached": "escape",
+        "requires": [
+          {
+            "condition": "carrying-climax",
+            "retry": {
+              "text": "목표 유물을 두고 탈출할 수는 없습니다.",
+              "actions": []
+            }
+          }
+        ],
+        "complete": "유리 지붕을 넘어 첫 유물을 되찾았습니다."
+      },
+      "next": null
+    }
+  }
+}

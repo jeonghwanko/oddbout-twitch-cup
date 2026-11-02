@@ -1,0 +1,1833 @@
+{
+  "melee": {
+    "coneHalfAngleDeg": 70,
+    "reachExtraStrides": 0.9,
+    "minGapStrides": 0.35,
+    "reachFromArt": {
+      "tipOffsetStrides": -0.05,
+      "minExtraStrides": 0.9,
+      "maxExtraStrides": 2.5,
+      "moveExtraStrides": {
+        "tieFlick": 1.27,
+        "tieWhip": 4.26,
+        "roundKick": 1.27,
+        "flyingHeelKick": 4.26
+      },
+      "moveMaxExtraStrides": {
+        "tieWhip": 99
+      }
+    }
+  },
+  "knockback": {
+    "lightStrides": 0.22,
+    "heavyStrides": 0.85,
+    "tauMs": 70,
+    "stopStridesPerSec": 1.2,
+    "counterScale": 1.4,
+    "launch": {
+      "tauMs": 115,
+      "stopStridesPerSec": 2.4,
+      "wallMinStrides": 0.35,
+      "wallHitStopMs": 70,
+      "wallShake": {
+        "px": 7,
+        "ms": 200,
+        "verticalShare": 0.2
+      }
+    },
+    "hpScale": {
+      "growth": 1.3,
+      "exponent": 1.5,
+      "maxScale": 2.3,
+      "launchFromStrides": 2.0
+    },
+    "ko": {
+      "note": "2026-10-20 (user: Rivals of Aether 'Ronald's Revenge' - our KO lay down where it stood): the blow that empties a fighter's HP sends him flying strides along its axis over his drawn fall's flight (to its ground-impact step, koImpactMs), lifted up to liftBodies body heights on the way. A flight cut short by the stage line's end with at least launch.wallMinStrides still to go splats on it (knock-wall, the launch's splat). Was knockback.heavyStrides (0.85) on the plain push curve.",
+      "strides": 3.0,
+      "liftBodies": 0.2,
+      "flightEase": 0.6,
+      "easeNote": "2026-10-20 game-animator: liftBodies 0.35 -> 0.2 (the drawn falls already arc; at 0.35 the feet rose to the HP bars) and flightEase 0.6 (DuelKnock.flightEase: the flight front-loads its travel so the launch reads off the blow even under the finisher's slow motion, instead of hanging then whipping away). A flight cut by the line's end mirrors his fall's clock about its apex (NativeCityKumaFighter, koSkipMs): he comes down the post from the height he hit it at, as long as he rose, instead of rising up it."
+    }
+  },
+  "super": {
+    "max": 100,
+    "gainHit": 4,
+    "gainBlocked": 2,
+    "gainTaken": 3,
+    "flashMs": 720,
+    "damageScale": 1.6,
+    "kumaAction": "slam",
+    "aiShareUnder": 0.5,
+    "focusNote": "2026-10-21 (super stage, the MUGEN reference): the camera pushes in on the caster's flash and holds (zoom in over inMs, at most maxMs of screen time) - the super's contact kick lets it go, so the pop back out lands with the blow (the counter's focus, kuma.rhythm.counter.accent). zoom 0.08 -> 0.12 (2026-10-21 VFX review: the run-in after the cut-in read as the neutral wide shot). None under reduced motion.",
+    "focus": {
+      "zoom": 0.12,
+      "inMs": 180,
+      "maxMs": 1400
+    },
+    "crouchLeadMs": 33,
+    "crouchNote": "2026-10-21 (user: V 웅크림): his super V starts crouchLeadMs short of its crouch (the charge timeline's holdAtMs), not from the stand - two frames of the dip, then the chamber and the kick; the 100 ms walk down into the crouch after the cut-in held the blow back.",
+    "runInPaceScale": 3,
+    "trailMs": 700
+  },
+  "hitStopScale": 1,
+  "tempo": {
+    "kuma": {
+      "windupRate": 1,
+      "inhaleMs": 260,
+      "inhaleNote": "2026-10-22 (moved from feel.aura.inhale.ms, the competitive engine's stage 5b): the windup's last stretch before its first contact that keeps the windup speed under the white floor (kumaTempoWarp) - so it moves the contact times, a rule value. The aura's inhale tell lasts as long (it reads this).",
+      "whiteWindupFloorMs": 420,
+      "actionRate": 1.25,
+      "cooldownMs": [
+        420,
+        650
+      ],
+      "chasePaceScale": 2,
+      "slam": {
+        "apexHoldMs": 375,
+        "landingHoldMs": 220,
+        "recoverMs": 260
+      },
+      "combo": {
+        "gapMs": 600,
+        "tailMs": 380
+      },
+      "fast": {
+        "tailMs": 280
+      }
+    },
+    "releaseRamp": {
+      "note": "2026-10-19 game-animator: 0.3 / 1.5 / 220 ate ~100 ms after every landed blow and smeared the hit-stop ladder (C3, V tap, V full all ~0.27-0.30 s felt). Now the hand only eases back a little (0.7 / 0.6 / 100, ~20 ms lost), and the struck body's knockback flies on the clock WITHOUT the ramp (DuelClock.knockScale).",
+      "fromRate": 0.7,
+      "perFreeze": 0.6,
+      "maxMs": 100
+    },
+    "crisp": {
+      "note": "2026-10-21 (user, MUGEN tournament reference: '타격감의 가감속이 우리껀 어설프고 영상은 딱딱 맞거든'; frame count at 60 fps: the reference never time-scales a combo - the clock is stopped or at full speed, the acceleration lives in the drawn spacing). enabled: the fight clock has two speeds only. No release ramp after a landed blow (releaseRamp is skipped - the hand comes back at full speed). The read slow-mos - the chance opened by a just dodge or a parry (kuma.rhythm.chance.slowMo, the counter accent's whip beat), a full V charge's flight (charge.full.slowMo) and the poise break (feel.slowMo) - become a hard hold of the same added screen time: the integral of (1 - rate) over the beat's curve (render/effects/CombatSlowMo combatSlowMoScaleAt: hold x (1 - scale) + release x (1 - scale) / 4, a whip's release x -0.75 (whip - 1)), rounded to whole 60 Hz frames and added after the freeze it rides on - so the opening lasts as long on screen as before (chance 200 ms, counter 183, charge 83, break 117). Kept as slow motion: the KO finisher (tempo.finisherSlowMo) and the vault's apex (dodge.vault.apex - 2026-10-17 '순간이동' fix). No hold under reduced motion (no slow-mo either). false: the 2026-10-17..20 eased clock.",
+      "enabled": true
+    },
+    "playbackRateNote": "2026-10-19 (user: '마을 전투하는데 전반적으로 애니메이션이 빠르거든. 지금보다 20% 느리게'): then 2026-10-19 '10%만 느리게' (0.8 -> 0.9): the whole fight's clock runs at playbackRate while an enemy is engaged (DuelClock baseRate) - both fighters' art, swings, walks, windows and cooldowns stretch together, so every rule keeps its timing in fight ms. Hit stops stay screen time. 1 outside a fight.",
+    "playbackRate": 0.9,
+    "finisherSlowMo": {
+      "scale": 0.35,
+      "holdMs": 450,
+      "releaseMs": 180,
+      "desaturate": 0.28
+    },
+    "player": {
+      "chainRate": 1.3,
+      "heavyRate": 1.15,
+      "chainResetMs": 220,
+      "chainTiming": {
+        "note": "C 박자 (2026-10-18, user: 'c는 타이밍 맞춰서 눌러야 3타 나가게'). During a chain swing that has a next segment, a C pressed from openBeforeContactMs before its first contact on (its freeze included) is TIMED: it is kept - however long the cancel point takes (the C1 net cinches until 445) - and the next segment comes out at the cancel point. A V pressed on the beat is kept the same way (the string's knockdown ender, kuma.knockdown). A C pressed earlier MISSES the beat: the chain breaks (the '박자 놓침' status), the swing plays out, every further C in it is dropped, and the C after it is the C1 again - mashing never strings. Once the swing has ended, a C within chainResetMs continues as before.",
+        "openBeforeContactMs": 30
+      },
+      "staccatoNote": "Side duel clips own their fight-ms poses: C1 185/285/385 (the wire net: three contacts, cut after the last), C2 145, C3 260; V only the turn-back kick's contact (clip 515) after the charge (player.actions.attack.charge - its crouch and chamber squeezes are the one warp a staccato clip takes). chainRate/heavyRate and startup warp do not touch keys.staccato clips. The 240 ms swing buffer covers the straight startup (145) + contact recovery (60) + two 16 ms frames of scheduling slack; an early press during a long ender still expires. A timed C (chainTiming) is kept until the cut however long it is.",
+      "startupMs": {
+        "jab": 75,
+        "straight": 70,
+        "hook": 110,
+        "heavy": 150,
+        "dash": 260
+      },
+      "cancel": {
+        "chain": {
+          "afterHitMs": 60,
+          "afterWhiffMs": 140
+        },
+        "heavy": {
+          "afterHitMs": 140,
+          "afterWhiffMs": 260
+        },
+        "dash": {
+          "afterHitMs": 220,
+          "afterWhiffMs": 600
+        }
+      },
+      "chainLightHitStopMs": [
+        110,
+        125
+      ],
+      "enderRecoveryMs": 290,
+      "bufferMs": {
+        "swing": 240,
+        "defense": 560
+      },
+      "doubleTapMs": 250,
+      "doubleTapNote": "The double tap (2026-10-12, user): a second press of the same arrow within doubleTapMs screen ms of the first, on the side-scroll stage while engaged - toward the opponent the sliding tackle (player.actions.dashAttack, a swing), away the backstep (player.backstep). startupMs.dash is the tackle's placeholder windup only (its drawn clip is staccato); cancel.dash: X / Z / a backstep cut it afterHitMs after a landed contact or afterWhiffMs after a whiff (C / V never - it is an ender)."
+    }
+  },
+  "player": {
+    "hitStaggerMs": 280,
+    "hitStunMs": 250,
+    "hitShakePeakScreenPx": 3,
+    "hitShakeSkipFreezeMs": 100,
+    "aimAssistStrides": 2.6,
+    "pursuit": {
+      "startGapStrides": 4,
+      "stopGapStrides": 0.85,
+      "maxTravelStrides": 3.2,
+      "paceStridesPerSec": 7,
+      "maxMs": 650
+    },
+    "air": {
+      "note": "Shared arena player tuning.",
+      "tuneNote": "2026-10-21 game-animator: he rose fast and floated down at half the gravity (31 frames in the air after the contact) - gravity 26 -> 45 (still lighter than KUMA's fall), hangMs 120 -> 70, the ground crouch readable (takeoffMs 50 -> 67); the spike held its windup 13 frames and dove 7 (apexMs 90 -> 110, contactMs 190 -> 160, diveScale 2.2 -> 3); the air C froze like the ground straight (125 ms) - its own 75 ms keeps the juggle flowing and leaves the spike the biggest stop; landHoldMs: the drawn landing crouch after he touches down (it was a snap from the air cell to the stance).",
+      "gravityBodiesPerSec2": 45,
+      "landHoldMs": 70,
+      "c": {
+        "segment": 1,
+        "takeoffMs": 67,
+        "contactMs": 170,
+        "apexOverBodies": 0.25,
+        "minApexBodies": 0.35,
+        "maxApexBodies": 1.7,
+        "minFoeBodies": 0.5,
+        "hangMs": 70,
+        "contactGapStrides": 0.15,
+        "maxTravelStrides": 2.2,
+        "damage": 0.8,
+        "tier": "light",
+        "poise": 0.3,
+        "hitStopMs": 75
+      },
+      "v": {
+        "riseBodies": 0.15,
+        "apexMs": 110,
+        "apexOverBodies": 0.35,
+        "maxRiseBodies": 0.9,
+        "diveScale": 3,
+        "rootGapStrides": -0.6,
+        "maxTravelStrides": 2.5,
+        "contactMs": 160,
+        "damage": 1.5,
+        "tier": "heavy",
+        "poise": 0.6,
+        "fx": {
+          "presentAs": "dash",
+          "scale": 1.2,
+          "shakePx": 9,
+          "shakeMs": 220,
+          "verticalShare": 0.8
+        }
+      },
+      "stomp": {
+        "riseBodies": 0.45,
+        "apexMs": 90,
+        "apexOverBodies": 0.3,
+        "maxRiseBodies": 0.8,
+        "diveScale": 2.5,
+        "rootGapStrides": -0.6,
+        "maxTravelStrides": 2.8,
+        "contactMs": 160,
+        "damage": 1.0,
+        "tier": "heavy",
+        "poise": 0.5
+      }
+    },
+    "aimAssistHalfAngleDeg": 100,
+    "placeholderLeanDeg": 7,
+    "backWalk": {
+      "speedScale": 0.75
+    },
+    "backstep": {
+      "travelStrides": 1.5,
+      "airEndSpeedShare": 0.5,
+      "hopApexBodies": 0.07,
+      "hopPeakShare": 0.55,
+      "lockAfterLandMs": 60,
+      "cooldownMs": 300,
+      "placeholderTakeoffMs": 50,
+      "placeholderLandMs": 230,
+      "placeholderTotalMs": 320
+    },
+    "stun": {
+      "ms": 650,
+      "afterImpactMs": 150,
+      "recoverMs": 600,
+      "spinStartFps": 30,
+      "spinEndFps": 5,
+      "wobbleDeg": 3,
+      "wobbleMs": 420,
+      "reducedWobbleScale": 0.35,
+      "launchTiltDeg": 18,
+      "launchLift": 0.22
+    },
+    "ko": {
+      "downMs": 1500,
+      "tiltDeg": 78,
+      "fallMs": 260,
+      "riseMs": 320,
+      "darken": 0.55,
+      "lieMs": 1200,
+      "fallRate": 1.6,
+      "leadSkipArtMs": 130,
+      "minKnockbackStrides": 0.8,
+      "launchStridesNote": "Shared arena player tuning.",
+      "launchStrides": 2.6,
+      "hitStopMs": 110,
+      "getUpSpeed": 1.6,
+      "shakePeakScreenPx": 3,
+      "drawnLieDarken": 1,
+      "dustScale": 1,
+      "dustOffsetStrides": 0.9,
+      "thumpPx": 2.5,
+      "thumpMs": 130,
+      "thumpVerticalShare": 0.9
+    },
+    "actions": {
+      "attack": {
+        "note": "V = ONE charged heavy blow (2026-10-18, user: 'c와 v의 구분이 안가거든 ... v는 차징했다가 강공 1타로'). Hold V: he sinks into the drawn crouch (the side clip's first steps squeezed to charge.entryMs) and holds it while V stays down; let go: the turn-back kick (the clip's LAST contact only - the two snapping punches are skipped, their steps take 0 fight ms) lands charge.releaseStartupMs after the chamber cell. A tap fires as soon as the crouch is reached. damage / lungeStrides / poise.drain.attack are the tap's; charge.full scales them up to a full charge along the square of the charge level (charge.fullMs of V held from the press; game-animator 2026-10-18: a half charge must not be nearly as good as a full one). A full charge alone launches (launch), freezes charge.full.hitStopMs and lands at the dash impact tier (feel.tiers.dash: the bigger shake, the burst, the pushback). enderHitStopMs 150 -> 170 (game-animator 2026-10-18): the tapped kick freezes longer than the C3 whip (160), the ladder C1 < C2 < C3 < V tap < V full. Knockdown: only on a flinch an EARLIER swing of the string made, or as a counter (kuma.knockdown) - the V can no longer set up its own. While charging, X, Z and the backstep cut it at once; a walk does not (he is planted). jump remains for legacy clips explicitly marked heelDrop. Reaching him (2026-10-18, user: 'V 발차기를 했는데 왜 안 맞냐'): V closes a stage gap like C (player.pursuit, from startGapStrides) and lunges the heel's own 0.75 strides. MERGED 2026-10-19 with the 손맛 2단계 line: a V pressed in KUMA's counter window (kuma.rhythm.counter) is the counter at once (no charge); elsewhere V charges as above.",
+        "placeholderHitsMs": [
+          200
+        ],
+        "placeholderTotalMs": 550,
+        "damage": [
+          2
+        ],
+        "tiers": [
+          "heavy"
+        ],
+        "lungeStrides": [
+          0.75
+        ],
+        "lungeLeadMs": 110,
+        "enderHitStopMs": 170,
+        "charge": {
+          "note": "The V charge (2026-10-18). entryMs: the drawn steps up to the crouch, squeezed (never stretched) - the shortest tap. fullMs: V held this long from the press is a full charge (the level rises linearly from the crouch to it). maxHoldMs: held longer, it fires by itself (a lost key-up never leaves him crouching). releaseStartupMs: the chamber cell before the kick's contact, squeezed (never stretched). full: at a full charge the damage, the poise drain x their scale (a tap x 1) and the clean hit's freeze.",
+          "entryMs": 100,
+          "fullMs": 650,
+          "maxHoldMs": 1500,
+          "releaseStartupMs": 110,
+          "full": {
+            "damageScale": 2.5,
+            "poiseScale": 2.5,
+            "hitStopMs": 200,
+            "slowMo": {
+              "scale": 0.35,
+              "holdMs": 120,
+              "releaseMs": 60,
+              "desaturate": 0.1
+            }
+          },
+          "tell": {
+            "note": "Shared arena player tuning.",
+            "trembleStepMs": 33,
+            "tremblePx": [
+              1.0,
+              2.5
+            ],
+            "fullBlinkMs": 99
+          }
+        },
+        "jump": {
+          "riseMs": 200,
+          "hangMs": 120,
+          "fallMs": 110,
+          "apexBodies": 1.25,
+          "apexDip": 0.08,
+          "travelStrides": 1.75,
+          "travelEase": 0.5,
+          "landShake": {
+            "px": 8,
+            "ms": 230,
+            "verticalShare": 0.9
+          }
+        },
+        "launch": {
+          "note": "A FULL charge only (charge.full, 2026-10-18): release the receiver 3.6 strides. A lesser charge pushes like any string's ender (kuma.hurt.enderKnockbackStrides). Shared by every opponent.",
+          "reachShare": [
+            0
+          ],
+          "minStrides": [
+            3.6
+          ],
+          "maxStrides": [
+            3.6
+          ],
+          "curve": [
+            true
+          ],
+          "guardShare": 0.08
+        },
+        "knockdown": true
+      },
+      "combo": {
+        "bursts": {
+          "0": {
+            "damage": [
+              0.3,
+              0.3,
+              0.4
+            ],
+            "tiers": [
+              "light",
+              "light",
+              "light"
+            ],
+            "lungeStrides": [
+              0.55,
+              0.15,
+              0.15
+            ],
+            "poise": [
+              0.3,
+              0.3,
+              0.4
+            ],
+            "reachExtraStrides": 1.65,
+            "hitStopMs": [
+              80,
+              50,
+              120
+            ],
+            "note": "hitStopMs 36 / 36 / 75 -> 60 / 60 / 90 -> 90 / 90 / 120 (2026-10-17, with tempo.releaseRamp; user watching the fight film: '연타도 타격을 하면 잠깐씩 경직 + 역경직 걸리든.. 너무 순식간'): the net's cinches held two frames and read as no stop at all; now five to seven frames, under the straight (125) and the hook (160) so the string's weight still climbs. A blow his armour eats keeps feel.armoredHitStopScale (2026-10-16)."
+          }
+        },
+        "enderHitStopMs": 160,
+        "placeholderHitsMs": [
+          180,
+          520,
+          900
+        ],
+        "placeholderTotalMs": 1400,
+        "damage": [
+          1,
+          1,
+          2
+        ],
+        "tiers": [
+          "light",
+          "light",
+          "heavy"
+        ],
+        "lungeStridesNote": "2026-10-21 (game-animator, 60 fps film): C3's 1.05-stride step-in carried his forward-leaning tie-whip pose into KUMA's body at the crack (the step stops at melee.minGapStrides from the footprints, the drawn lean does not) - the tie reaches 4.26 strides past the bodies (melee.reachFromArt), so the step is 0.5: weight into the lash, not a walk into him.",
+        "lungeStrides": [
+          0.65,
+          0.85,
+          0.5
+        ],
+        "lungeLeadMs": 140,
+        "launch": {
+          "note": "C launches along the judged strike axis: C1 0.3 strides, C2 0.9–1.2, C3 2.5–2.75, bounded by the drawn reach. Armour, guard, poise break and KO keep their own launch rules. Each C now steps forward (0.65/0.85/1.05 strides; side C1 burst 0.55/0.15/0.15) and an explicit C press can close a stage gap using player.pursuit before the next segment. Setup contacts still do not launch the target, so the burst stays connected.",
+          "reachShare": [
+            0,
+            0.8,
+            1.1
+          ],
+          "minStrides": [
+            0.3,
+            0.9,
+            2.5
+          ],
+          "maxStrides": [
+            0.3,
+            1.2,
+            2.75
+          ],
+          "curve": [
+            false,
+            true,
+            true
+          ],
+          "guardShare": 0.3
+        }
+      },
+      "dashAttack": {
+        "placeholderHitsMs": [
+          300
+        ],
+        "placeholderTotalMs": 760,
+        "damage": [
+          1
+        ],
+        "tiers": [
+          "heavy"
+        ],
+        "lungeStrides": [
+          3
+        ],
+        "lungeLeadMs": 200,
+        "lungeEase": "out",
+        "lungeEndSpeedShare": 0.4,
+        "skidStrides": 0.3,
+        "skidMs": 116,
+        "enderHitStopMs": 150,
+        "knockdown": true,
+        "cameraLead": {
+          "px": 12,
+          "inMs": 150,
+          "outMs": 240
+        }
+      }
+    }
+  },
+  "kuma": {
+    "hp": 48,
+    "invulnerableMs": 80,
+    "stopStrides": 0.45,
+    "attackStartStrides": 0.6,
+    "comboEvery": 3,
+    "armorDuringAttack": true,
+    "actions": {
+      "slam": {
+        "damage": [
+          0.6
+        ],
+        "tier": "heavy"
+      },
+      "combo": {
+        "damage": [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ],
+        "tier": "light",
+        "impacts": [
+          "light",
+          "light",
+          "light",
+          "heavy"
+        ],
+        "lightHitStopMs": [
+          67,
+          67,
+          83
+        ]
+      },
+      "fast": {
+        "damage": [
+          0.3,
+          0.3
+        ],
+        "tier": "light"
+      },
+      "dash": {
+        "damage": [
+          0.3
+        ],
+        "tier": "heavy"
+      },
+      "grab": {
+        "damage": [
+          0.15,
+          0.15,
+          0.9
+        ],
+        "tier": "heavy"
+      },
+      "summon": {
+        "damage": [
+          0
+        ],
+        "tier": "heavy"
+      }
+    },
+    "strikes": {
+      "slam": {
+        "reachExtraStrides": 1,
+        "knockbackStrides": 2.5,
+        "stunMs": 420,
+        "invulnerableMs": 820
+      },
+      "combo": {
+        "reachExtraStrides": 0.85,
+        "knockbackStrides": 0.12,
+        "lastKnockbackStrides": 1.6,
+        "invulnerableMs": 100
+      },
+      "fast": {
+        "reachExtraStrides": 0.85,
+        "knockbackStrides": 0.12,
+        "lastKnockbackStrides": 1.15,
+        "invulnerableMs": 200
+      },
+      "dash": {
+        "reachExtraStrides": 0.4,
+        "knockbackStrides": 3.2,
+        "invulnerableMs": 150
+      },
+      "grab": {
+        "reachExtraStrides": 0.6,
+        "knockbackStrides": 3,
+        "invulnerableMs": 0
+      },
+      "summon": {
+        "note": "The summon cast (2026-10-20, native-city-summons.json) has no contact of its own: its release spawns the object. Unused numbers, kept for the shape.",
+        "reachExtraStrides": 0,
+        "knockbackStrides": 0,
+        "invulnerableMs": 0
+      }
+    },
+    "grab": {
+      "every": 5,
+      "turtleMs": 700,
+      "turtleBlocks": 2,
+      "startStrides": 0.9,
+      "trackStrides": 0.35,
+      "catchHitStopMs": 60,
+      "squeezeHitStopMs": 50,
+      "throwStrides": 3,
+      "lieMs": 450,
+      "holdFailsafeMs": 300
+    },
+    "phases": {
+      "steps": [
+        {
+          "fromHpShare": 1,
+          "grab": false,
+          "grabEvery": 5,
+          "cooldownScale": 1.0,
+          "chainGrab": false
+        },
+        {
+          "fromHpShare": 0.6667,
+          "grab": true,
+          "grabEvery": 4,
+          "cooldownScale": 0.9,
+          "chainGrab": false
+        },
+        {
+          "fromHpShare": 0.3334,
+          "grab": true,
+          "grabEvery": 3,
+          "cooldownScale": 0.8,
+          "chainGrab": true
+        }
+      ]
+    },
+    "fastCombo": {
+      "note": "The fast combo (2026-10-09 traditional exchange, spec beat 4): his combo clip's first two swipes only, cut where the clip's keys[endKey] step starts (the spin). Every `every`-th of the attacks that are not his full combo is a fast one (slam, fast, combo, slam, fast, combo...). Its swipes are parryable (parry.actions) and dodgeable (dodge.evades).",
+      "every": 2,
+      "endKey": "spinStart"
+    },
+    "attack": {
+      "commitLeadMs": 120,
+      "trackStrides": 1,
+      "trackPaceScale": 4,
+      "abortRecoveryMs": 200,
+      "abortRewindShare": 0.6,
+      "abortPredictScale": 1,
+      "windupRates": [
+        0.75,
+        0.8,
+        0.85
+      ]
+    },
+    "chase": {
+      "runBeyondStrides": 3.6,
+      "runPaceScale": 3.2,
+      "runWhenOpeningMs": 300,
+      "leaveStandBeyondStrides": 2.5,
+      "reengageRunBeyondStrides": 1.6
+    },
+    "spacing": {
+      "backStrides": 0.5,
+      "backPaceScale": 1.6,
+      "maxGapStrides": 0.95,
+      "withinMs": 280
+    },
+    "antiKite": {
+      "threshold": 2,
+      "action": "fast",
+      "startStrides": 0.9,
+      "chargeMs": 160,
+      "trackStrides": 2,
+      "trackPaceScale": 4,
+      "commitLeadMs": 0,
+      "auraLevel": 0.35
+    },
+    "dash": {
+      "contact": {
+        "hitStopMs": 180,
+        "guardStopMs": 150,
+        "catchMs": 55,
+        "recoilHoldMs": 75,
+        "settleMs": 160,
+        "recoilPx": 8
+      },
+      "fleeRadiusStrides": 1.1,
+      "maxStrides": 8,
+      "fleeGraceMs": 400,
+      "cooldownMs": 900,
+      "windupMs": 460,
+      "chaseWindupMs": 460,
+      "closeRangeStrides": 1.5,
+      "closeWindupMs": 480,
+      "crouchSquash": 0.09,
+      "crouchLeanDeg": 5,
+      "crouchCellSquash": 0.04,
+      "crouchCellLeanDeg": 3,
+      "windBackStrides": 0.12,
+      "auraLevel": 0.3,
+      "evadeMinStridesPerSec": 0.6,
+      "approachShare": 0.5,
+      "topSpeedStrides": 14,
+      "accelMs": 70,
+      "predictMaxMs": 1500,
+      "leadStrides": 0.8,
+      "homingDeg": 35,
+      "maxTravelStrides": 16,
+      "brakeMs": 140,
+      "skidStrides": 0.7,
+      "whiffRecoverMs": 650,
+      "fallbackTiltDeg": 14,
+      "cameraLead": {
+        "px": 10,
+        "inMs": 90,
+        "outMs": 260
+      },
+      "attackerFlashTier": "light",
+      "stillTremblePx": 2.5,
+      "stillTrembleHz": 10,
+      "stillStretch": 0.08
+    },
+    "guard": {
+      "raiseMs": 280,
+      "holdAfterBlockMs": 240,
+      "every": 3,
+      "coneHalfAngleDeg": 75,
+      "poiseScale": 1,
+      "poiseFloor": 1,
+      "pushStrides": 0.14,
+      "pierce": {
+        "attack": [
+          false
+        ],
+        "combo": [
+          false,
+          false,
+          true
+        ],
+        "dashAttack": [
+          false
+        ]
+      },
+      "counterAfterBlocks": 2,
+      "held": {
+        "note": "2026-10-22, the competitive engine (docs/Plan/2026-10-22-competitive-fighter-engine): a person's held guard (KumaControl.guard) drains drainScale x the AI's per blocked contact, has no floor and does not refill while it is held - blocking blow after blow breaks it (break). The AI's guard stays as above.",
+        "drainScale": 3
+      }
+    },
+    "hurt": {
+      "framesBeforeRecoil": 0,
+      "frameMs": 33,
+      "holdMs": 60,
+      "holdShare": 0.55,
+      "recoverFrameMs": 30,
+      "minFrameMs": 26,
+      "chainMarginMs": 40,
+      "fallbackFlinchMs": 760,
+      "stringCap": 3,
+      "enderMs": 320,
+      "enderHoldMs": 200,
+      "enderKnockbackStrides": 1.35,
+      "retaliate": true
+    },
+    "down": {
+      "staggerOffset": 5,
+      "ms": 1800,
+      "darken": 0.7,
+      "getUpFrameMs": 45
+    },
+    "knockdown": {
+      "lieMs": 300,
+      "liftBodies": 0.22,
+      "takeoffPoseMs": 33,
+      "linkTellMarginMs": 40,
+      "wakeup": {
+        "pattern": [
+          "reversal",
+          "guard"
+        ],
+        "reversalAction": "fast",
+        "reversalWindupRate": 1,
+        "guardMs": 700,
+        "tellLeadMs": 120
+      }
+    },
+    "rhythm": {
+      "windupScale": 0.8,
+      "delay": {
+        "every": 4,
+        "rate": 0.45
+      },
+      "armor": {
+        "damageScale": 0,
+        "poiseScale": 0,
+        "bounceStunMs": 300,
+        "pushStrides": 0.12,
+        "recoilStrides": 0.25
+      },
+      "counter": {
+        "windowMs": 380,
+        "reachSlackStrides": 0.6,
+        "accent": {
+          "freezeMs": 50,
+          "slowMo": {
+            "scale": 0.1,
+            "holdMs": 300,
+            "releaseMs": 180,
+            "whipRate": 1.6,
+            "desaturate": 0.6
+          },
+          "focus": {
+            "zoom": 0.07,
+            "inMs": 260,
+            "maxMs": 900
+          }
+        }
+      },
+      "chance": {
+        "justMs": 170,
+        "slowMo": {
+          "scale": 0.3,
+          "holdMs": 260,
+          "releaseMs": 140,
+          "desaturate": 0.25
+        },
+        "dodge": {
+          "ms": 1100,
+          "damageScale": 1.3
+        },
+        "parry": {
+          "ms": 1100,
+          "damageScale": 1.3
+        }
+      },
+      "launch": {
+        "followMs": 1000,
+        "maxFollowUps": 1,
+        "air": {
+          "tuneNote": "2026-10-21 game-animator (60 fps take): the beats came at an even 20-25 frames and nothing quickened toward the spike - the air hit re-lift 0.45 left 20 dead frames at a floating apex (hitLiftBodies 0.45/0.3 -> 0.25/0.15, fallScale 1.5 -> 2), the spike at 7 bodies/s fell slower than the launch rose (-> 12, the combo's fastest move), the bounce at 0.55 floated for 24 frames and its top called the jump (-> 0.35); the landing out of the air had no beat (landHitStopMs 67).",
+          "liftBodies": 1.25,
+          "riseMs": 300,
+          "fallScale": 2,
+          "pushStrides": 0.6,
+          "hitLiftBodies": [
+            0.25,
+            0.15
+          ],
+          "hitPushStrides": 0.2,
+          "maxHits": 2,
+          "groundReachBodies": 0.5,
+          "spike": {
+            "speedBodiesPerSec": 12,
+            "bounceBodies": 0.35
+          },
+          "landHitStopMs": 67,
+          "launchHitStopMs": 230
+        }
+      },
+      "down": {
+        "lieMs": 850,
+        "groundDamageScale": 2
+      }
+    },
+    "airChase": {
+      "maxStrides": 3.5,
+      "landGapStrides": 0.05,
+      "reachStrides": 0.9,
+      "passStrides": 0.3,
+      "damageScale": 0.5,
+      "launchEnder": 0.5
+    }
+  },
+  "poise": {
+    "max": 12,
+    "drain": {
+      "attack": [
+        1.5
+      ],
+      "combo": [
+        1,
+        1,
+        2
+      ],
+      "dashAttack": [
+        1.6
+      ]
+    },
+    "armorScale": 0.5,
+    "armorDamageScale": 0.5,
+    "armorFloor": 1,
+    "counterScale": 2,
+    "regenDelayMs": 1500,
+    "regenPerSec": 8,
+    "break": {
+      "damageScale": 1.25,
+      "knockbackScale": 0.5,
+      "framesBeforeRecoil": 0,
+      "frameMs": 33,
+      "holdMs": 160,
+      "staggerMs": 980,
+      "timingNote": "Side (2026-10-12): hook recovery 500 + one full C chain cut after each swing's LAST contact (wire net 385 + 60, tie flick 145 + 60, tie whip 260) = 1410 fight ms; the break is 1500 (1440 on the shorter back recover). The diagonals' second chain's jab comes at 1533-1611, so the stagger must stay within (950, 1013). Both sim and view use kumaBreakSteps.",
+      "staggerFrameMs": 50,
+      "recoverFrameMs": 30,
+      "groggyFrame": 20,
+      "groggyFrameNote": "2026-10-22 (moved from exchangeFx.rig.kuma.groggyFrame, the competitive engine's stage 5b): the hit clip's step the break holds through its stagger - it decides the break's length (kumaBreakSteps), so it is a rule value, read by the rules and the drawing alike."
+    }
+  },
+  "exchange": {
+    "counter": {
+      "afterWhiffOnly": false,
+      "cooldownMs": 120,
+      "chainHitStop": "base"
+    },
+    "frontBiasSlope": 0.35
+  },
+  "triangle": {
+    "note": "상성 삼각형 (2026-10-14, user: '1순위 상성 삼각형이랑 잡기부터'; docs/Plan/2026-10-14-kuma-triangle-grab). Every KUMA-type action (KUMA, Yume, Kyo, Iori - not a host enemy such as Otto, whose blow keeps its own answers) has ONE right answer, told by the colour of its windup (render: aura, flames, rim glow, ground glow, the fist glint and the inhale, palette-owned). WHITE (pearl) - the iron-ball swing `fast` and string `combo`: Z (guard / parry, parry.actions); X does not work (the bow-duck and the vault are hit). GOLD - the slam and the dash (and the specials drawn instead of them: the butt slam, the bowling tackle): X (the bow-duck's i-frames, dodge.evades - the slam's ground impact too; the vault passes over them); a block CRUSHES the guard (guard note: the gauge empties, the guard break, and since 2026-10-16 the gold blow's damage lands). RED - the grab (kuma.grab): cut its unarmoured windup with C / V (a counter) or be out of its short reach; guard, parry and the vault are caught, and the dodge body to body (since 2026-10-16 its hop backs out of reach from mid range - a step back). The sim's query is `nativeCityKumaGrade` (sim/cityFight/NativeCityExchange). 2026-10-18 손맛 2단계 (user: '조작키가 너무 분산되어 있다. z = 막기, v = 강타 or 카운터, c = 끊기 or 콤보, x = 물구나무 회피'): the colours no longer pick ONE key - every armoured move (white and gold) answers to Z (a block - guardCrush is empty: a gold contact on the guard costs guard.cost.slam / dash like any block, no crush, no damage), X (the vault - vaultPasses: white and gold pass under him; the hop's dodge.evades now lists all four) and V (the counter on its last contact, kuma.rhythm.counter); only the RED grab keeps its rule (no block, the vault and the hop are caught body to body; C / V into its unarmoured windup cuts it). The windup colours stay as the tell of what is coming.",
+    "classes": {
+      "fast": "white",
+      "combo": "white",
+      "slam": "gold",
+      "dash": "gold",
+      "grab": "red",
+      "summon": "red"
+    },
+    "guardCrush": [],
+    "vaultPasses": [
+      "white",
+      "gold"
+    ],
+    "best": {
+      "white": "counter",
+      "gold": "evade",
+      "red": "cut"
+    }
+  },
+  "guard": {
+    "coneHalfAngleDeg": 80,
+    "moveScale": 0.4,
+    "max": 5,
+    "cost": {
+      "light": 1,
+      "slam": 3,
+      "dash": 3
+    },
+    "regenDelayMs": 300,
+    "regenPerSec": 2.5,
+    "reopenAt": 1,
+    "pushStrides": {
+      "light": 0.3,
+      "slam": 1.1,
+      "dash": 1.6
+    },
+    "blockStunMs": {
+      "light": 160,
+      "slam": 380,
+      "dash": 420
+    },
+    "breakStunMs": 700,
+    "meterBlinkMs": 120
+  },
+  "parry": {
+    "enabled": false,
+    "windowMs": 120,
+    "whiffCost": 1,
+    "whiffLoweredMs": 300,
+    "pressLockMs": 400,
+    "actions": [
+      "combo",
+      "fast"
+    ],
+    "poiseDrain": 3,
+    "groggyHitIndex": 1,
+    "recoilMs": 620,
+    "kumaPushStrides": 0.35,
+    "poseMs": 150
+  },
+  "dodge": {
+    "totalMs": 650,
+    "invulnerableMs": [
+      100,
+      460
+    ],
+    "cancelAfterMs": 420,
+    "hop": {
+      "takeoffMs": 90,
+      "landMs": 300,
+      "springMs": 400,
+      "returnMs": 560,
+      "backStrides": 0.4
+    },
+    "cooldownMs": 350,
+    "evades": [
+      "slam",
+      "dash",
+      "combo",
+      "fast"
+    ],
+    "vault": {
+      "triggerGapStrides": 1.2,
+      "chargeMaxGapStrides": 4,
+      "coneHalfAngleDeg": 60,
+      "landGapStrides": 0.2,
+      "invulnerableFromMs": 60,
+      "invulnerableAfterLandMs": 80,
+      "lockAfterLandMs": 120,
+      "apex": {
+        "slowScale": 0.1,
+        "slowFightMs": 50,
+        "snapStopMs": 60,
+        "whipScale": 1.7,
+        "whipMs": 60,
+        "desaturate": 0.15
+      }
+    }
+  },
+  "exchangeFx": {
+    "sampleBodyPx": 300,
+    "ko": {
+      "launchMs": 470,
+      "cardDelayMs": 100,
+      "bowDelayMs": 1100,
+      "bowMs": 1300
+    },
+    "rig": {
+      "kuma": {
+        "guardFrame": 4,
+        "blockFrame": 3,
+        "drawnGuardFrame": 1,
+        "drawnGroggyBackSwayDeg": 2,
+        "guardBreathMs": 1350,
+        "guardBreath": 0.016,
+        "blockTiltDeg": 3,
+        "blockMs": 140,
+        "parriedFrames": [
+          12,
+          14
+        ],
+        "parriedRotDeg": 7,
+        "groggySwayDeg": 4,
+        "groggySwayMs": 900,
+        "groggyShiftPx": 4,
+        "groggyShiftMs": 1100,
+        "koFrame": 10,
+        "koStartDeg": 4,
+        "getUpMs": 360,
+        "attackStandInLeanDeg": 8,
+        "airNote": "Shared arena animation tuning.",
+        "air": {
+          "riseDeg": -25,
+          "riseFullShare": 0.25,
+          "apexDeg": -5,
+          "fallDeg": 20,
+          "spikeDeg": 40,
+          "spikeLimitDeg": 60,
+          "turnDegPerSec": 240,
+          "pivotFallbackBodies": 0.3,
+          "kickDeg": 12,
+          "kickHeavyDeg": 16,
+          "kickSteps": [
+            [
+              66,
+              1
+            ],
+            [
+              50,
+              0.5
+            ],
+            [
+              50,
+              0.2
+            ]
+          ],
+          "chainMs": 120,
+          "chainSteps": [
+            [
+              16,
+              1
+            ],
+            [
+              50,
+              0.3
+            ],
+            [
+              50,
+              0.1
+            ]
+          ],
+          "pushBodies": 0.06,
+          "pushHeavyBodies": 0.1,
+          "pushSteps": [
+            [
+              50,
+              1
+            ],
+            [
+              50,
+              0.5
+            ],
+            [
+              50,
+              0.2
+            ]
+          ],
+          "reduced": {
+            "kick": 0,
+            "turn": 0.4,
+            "push": 0.5
+          }
+        }
+      },
+      "player": {
+        "guardBreathMs": 1150,
+        "guardBreath": 0.01,
+        "guardSquash": 0.97,
+        "blockTiltDeg": 6,
+        "dodgeSquash": 0.66,
+        "dodgeLeanDeg": 22,
+        "dodgeInMs": 90,
+        "dodgeOutMs": 120,
+        "bowSquash": 0.88,
+        "bowLeanDeg": 14,
+        "bowInMs": 220,
+        "bowOutMs": 400,
+        "parryLeanDeg": 4,
+        "drawnGuardFrame": 1,
+        "drawnBowFrame": 1,
+        "parryHandForward": 0.3,
+        "parryHandHeight": 0.66
+      }
+    }
+  },
+  "feel": {
+    "tiers": {
+      "light": {
+        "hitStop": "light",
+        "hitStopScale": 1,
+        "shakePx": 0,
+        "shakeMs": 0,
+        "fxScale": 1
+      },
+      "heavy": {
+        "hitStop": "heavy",
+        "hitStopScale": 1,
+        "shakePx": 4,
+        "shakeMs": 95,
+        "fxScale": 1.2
+      },
+      "slam": {
+        "hitStop": "heavy",
+        "hitStopScale": 1.15,
+        "shakePx": 6,
+        "shakeMs": 200,
+        "fxScale": 1.35
+      },
+      "dash": {
+        "hitStop": "dash",
+        "hitStopScale": 1,
+        "shakePx": 8,
+        "shakeMs": 240,
+        "fxScale": 1.55
+      },
+      "counter": {
+        "hitStop": "counter",
+        "hitStopScale": 1.4,
+        "shakePx": 9,
+        "shakeMs": 260,
+        "fxScale": 1.6
+      },
+      "break": {
+        "hitStop": "finisher",
+        "hitStopScale": 1,
+        "shakePx": 7,
+        "shakeMs": 230,
+        "fxScale": 1.45
+      },
+      "ko": {
+        "hitStop": "finisher",
+        "hitStopScale": 1.25,
+        "shakePx": 9,
+        "shakeMs": 270,
+        "fxScale": 1.6
+      }
+    },
+    "armoredHitStopScale": 0.5,
+    "armoredFxScale": 0.75,
+    "hitLag": {
+      "attackerPushbackPx": {
+        "light": 0,
+        "heavy": 3,
+        "slam": 3,
+        "dash": 5,
+        "counter": 6,
+        "break": 5,
+        "ko": 5
+      },
+      "pushbackRiseMs": 40,
+      "pushbackFallMs": 150,
+      "contactHoldMinMs": 16
+    },
+    "slowMo": {
+      "scale": 0.3,
+      "holdMs": 160,
+      "releaseMs": 70,
+      "desaturate": 0.25
+    },
+    "slamGround": {
+      "shakePx": 4,
+      "shakeMs": 170,
+      "verticalShare": 0.85
+    },
+    "fx": {
+      "contactHeight": 0.56,
+      "contactInset": 0.22,
+      "slamContactHeight": 0.34,
+      "note": "2026-10-11 contact rhythm: a small core, thin needle sparks on screen time (light x0.7 life), and three long directional strokes on heavy hits. The heavy fan opens immediately, holds through this contact's freeze, then fades over comets.lifeMs. The existing accent budget shortens a quiet fan. Dust rings start on release for heavy hits or body landings; jabs and armour make none. Reduced motion keeps only the small contact core. All sizes follow the victim body; direction comes from the projected blow. Colours remain palette-owned. No sprite deformation.",
+      "core": {
+        "radius": 0.1,
+        "holdMs": 20,
+        "fadeMs": 40,
+        "alpha": 0.3,
+        "armoredAlpha": 0.3,
+        "finaleAlpha": 0.8
+      },
+      "inkStroke": {
+        "thickness": 1.3,
+        "alpha": 0.7
+      },
+      "sparks": {
+        "count": {
+          "light": 2,
+          "heavy": 4,
+          "slam": 4,
+          "dash": 6,
+          "counter": 5,
+          "break": 5,
+          "ko": 6
+        },
+        "radius": 0.2,
+        "thickness": 0.018,
+        "travel": 0.58,
+        "spreadDeg": 42,
+        "lifeMs": 140
+      },
+      "comets": {
+        "count": 3,
+        "length": 0.82,
+        "width": 0.025,
+        "travel": 0.14,
+        "lifeMs": 85
+      },
+      "aftershock": {
+        "radius": 0.18,
+        "growTo": 0.62,
+        "thickness": 0.025,
+        "travel": 0.36,
+        "lifeMs": 135,
+        "alpha": 0.88
+      },
+      "flash": {
+        "radius": 0.15,
+        "whiteMs": 33,
+        "lifeMs": 170
+      },
+      "groundGlow": {
+        "radius": 0.34,
+        "squash": 0.34,
+        "lifeMs": 180
+      },
+      "dustRing": {
+        "radiusStrides": 0.25,
+        "growToStrides": 1.05,
+        "bandStrides": 0.09,
+        "lifeMs": 240
+      },
+      "shockwave": {
+        "radiusStrides": 0.35,
+        "growToStrides": 1.8,
+        "bandStrides": 0.1,
+        "lifeMs": 340,
+        "secondDelayMs": 50,
+        "brightShare": 0.3
+      },
+      "debris": {
+        "count": {
+          "light": 0,
+          "heavy": 0,
+          "slam": 6,
+          "dash": 8,
+          "counter": 0,
+          "break": 3,
+          "ko": 8
+        },
+        "size": 0.024,
+        "travel": 0.62,
+        "lift": 0.16,
+        "spreadDeg": 38,
+        "lifeMs": 260
+      },
+      "skid": {
+        "minStrides": 0.1,
+        "puffEveryStrides": 0.11,
+        "puffRadius": 0.05,
+        "puffLifeMs": 380,
+        "rise": 0.07,
+        "scuffWidthStrides": 0.05,
+        "scuffAlpha": 0.32,
+        "scuffLifeMs": 420,
+        "shadeAlpha": 0.24,
+        "brightAlpha": 0.42
+      },
+      "dustPuffs": {
+        "count": 10,
+        "radius": 0.05,
+        "spreadStrides": 1.5,
+        "rise": 0.28,
+        "lifeMs": 420,
+        "yRatio": 0.5,
+        "shadeAlpha": 0.18,
+        "brightAlpha": 0.4
+      },
+      "telegraph": {
+        "fillAlpha": 0.2,
+        "edgeAlpha": 0.6,
+        "startScale": 0.45,
+        "bandStrides": 0.07
+      },
+      "sequence": {
+        "minTravelStrides": 0.65,
+        "releaseMs": 145,
+        "trailEveryMs": 48,
+        "trailLifeMs": 210,
+        "settleMs": 45,
+        "maxMs": 2100,
+        "ribbonWidth": 0.012,
+        "ribbonLength": 0.32
+      },
+      "pressureWave": {
+        "note": "2026-10-12 effect pass: the body-sized blunt pressure wave (GLSL, NativeCityShockwaveView) is a heavy accent, not every blunt touch. It plays for a clean blunt contact whose tier rank (light 0, heavy/slam 1, dash/counter 2, break 3, ko 4) is at least minRank and whose accent played loud (feel.budget); a light tie flick or a quiet accent keeps the contact sheet and its light only. 2026-10-17 (쿠마전 이펙트 정리, VFX review): minRank 1 -> 4 - only the KO; on every heavy and the guard break its body-wide yellow ring stood beside the light layer's own ring (two rings on one hit).",
+        "minRank": 4
+      }
+    },
+    "aura": {
+      "slamPeak": 1,
+      "comboPeak": 0.45,
+      "grabPeak": 0.8,
+      "windupShare": 0.2,
+      "rampPower": 2.6,
+      "pulseHz": [
+        2,
+        7
+      ],
+      "silhouette": {
+        "width": 0.56,
+        "height": 1
+      },
+      "flames": {
+        "count": 4,
+        "length": 0.32,
+        "width": 0.15,
+        "curl": 0.07,
+        "riseHz": [
+          0.8,
+          2.2
+        ],
+        "innerAlpha": 0.5,
+        "opponentSideAlpha": 0.4
+      },
+      "embers": {
+        "count": 6,
+        "size": 0.03,
+        "riseHz": 1.4
+      },
+      "rimGlow": {
+        "alpha": 0.32
+      },
+      "inhale": {
+        "widthScale": 0.8,
+        "rimAlpha": 0.5,
+        "reducedRimAlpha": 0.85
+      },
+      "groundGlow": {
+        "radius": 0.3,
+        "squash": 0.34,
+        "alpha": 0.08
+      },
+      "hitQuiet": {
+        "ms": 260,
+        "alpha": 0.25
+      },
+      "collapseMs": 60,
+      "collapseFlash": {
+        "radiusStrides": 0.6,
+        "ms": 33
+      },
+      "onsetFloor": 0.3
+    },
+    "sfx": {
+      "swingLeadMs": 18
+    },
+    "impact": {
+      "flash": {
+        "fillMs": {
+          "light": 17,
+          "heavy": 33,
+          "slam": 33,
+          "dash": 50,
+          "counter": 50,
+          "break": 50,
+          "ko": 50
+        },
+        "fadeMs": {
+          "light": 70,
+          "heavy": 100,
+          "slam": 100,
+          "dash": 120,
+          "counter": 150,
+          "break": 120,
+          "ko": 160
+        },
+        "fadeStrength": {
+          "light": 0.15,
+          "heavy": 0.2,
+          "slam": 0.24,
+          "dash": 0.26,
+          "counter": 0.32,
+          "break": 0.25,
+          "ko": 0.3
+        },
+        "armoredFadeScale": 1,
+        "reducedFillMs": 17,
+        "reducedFadeScale": 0.6,
+        "outlinePx": 3,
+        "note": "2026-10-17 (쿠마전 이펙트 정리, VFX review): fadeMs about halved and fadeStrength halved, outlinePx 2 -> 3 - the warm hurt tint over KUMA's orange fur was orange on orange (L* 62-66), turning him into a flat orange cut-out for a fifth of a second; the ink outline now carries the contrast and the tint only warms him for a beat."
+      },
+      "squash": {
+        "x": {
+          "light": 0.07,
+          "heavy": 0.1,
+          "slam": 0.12,
+          "dash": 0.14,
+          "counter": 0.14,
+          "break": 0.12,
+          "ko": 0.13
+        },
+        "y": {
+          "light": 0.05,
+          "heavy": 0.075,
+          "slam": 0.09,
+          "dash": 0.1,
+          "counter": 0.1,
+          "break": 0.09,
+          "ko": 0.1
+        },
+        "ms": {
+          "kuma": 100,
+          "player": 60
+        },
+        "kumaScale": 0.8,
+        "armoredScale": 0.45,
+        "uppercut": {
+          "x": 0.05,
+          "y": 0.08
+        },
+        "crush": {
+          "x": 0.18,
+          "y": 0.24
+        }
+      },
+      "hop": {
+        "height": {
+          "light": 0,
+          "heavy": 0.06,
+          "slam": 0.045,
+          "dash": 0.05,
+          "counter": 0.03,
+          "break": 0.035,
+          "ko": 0
+        },
+        "ms": {
+          "kuma": 240,
+          "player": 150
+        },
+        "kumaScale": 0.9
+      },
+      "followThrough": {
+        "px": {
+          "light": 2,
+          "heavy": 3,
+          "slam": 3,
+          "dash": 5,
+          "counter": 6,
+          "break": 4,
+          "ko": 4
+        }
+      },
+      "camera": {
+        "directionalShare": 0.6,
+        "shakeHz": 20,
+        "nudgePx": {
+          "light": 0,
+          "heavy": 3,
+          "slam": 4,
+          "dash": 6,
+          "counter": 7,
+          "break": 4,
+          "ko": 4
+        },
+        "nudgeInMs": 30,
+        "nudgeOutMs": 150,
+        "zoomPulse": {
+          "light": 0,
+          "heavy": 0,
+          "slam": 0.022,
+          "dash": 0.03,
+          "counter": 0.05,
+          "break": 0.025,
+          "ko": 0.025
+        },
+        "zoomMs": 90
+      },
+      "vignette": {
+        "alpha": {
+          "light": 0,
+          "heavy": 0.22,
+          "slam": 0.3,
+          "dash": 0.32,
+          "counter": 0.22,
+          "break": 0.26,
+          "ko": 0.34
+        },
+        "inMs": 40,
+        "fadeMs": 380,
+        "reducedScale": 0.7
+      },
+      "rumble": {
+        "ms": {
+          "light": 0,
+          "heavy": 110,
+          "slam": 170,
+          "dash": 210,
+          "counter": 230,
+          "break": 160,
+          "ko": 240
+        },
+        "strong": {
+          "light": 0.12,
+          "heavy": 0.45,
+          "slam": 0.75,
+          "dash": 0.9,
+          "counter": 0.95,
+          "break": 0.6,
+          "ko": 0.85
+        },
+        "weak": {
+          "light": 0.35,
+          "heavy": 0.55,
+          "slam": 0.65,
+          "dash": 0.8,
+          "counter": 0.85,
+          "break": 0.7,
+          "ko": 0.8
+        },
+        "armoredScale": 0.5
+      },
+      "hpBar": {
+        "chipDelayMs": 300,
+        "chipDrainMs": 220,
+        "shakePx": 3,
+        "shakeHz": 26,
+        "shakeMs": 200
+      },
+      "sfx": {
+        "thudGain": {
+          "light": 0.32,
+          "heavy": 0.45,
+          "slam": 0.55,
+          "dash": 0.62,
+          "counter": 0.66,
+          "break": 0.55,
+          "ko": 0.6
+        },
+        "thudRate": {
+          "kuma": 0.62,
+          "player": 0.82
+        },
+        "thudDelayMs": 6,
+        "boomGain": {
+          "light": 0,
+          "heavy": 0.34,
+          "slam": 0.5,
+          "dash": 0.6,
+          "counter": 0.64,
+          "break": 0.48,
+          "ko": 0.55
+        },
+        "boomRate": 0.5,
+        "boomDelayMs": 3,
+        "kumaRateScale": 0.88,
+        "kumaGainScale": 1.1,
+        "pitchSpread": 0.05,
+        "gainSpread": 0.08
+      }
+    },
+    "tells": {
+      "armor": {
+        "letterTimesNote": "2026-10-19 신호 정리: the '슈퍼아머!' letter (NativeCityKumaFightCues.strikeTells) shows only the first letterTimes times per fight (counted from each challenge / rematch); later blows on his armour keep the clang, the sparks and the rim's flash - no word. Absent: every time.",
+        "letterTimes": 2,
+        "rimPx": 6,
+        "inkPx": 2,
+        "shimmerShare": 0.7,
+        "shimmerMs": 560,
+        "flashMs": 50,
+        "attackerPushbackPx": 7,
+        "recoilDeg": 7,
+        "recoilMs": 170,
+        "bounce": {
+          "pushbackPx": 20,
+          "recoilDeg": 16,
+          "recoilMs": 300,
+          "statusHeight": 0.55
+        }
+      },
+      "opening": {
+        "flashMs": 300,
+        "pulseMs": 75
+      },
+      "invulnerable": {
+        "blinkMs": 70,
+        "blinkAlpha": 0.55
+      },
+      "poise": {
+        "wobbleAt": 2,
+        "wobbleDeg": 2.4,
+        "wobbleMs": 620,
+        "sweatEveryMs": 300,
+        "sweatLifeMs": 520
+      },
+      "dashGlint": {
+        "leadMs": 120,
+        "height": 0.84,
+        "zoom": 0.035,
+        "zoomMs": 120
+      },
+      "enderPunch": {
+        "zoom": 0.025,
+        "zoomMs": 160,
+        "swingPx": 3
+      },
+      "gradeMark": {
+        "sizePx": 28,
+        "liftPx": 58,
+        "outlinePx": 2,
+        "popMs": 140,
+        "startScale": 1.7,
+        "resolve": {
+          "pressMs": 60,
+          "pressScale": 0.88,
+          "pressTravel": 0.75,
+          "popMs": 90,
+          "popScale": 1.25,
+          "fadeMs": 130,
+          "fadeScale": 1.32,
+          "brighten": 0.6,
+          "glowPx": 30,
+          "glowAlpha": 0.55,
+          "bits": 5,
+          "bitPx": 3.5,
+          "bitTravelPx": 24,
+          "safeFadeMs": 150,
+          "reducedFlashMs": 80,
+          "reducedFadeMs": 120,
+          "linkHoldMs": 320
+        }
+      },
+      "counterGauge": {
+        "note": "V's counter gauge (2026-10-18 손맛 2단계, kuma.rhythm.counter; user: '카운터 아이콘 게이지가 차면서 V 로 카운터로' - 숨은 규칙 금지): a ring round the grade badge over his name plate (radiusPx from the badge's centre, bandPx thick), drawn like the village HUD (2026-10-18 decision: plain white with a 1 px navy ink outline, no plate, no shadow): a thin ink track, the white arc filling clockwise from the top over his windup; full = the window - the whole ring, a soft light (glowPx) breathing behind it every pulseMs, and a bright tick rings once ('찡', the white grade's tell sound pitched up). Its colour is the 'attack now' magenta (PALETTE.fightAttackNow, 2026-10-19 D4 - it was white filling, gold full). Reduced motion: no breathing. Since 2026-10-19 신호 정리 the HUD's V key no longer lights with it (the key panel is a static legend).",
+        "radiusPx": 22,
+        "bandPx": 4,
+        "outlinePx": 1,
+        "glowPx": 34,
+        "pulseMs": 180
+      }
+    },
+    "letters": {
+      "popMs": 70,
+      "startScale": 1.45,
+      "overshoot": 1.2,
+      "lingerMs": {
+        "light": 120,
+        "heavy": 200,
+        "call": 250
+      },
+      "driftMs": 240,
+      "driftShare": 0.45,
+      "tiltDeg": {
+        "light": 9,
+        "heavy": 12,
+        "call": 6
+      },
+      "size": {
+        "light": 0.3,
+        "heavy": 0.42,
+        "call": 0.3
+      },
+      "aboveHead": 0.3,
+      "beside": 0.9,
+      "besideAirDrop": 0.3,
+      "offset": {
+        "side": 0.15,
+        "up": 0
+      },
+      "maxOnScreen": 1,
+      "burst": {
+        "scale": 0.85,
+        "ms": 140
+      },
+      "reducedLingerScale": 1.3,
+      "shatterNote": "2026-10-16 (webtoon shock 3.1): a heavy letter does not drift and fade - when its hold and linger are over it is cut and breaks into the six drawn ink-gold shards (art/ui/kuma-fight-v1/letter-shards.webp, letterShards) over ms: thrown out from a 3x2 grid over the letter (speed: letter heights per second, leaning along its drift), falling (gravity: letter heights per s^2), spinning, shrinking to nothing (size x the letter height, no fade). None under reduced motion (it fades as before).",
+      "shatter": {
+        "ms": 320,
+        "speed": [
+          2.4,
+          4.2
+        ],
+        "gravity": 14,
+        "spinDegPerS": 540,
+        "size": 0.55
+      }
+    },
+    "hitFx": {
+      "note": "Compact stars leave fists, heels and faces visible. Each burst holds its peak for its OWN contact freeze, so the next hit cannot pin an earlier star. Light tails clear in 16 ms steps, heavier tails in 24 ms steps. Heavy contact: directional fan during freeze (feel.fx.comets), then a split pressure front on release (feel.fx.aftershock). Enders get a short, smaller focus ring behind the victim; opening counter/break/dash keep the larger ring. The slash marks a sharp weapon (the wire net) only. Armour has no star or focus. Reduced motion keeps the star only.",
+      "frames": {
+        "startFrame": 1,
+        "peakFrame": 2,
+        "leadMs": 16,
+        "peakMinMs": 16,
+        "tailFrameMs": 24,
+        "lightTailFrameMs": 16
+      },
+      "maxOnScreen": 6,
+      "star": {
+        "size": {
+          "light": 0.3,
+          "heavy": 0.5,
+          "slam": 0.56,
+          "dash": 0.62,
+          "counter": 0.6,
+          "break": 0.68,
+          "ko": 0.78
+        },
+        "armoredScale": 0
+      },
+      "slash": {
+        "tiltDeg": -28
+      },
+      "speedLines": {
+        "frames": 3,
+        "frameMs": 33,
+        "size": 1.4,
+        "heavySize": 1.3,
+        "alpha": 0.6
+      }
+    },
+    "screenGrade": {
+      "parry": {
+        "mode": null,
+        "minGapMs": 700
+      },
+      "minGapMs": 1800,
+      "minGapNote": "2026-10-17 (user: the fight film is dizzy; VFX review: 18 whole-screen swaps in 37 s, three inside one second): the parry no longer turns the town (mode null - its drawn cel, white core and freeze carry it; a parry then a counter used to swap the screen twice in half a second), the dash keeps no ink sheet, and every whole-screen pass (the backdrop sheet and its shaders) waits minGapMs of screen time after the last one - the KO alone may come sooner. The shaders cut on the release (no half step: the half-grey frame read as a double exposure).",
+      "backdrop": {
+        "note": "2026-10-16 (frame review edge pass): through the freeze of a loud dash / counter / break / KO blow the town goes under an ink sheet and the two fighters stand on it (NativeCityCardView.setBackdropDim: the town drawn, the sheet, the fighters' cards drawn again). The release steps it to half for one frame, then off. None under reduced motion.",
+        "alpha": 0.42,
+        "tiers": [
+          "counter",
+          "break",
+          "ko"
+        ],
+        "releaseMs": 33,
+        "modesNote": "2026-10-16 decisive frame (edge pass 4): the counter and the KO swap the ink sheet for a full-screen shader on the town under the two fighters (NativeCityCardView: the drawn town copied to a texture once per frame of the freeze, then drawn back through the shader). negative: the town inverted into paper / ink in steps. screentone: the town as ink dots on paper (pitchPx logical px, darker = bigger dot, below solidBelow luma solid ink) blurred toward the fighters (zoomBlur of the distance). Still through the freeze (like every effect there), half on the release frame, then off.",
+        "modes": {
+          "counter": "negative",
+          "ko": "screentone"
+        },
+        "negative": {
+          "steps": 3
+        },
+        "screentone": {
+          "pitchPx": 6,
+          "solidBelow": 0.16,
+          "zoomBlur": 0.06
+        },
+        "silhouetteNote": "2026-10-21 (super stage, the MUGEN reference: the stage goes ink at a super): a super's flash (`superFlash`) turns the town and its bystanders into navy ink silhouettes (navyInk, the FX ink) - pure ink below luma from, up to lift of the way to paper at luma to - with the two fighters drawn over it in colour (NativeCityCardView). Reduced motion keeps the ink sheet (dim).",
+        "silhouette": {
+          "from": 0.35,
+          "to": 0.95,
+          "lift": 0.12
+        }
+      }
+    },
+    "budget": {
+      "accentGapMs": 380,
+      "rank": {
+        "ender": 1,
+        "heavy": 2,
+        "counter": 3,
+        "knockdown": 3,
+        "break": 4,
+        "ko": 5
+      },
+      "quietShakeScale": 0.5
+    },
+    "staccato": {
+      "stepMs": 33,
+      "recoverStepMs": 50,
+      "shake": [
+        1,
+        -1,
+        0.7,
+        -0.7,
+        0.4,
+        -0.4
+      ],
+      "victim": {
+        "holdShare": 0.6,
+        "tail": [
+          0.4
+        ]
+      },
+      "squash": {
+        "holdMs": 33,
+        "overshoot": -0.2
+      },
+      "hop": {
+        "holdShare": 0.55,
+        "tail": [
+          0.4
+        ]
+      },
+      "anticipation": [
+        0.55
+      ]
+    },
+    "fightBar": {
+      "holdMs": 650,
+      "drainMs": 420,
+      "flashMs": 90,
+      "shakePx": 3,
+      "shakeHz": 24,
+      "shakeMs": 220,
+      "widthShare": 0.3,
+      "minWidthPx": 220,
+      "maxWidthPx": 420,
+      "heightPx": 12,
+      "bandShare": 0.065,
+      "topShare": 0.058,
+      "edgeMarginPx": 16,
+      "ticks": 4,
+      "fadeMs": 200
+    },
+    "impactFrame": {
+      "note": "The mansion's 'calling-card impact frame' (render/effects/CombatImpactFrame - its prims, view/NativeCityImpactFrameView) on the city's decisive blows (2026-10-09 hierarchy: NOT on a plain hook / V ender - the ender punch marks those; 2026-10-15 frame review: NOT on the opening counter either - three plates in half a second lost their weight): the poise break and the knockdown (V on a flinching KUMA) (short: the paper plate with ink silhouettes and the keyhole for shortPaperMs - two frames - then the slash band for bandMs), and the KO finisher (full: the plate for CombatImpactFrame's paperEndMs 50 ms, then the band - no second inversion). The village plate is ink with neon-yellow silhouettes (CombatImpactFrameTone 'ink', 2026-10-15: a cream plate over the bright plaza read as a sepia fade). Photosensitivity: one light/dark swap per frame, plate alpha <= 0.9, at most one short frame per shortCooldownMs and one full one per fullCooldownMs (inside a cooldown nothing - the body flash already marks the blow); only when the blow's accent plays loud (feel.budget); none under reduced motion. 2026-10-17 (쿠마전 이펙트 정리): bandMs 17 -> 0 - the band after the plate is drawn screen-wide (COMBAT_IMPACT_FRAME.bandWidthScale x the view width, additive) and read as a white line slashing across the whole town; the plate alone carries the beat here. 2026-10-17 (fight film review): shortPaperMs 33 -> 0 = no short plate - one or two frames of ink over 95 % of the screen read as a broken frame, often right before a counter's own pass; the poise break and the knockdown keep their letter, freeze and the backdrop's ink sheet. The KO's full plate stays.",
+      "shortPaperMs": 0,
+      "bandMs": 0,
+      "shortCooldownMs": 900,
+      "fullCooldownMs": 2500
+    }
+  }
+}

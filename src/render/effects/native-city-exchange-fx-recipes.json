@@ -1,0 +1,207 @@
+{
+  "$schemaNote": "Runtime FX recipes for the Player vs Kuma traditional exchange (read by src/render/effects/NativeCityExchangeFx.ts). Colours live in src/render/art/palette.ts (PALETTE.nativeCityExchange*), bubble text in the i18n village domain, the beat timeline in docs/Plan/2026-10-08-kuma-exchange-fx/README.md. `strip` / `strips` blocks are the size, life, alpha and delay of the code-drawn stand-ins (first sampled from the old 128 px vfx strips, which the village never loads; their names and tints went 2026-10-18). Ground dust (slideDust, whiffWind, koDustRing) is the drawn dust flipbook once its sheet is in (NativeCitySmashFxCatalog skid / puff / dust); clashSpark / guardSpark / parryRingFlash are the drawn comic cels then (NativeCityComicArt). Deterministic: no Math.random; seeds listed per emitter. Player's own blows freeze on the feel.tiers ladder in src/world/native-city-combat.json; the beats below are the exchange's.",
+  "rules": {
+    "whiteCoreMaxMs": 100,
+    "maxConcurrentFx": 48,
+    "noMathRandom": true,
+    "contactPalette": "Combat contacts are the warm light ramp (cream / gold / amber, PALETTE.fxWarm* - the PALETTE.combatNeon* names now hold those values) with a dark ink outline (webtoonInk). User decision 2026-10-17 replaced the 2026-10-12 fluorescent yellow / orange: the neon yellow barely separated from the bright plaza and the neon orange matched KUMA's fur. Normal-blended ink keeps the silhouette; only short contact light is additive.",
+    "photosensitivity": "No full-screen white strobes. White cores are ≤100ms and local to the contact point. Shake amplitudes stay under 14px. Reduced motion drops camera shake, zoom and rumble entirely (stricter than a scale); hit stops stay (a freeze is not motion).",
+    "reducedMotion": {
+      "dropAfterimages": true,
+      "dropDizzyStars": true,
+      "slowMoRateFloor": 0.7,
+      "particleCountScale": 0.4
+    }
+  },
+  "sample": {
+    "title": "플레이어 vs 쿠마 · 전통 공방 모션 샘플",
+    "resolution": [1280, 720],
+    "fps": 30,
+    "durationRealMs": 16467,
+    "durationAnimMs": 14800,
+    "driveVideos": {
+      "horizontal": "https://drive.google.com/file/d/1ym2N6sXrkDuFwNGLf3XN1oDyFNaXCzuh/view",
+      "vertical": "https://drive.google.com/file/d/17tx0aoHp99Q0ncP6LriyF5YPARoWy1hN/view"
+    }
+  },
+  "hitStopsMs": {
+    "clash": 80,
+    "crush": 133,
+    "jabGuard": 50,
+    "parry": 120,
+    "finisher": 160,
+    "koLand": 70,
+    "notes": "crush 133 (2026-10-17, 쿠마전 액션 개편): a block that breaks Player's guard - it stopped as short as any clash (80), the most dramatic outcome the shortest stop; now between the parry (120) and a clean slam hit (133 x 1.15). FX age continues during hit-stop (sample keeps full rate; Heist CombatHitFx uses HIT_STOP_FX_RATE 0.5 — pick one policy and document it)."
+  },
+  "slowMo": [
+    {
+      "id": "finisher",
+      "animStartMs": 10680,
+      "animEndMs": 11100,
+      "rate": 0.35,
+      "realDurationApproxMs": 1200,
+      "mapTo": "CombatSlowMo finisher beat (COMBAT_SLOW_MO)"
+    }
+  ],
+  "camera": {
+    "follow": "midpoint of Player and Kuma feet, smoothed (lerp 0.12/frame)",
+    "shake": {
+      "clash": { "ampPx": 9, "durMs": 280 },
+      "jabGuard": { "ampPx": 2, "durMs": 90 },
+      "uppercutHit": { "ampPx": 6, "durMs": 220 },
+      "parry": { "ampPx": 4, "durMs": 170 },
+      "punishJab": { "ampPx": 3, "durMs": 120 },
+      "finisher": { "ampPx": 14, "durMs": 420 },
+      "koLand": { "ampPx": 11, "durMs": 320 },
+      "decay": "(1 - age/dur)^2 * amp * sin(2π * f * t)",
+      "mapTo": "COMBAT_CAMERA.*.shakePx / durationMs"
+    },
+    "zoom": {
+      "idle": 1.0,
+      "windup": 1.07,
+      "finisher": [1.1, 1.12],
+      "end": 1.04,
+      "windupReleaseMs": 250,
+      "finisherInMs": 140,
+      "finisherReleaseMs": 400,
+      "frameMarginPx": 24,
+      "mapTo": "NativeCityExchangeZoom (city fight zoom, multiplied on the scene's world-camera zoom): windup eases 1 -> windup over KUMA's slam windup + apex hold (smoothstep, settles on contact), releases over windupReleaseMs (ease-out) once the contact's freeze is over. finisher punches in to finisher[0] over finisherInMs of screen time from the KO blow, creeps to finisher[1] through the slow-mo launch, releases over finisherReleaseMs after the landing's freeze. While above 1 the view zooms about the two fighters' midpoint and keeps both bodies frameMarginPx inside the screen. end (the sample's closing framing) is not used in game. Reduced motion: 1."
+    }
+  },
+  "fx": {
+    "clashSpark": {
+      "triggerAnimMs": 3700,
+      "strips": [
+        { "durMs": 300, "sizePx": 230, "alpha": 0.75 },
+        { "durMs": 280, "sizePx": 230, "delayMs": 20 }
+      ],
+      "sparkRays": { "count": 14, "lengthPx": 150, "durMs": 260, "color": "goldBright", "widthPx": 5, "seed": 2 },
+      "core": { "r": 44, "durMs": 80 }
+    },
+    "guardSpark": {
+      "triggerAnimMs": [5640, 6000],
+      "core": { "r": 18, "durMs": 50 },
+      "shieldArc": { "radiusPx": 62, "durMs": 125, "facing": -1, "inkScale": 1.6 },
+      "strip": { "durMs": 120, "sizePx": 150 },
+      "sparkRays": { "count": 8, "lengthPx": 145, "durMs": 135, "color": "pearl", "widthPx": 3, "inkScale": 2.2, "spreadDeg": 135, "baseDeg": 180 },
+      "notes": "Compact shield at the forearms; narrow ink-rimmed pearl ricochets eject toward the attacker. Sparks clear on screen time during contact freeze, leaving the next guard pose visible."
+    },
+    "hitBurst": {
+      "triggerAnimMs": [6480, 9800, 10680],
+      "core": { "rScale": "10 + 36*big", "durMs": 80 },
+      "strip": { "durMs": 260 },
+      "sparkRays": { "count": "8 + 6*big", "lengthPx": "40 + 120*big", "durMs": 240, "color": "goldBright", "baseDeg": -60 }
+    },
+    "parryRingFlash": {
+      "triggerAnimMs": 8900,
+      "core": { "r": 18, "durMs": 40 },
+      "cross": { "lengthPx": 185, "widthPx": 7, "snapMs": 16, "durMs": 125, "tiltDeg": -18, "inkScale": 1.8 },
+      "rings": [
+        { "r0": 18, "r1": 120, "durMs": 280, "color": "pearl", "widthPx": 7 },
+        { "r0": 10, "r1": 80, "durMs": 240, "color": "pearl", "widthPx": 4, "delayMs": 40 }
+      ],
+      "strip": { "durMs": 300, "sizePx": 190 },
+      "sparkRays": { "count": 10, "lengthPx": 155, "durMs": 170, "color": "pearl", "widthPx": 3, "inkScale": 2, "seed": 7 }
+    },
+    "whiffWind": {
+      "triggerAnimMs": 8480,
+      "strip": { "durMs": 300, "sizePx": 220, "alpha": 0.9 },
+      "dustPuffs": { "count": 5, "durMs": 380, "direction": -1, "spreadDeg": 50, "seed": 5, "sizePx": 16 }
+    },
+    "slideDust": {
+      "strip": { "durMs": 360, "sizePx": 170, "sy": 0.8 },
+      "dustPuffs": { "count": 7, "durMs": 420, "spreadDeg": 70 }
+    },
+    "finisherBurst": {
+      "triggerAnimMs": 10680,
+      "core": { "r": 54, "durMs": 90 },
+      "strips": [
+        { "durMs": 420, "sizePx": 420, "alpha": 0.8 },
+        { "durMs": 300, "sizePx": 300 }
+      ],
+      "ring": { "r0": 30, "r1": 210, "durMs": 420, "color": "goldBright", "widthPx": 8 },
+      "sparkRays": { "count": 18, "lengthPx": 230, "durMs": 360, "color": "goldBright", "widthPx": 6, "spreadDeg": 220, "baseDeg": -70, "seed": 11 }
+    },
+    "koDustRing": {
+      "triggerAnimMs": 11150,
+      "strip": { "durMs": 520, "sizePx": 460, "sy": 0.7 },
+      "dustPuffs": [
+        { "count": 9, "durMs": 600, "direction": -1, "spreadDeg": 110, "seed": 21, "sizePx": 26 },
+        { "count": 9, "durMs": 600, "direction": 1, "spreadDeg": 110, "seed": 22, "sizePx": 26 }
+      ],
+      "ring": { "r0": 60, "r1": 280, "durMs": 480, "color": "dust", "widthPx": 5, "sy": 0.22, "alpha": 0.8 }
+    },
+    "afterimage": {
+      "ghostCount": [1, 2],
+      "strikeLeadMs": 100,
+      "strikeAlpha": 0.22,
+      "tint": "pearl",
+      "alpha": "0.30 / i",
+      "samplePosesFromAnimMsBehind": true,
+      "usedOn": ["playerHeavyRelease", "playerDash", "playerFinisher", "kumaSwipe", "kumaSlamRelease"]
+    },
+    "dizzyStars": {
+      "count": 3,
+      "orbitRadiusPx": 28,
+      "color": "goldBright",
+      "activeWhile": "kuma.groggy || kuma.falling"
+    },
+    "callingCard": {
+      "flyMs": 280,
+      "sizePx": [48, 64],
+      "trailPearls": 3,
+      "stickRotDeg": -14,
+      "landFlash": { "r": 14, "durMs": 70 },
+      "landSparks": { "count": 8, "lengthPx": 46, "durMs": 260, "seed": 4 }
+    },
+    "koSquashBounce": {
+      "rotDeg": -86,
+      "liftPx": 46,
+      "landSquashMs": 260,
+      "sxPeak": 1.1,
+      "syTrough": 0.86,
+      "bounceRotAmpDeg": 5,
+      "darken": 0.12
+    },
+    "windupGlint": {
+      "triggerAnimMs": 3120,
+      "durMs": 360,
+      "starOuterPx": 30,
+      "color": "hotGold"
+    },
+    "hugSqueeze": {
+      "note": "2026-10-19 (playtest prep; ballGrab hold hugCentreBody had no reader): each squeeze of KUMA's grab draws ONE small compression where his arms close on Player - two split arcs either side of the hug closing IN (r0 -> r1 sample px, the reverse of the parry ring's bloom) over an ink rim, the outer pearl, the inner ivory, on the screen clock (it reads through the 50 ms squeeze freeze). It is the squeeze's only picture on his body (the light strike cel stays off - 2026-10-19 '한 순간에 몸 위 그림 하나'); his hurt flash, the freeze and the sound stay. Restrained (user on grab effects: '던지는 이펙트는 과하지 않게'): about half the parry ring's size, no core, light, sparks or shake; no red (the grab's warning), gold (gold grade) or pure white (the finisher core). Reduced motion: the arcs stand at reducedRadiusShare of the way in and only fade.",
+      "arcs": [
+        { "r0": 58, "r1": 26, "durMs": 170, "widthPx": 6, "delayMs": 0 },
+        { "r0": 40, "r1": 17, "durMs": 140, "widthPx": 3, "delayMs": 30 }
+      ],
+      "spanRad": 1.3,
+      "alpha": 0.85,
+      "reducedRadiusShare": 0.6
+    }
+  },
+  "bubbles": [
+    {
+      "key": "village.kumaExchange.sorryDodge",
+      "animStartMs": 8350,
+      "durMs": 900,
+      "anchor": "player.head"
+    },
+    {
+      "key": "village.kumaExchange.goodWorkBow",
+      "animStartMs": 12260,
+      "durMs": 1400,
+      "anchor": "player.head"
+    },
+    {
+      "key": "village.kumaExchange.shiftNight",
+      "durMs": 1500,
+      "anchor": "kuma.head"
+    },
+    {
+      "key": "village.kumaExchange.shiftCrack",
+      "durMs": 1500,
+      "anchor": "kuma.head"
+    }
+  ]
+}

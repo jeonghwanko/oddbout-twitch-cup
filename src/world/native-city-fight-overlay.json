@@ -1,0 +1,315 @@
+{
+  "note": "Fight start / victory / defeat overlays (webtoon style, 2026-10-09; spec docs/Plan/2026-10-08-kuma-webtoon-shock-fx sections 3.3 and 4.3). Times are screen ms on the overlay's own clock (a frame counts at most clock.maxStepMs, so a hidden tab never skips beats); positions and sizes are px in the 1280x720 design frame, fitted into the visible UI view (contain) - full-bleed backdrops cover the whole view. Colours are palette tokens chosen in code; full-screen flashes never exceed the title prologue's photosensitivity cap (PROLOGUE_FLASH_MAX_ALPHA). While an overlay holds the fight both fighters are frozen through the scene's dialogue freeze path (combat update paused, KUMA frozen, no walking or swinging); the fight clock starts the frame it lets go. Balance numbers stay in native-city-combat.json - nothing here changes HP, damage or timing of the fight itself.",
+  "frame": {
+    "w": 1280,
+    "h": 720
+  },
+  "clock": {
+    "maxStepMs": 100,
+    "captureTimeoutMs": 600
+  },
+  "kick": {
+    "note": "The prologue's camera kick: every slam tilts the comic layer kickDeg (alternating sign), easing back to level over kickMs. None under reduced motion.",
+    "kickDeg": 1.5,
+    "kickMs": 220
+  },
+  "letters": {
+    "note": "Code-font call-out letters (used until KumaFightArtCatalog lists the drawn letter): heavy ink outline over a paper rim, warm cream-to-gold fill, ink drop shadow, slanted by skewX. Latin-only strings use FONT.lettering (Black Han Sans subset, full ASCII); strings with Hangul use FONT.hudSans bold (the lettering subset has only the prologue's Hangul). bakeScale bakes the texture this many times the design size so HiDPI stays crisp.",
+    "strokeRatio": 0.1,
+    "strokeMinPx": 6,
+    "rimRatio": 0.07,
+    "shadowRatio": 0.055,
+    "skewX": -0.2,
+    "bakeScale": 2,
+    "slam": {
+      "dropMs": 70,
+      "settleMs": 210,
+      "fromScale": 2.5,
+      "fromAngleDeg": -14,
+      "recoilDeg": 4,
+      "squashScale": 0.88
+    },
+    "splat": {
+      "count": 7,
+      "radiusRatio": 0.62,
+      "alpha": 0.55,
+      "ms": 320
+    }
+  },
+  "skipGlyph": {
+    "note": "The skip hint is a key glyph, not a sentence: a keycap with the immediate skip key (ESC; pad: B — the cutscene skip rule, CutsceneSkipGate) and a double chevron, bottom-right of the view.",
+    "marginPx": 22,
+    "heightPx": 34,
+    "fontPx": 17,
+    "alpha": 0.86
+  },
+  "intro": {
+    "note": "Fight start (2026-10-10 KOF round start - user decision: no cut-in panels, no slash, no 'VS / 결투!'; READY -> FIGHT! stamped over the live world so the backpedal shows underneath). On the challenge (and the rematch) both fighters back away from each other along the side-scroll stage line to the opening spacing (backpedal), each playing his own forward walk clip in reverse, still facing the other. READY stamps in at once (쾅!) and holds while they back off; FIGHT! drops so that it lands the frame the spacing is reached (쾅!! - the harder one, focus lines round the edge), a short beat (fightHoldMs from its impact, its rebound and settle included), then the fast exit: the letters punch up and fade over exitDurMs and the fight is let go the frame the exit starts. full: the first fight with this fighter (released ~1.5 s after the challenge - the backpedal lengthened 2026-10-11 with the 4.3-stride KOF spacing); short: rematches (~1.09 s). Beat times (readyMs, backFromMs, backMs, readyOutMs, fightHoldMs) are BEAT ms: the beat clock holds still through each stamp's hit-stop (readyStopMs / fightStopMs, screen ms) - the letters AND the backpedal freeze on the impact frame while the jolt, flash, kick, ink splat, focus-line burst and the world's thump run on screen time. No scrim over the world (the stage's letterbox bars frame it); a rematch out of the defeat card's ink clears that ink over inkClearMs. Any skip key (C/V/Z/X/Enter/Space, pad attack/heavy/guard/dodge/confirm, click) lets the fight go at once and jumps to the exit (the backpedal to its end spacing). READY / FIGHT! are code-drawn (FONT.lettering, the same Latin text in both locales, KOF style), so nothing is waited for; loadTimeoutMs only bounds a wait for drawn intro letters should the art pass ever list them.",
+    "loadTimeoutMs": 2500,
+    "full": {
+      "readyMs": 0,
+      "backFromMs": 0,
+      "backMs": 1050,
+      "readyStopMs": 70,
+      "fightStopMs": 100,
+      "readyOutMs": 60,
+      "fightHoldMs": 280,
+      "exitDurMs": 140
+    },
+    "short": {
+      "readyMs": 0,
+      "backFromMs": 0,
+      "backMs": 760,
+      "readyStopMs": 45,
+      "fightStopMs": 60,
+      "readyOutMs": 60,
+      "fightHoldMs": 220,
+      "exitDurMs": 120
+    },
+    "reduced": {
+      "note": "No stamp, hit-stop, jolt, kick, flash or thump: READY fades in, the backpedal (positioning - it still happens, shorter) runs backMs, FIGHT! fades in as it ends while READY fades out, the hold, then the fight is let go as FIGHT! fades out.",
+      "fadeMs": 160,
+      "backMs": 640,
+      "shortBackMs": 420,
+      "holdMs": 300,
+      "shortHoldMs": 220
+    },
+    "backpedal": {
+      "marginStrides": 0.75,
+      "probeStrides": 0.1
+    },
+    "inkClearMs": 200,
+    "stamp": {
+      "note": "The 쾅 of READY and FIGHT! (beat ms; the intro's own curve - letters.slam stays the victory page's): drops from fromScale accelerating (ease-in) over dropMs, lands flattened squashX x squashY (the frame the hit-stop holds), rebounds past 1 to overX x overY over reboundMs, settles to 1 over settleMs.",
+      "dropMs": 60,
+      "fromScale": 2.6,
+      "fromAngleDeg": -14,
+      "recoilDeg": 4,
+      "squashX": 1.14,
+      "squashY": 0.8,
+      "overX": 0.95,
+      "overY": 1.08,
+      "reboundMs": 60,
+      "settleMs": 100
+    },
+    "stamps": {
+      "note": "Per-letter impact (screen ms, design px), from each impact frame. FIGHT! is the harder 쾅!!: bigger and longer jolt, bigger ink splat, brighter flash (still capped by PROLOGUE_FLASH_MAX_ALPHA), a heavier world thump. The jolt moves the letter layer down first, flipping every shakeStepMs and decaying to 0; worldShakePx / worldShakeMs thump the world camera (the scene's fight shake, screen px, 70% vertical). None under reduced motion.",
+      "shakeStepMs": 32,
+      "ready": {
+        "shakePx": 8,
+        "shakeMs": 180,
+        "splatScale": 0.9,
+        "flashAlpha": 0.15,
+        "worldShakePx": 4,
+        "worldShakeMs": 160
+      },
+      "fight": {
+        "shakePx": 14,
+        "shakeMs": 220,
+        "splatScale": 1.4,
+        "flashAlpha": 0.22,
+        "worldShakePx": 8,
+        "worldShakeMs": 220
+      }
+    },
+    "exit": {
+      "note": "The exit (screen ms over exitDurMs, accelerating): FIGHT! punches up (grows by letterGrow, rises letterLiftPx) and fades; the splats and focus lines go with it.",
+      "letterGrow": 0.35,
+      "letterLiftPx": 36
+    },
+    "ready": {
+      "x": 640,
+      "y": 190,
+      "sizePx": 128
+    },
+    "fight": {
+      "x": 640,
+      "y": 190,
+      "sizePx": 172
+    },
+    "focusLines": {
+      "note": "Edge-only focus lines burst in on FIGHT! (inner innerFrac of the half-diagonal left empty so they stay off the fighters).",
+      "count": 72,
+      "innerFrac": 0.62,
+      "seed": 23,
+      "alpha": 0.78,
+      "widthPx": 9
+    },
+    "flash": {
+      "note": "Impact flash length (screen ms); each letter's alpha is in stamps.",
+      "ms": 90
+    }
+  },
+  "victory": {
+    "afterLandMs": 60,
+    "crackMs": 170,
+    "paperInMs": 110,
+    "popAtMs": 170,
+    "popStaggerMs": 40,
+    "popMs": 330,
+    "popOvershoot": 1.9,
+    "popOffsetPx": 90,
+    "popFromScale": 0.96,
+    "contentZoomFrom": 1.25,
+    "holdZoom": 0.04,
+    "koMs": 790,
+    "stampMs": 1330,
+    "skipFromMs": 900,
+    "holdEndMs": 2650,
+    "crashMs": 380,
+    "coverFrom": 0.6,
+    "crashPull": 0.1,
+    "crashZoom": 0.2,
+    "framePx": 6,
+    "gutterShadowPx": 12,
+    "panels": [
+      {
+        "id": "eyes",
+        "x": 22,
+        "y": 20,
+        "w": 618,
+        "h": 242,
+        "tiltDeg": -1.5,
+        "letterbox": 0.06
+      },
+      {
+        "id": "shock",
+        "x": 660,
+        "y": 20,
+        "w": 598,
+        "h": 242,
+        "tiltDeg": 2,
+        "letterbox": 0
+      },
+      {
+        "id": "impact",
+        "x": 22,
+        "y": 282,
+        "w": 800,
+        "h": 418,
+        "tiltDeg": -2,
+        "letterbox": 0
+      },
+      {
+        "id": "calm",
+        "x": 842,
+        "y": 282,
+        "w": 416,
+        "h": 418,
+        "tiltDeg": 1.5,
+        "letterbox": 0
+      }
+    ],
+    "shock": {
+      "note": "KUMA's head in panel B: shaken shakeDeg every shakeMs while it holds (the mask cannot change expression until the face sheet lands), three sweat drops and '!?' beside the head only.",
+      "headHeightPx": 214,
+      "shakeDeg": 3,
+      "shakeMs": 90,
+      "focusLines": 110,
+      "focusInner": 0.5,
+      "seed": 41
+    },
+    "impact": {
+      "captureWidthFrac": 0.5,
+      "focusY": 0.46
+    },
+    "caption": {
+      "fontPx": 26,
+      "padX": 16,
+      "padY": 8
+    },
+    "ko": {
+      "x": 640,
+      "y": 300,
+      "sizePx": 216
+    },
+    "stamp": {
+      "x": 1052,
+      "y": 522,
+      "sizePx": 64,
+      "tiltDeg": -13,
+      "fromScale": 1.9,
+      "dropMs": 90,
+      "settleMs": 220,
+      "borderPx": 8,
+      "padX": 28,
+      "padY": 16,
+      "seed": 77
+    },
+    "flash": {
+      "alpha": 0.2,
+      "ms": 100
+    },
+    "reduced": {
+      "fadeMs": 200,
+      "koMs": 300,
+      "stampMs": 900,
+      "holdEndMs": 2100
+    }
+  },
+  "defeat": {
+    "lieBeatMs": 120,
+    "inkMs": 440,
+    "inkAlpha": 0.88,
+    "downMs": 260,
+    "kumaMs": 620,
+    "bubbleMs": 860,
+    "cardMs": 1180,
+    "slideMs": 280,
+    "popMs": 260,
+    "popOvershoot": 2,
+    "armMs": 380,
+    "fillMs": 220,
+    "exitMs": 340,
+    "skipFromMs": 200,
+    "rematchStrides": 1.5,
+    "blobs": {
+      "count": 9,
+      "seed": 61,
+      "radiusPx": 360
+    },
+    "down": {
+      "x": 70,
+      "y": 96,
+      "w": 640,
+      "h": 400,
+      "tiltDeg": -3,
+      "captureWidthFrac": 0.42,
+      "focusY": 0.55
+    },
+    "kuma": {
+      "x": 720,
+      "y": 168,
+      "w": 500,
+      "h": 390,
+      "tiltDeg": 2.5,
+      "bustHeightPx": 430,
+      "focusLines": 90,
+      "focusInner": 0.45,
+      "seed": 53
+    },
+    "bubble": {
+      "x": 820,
+      "y": 84,
+      "maxW": 420,
+      "fontPx": 30,
+      "padX": 26,
+      "padY": 18,
+      "tailToX": 1060,
+      "tailToY": 232
+    },
+    "card": {
+      "x": 640,
+      "y": 630,
+      "optionW": 268,
+      "optionH": 70,
+      "gapPx": 24,
+      "fontPx": 30,
+      "keyFontPx": 18
+    },
+    "reduced": {
+      "fadeMs": 220,
+      "cardMs": 700
+    }
+  }
+}

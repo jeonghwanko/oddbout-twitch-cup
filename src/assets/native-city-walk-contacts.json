@@ -1,0 +1,165 @@
+{
+  "source": "assets/art/native-city-walk-contacts-20261015/manifest.json",
+  "clips": {
+    "native-city-modern-ortho-20261006-front-walk": {
+      "runtime": "src/assets/native-city-modern-ortho-runtime.json",
+      "direction": "front",
+      "sha256": "27567fcf3e979f02f6bb2d23410b22b1e7222281b82e529622ada925ab669caf",
+      "frameCount": 16,
+      "frames": [
+        0,
+        7
+      ]
+    },
+    "native-city-modern-ortho-20261006-front_diagonal-walk": {
+      "runtime": "src/assets/native-city-modern-ortho-runtime.json",
+      "direction": "front_diagonal",
+      "sha256": "69ba76bddda445e2b3cb73a1c60e518a4ee7c181f64eb0fb4f2e89f01bb79c63",
+      "frameCount": 16,
+      "frames": [
+        0,
+        11
+      ]
+    },
+    "native-city-modern-ortho-20261006-side-walk": {
+      "runtime": "src/assets/native-city-modern-ortho-runtime.json",
+      "direction": "side",
+      "sha256": "f3eaba79fc430f39be8ab9782c8cea0dd3ab18d7751e169f92127d9cc0a47bd7",
+      "frameCount": 16,
+      "frames": [
+        0,
+        8
+      ]
+    },
+    "native-city-modern-ortho-20261006-back_diagonal-walk": {
+      "runtime": "src/assets/native-city-modern-ortho-runtime.json",
+      "direction": "back_diagonal",
+      "sha256": "1cb67d26148a3b9ecc64b064f77538fb6fa7067cee36d5487649122c9aa90978",
+      "frameCount": 16,
+      "frames": [
+        0,
+        8
+      ]
+    },
+    "native-city-modern-ortho-20261006-back-walk": {
+      "runtime": "src/assets/native-city-modern-ortho-runtime.json",
+      "direction": "back",
+      "sha256": "c499777003b3ead5e0590949ef9ec61a8894ff962fe49a57905b36ee87b9ab4e",
+      "frameCount": 16,
+      "frames": [
+        2,
+        11
+      ]
+    },
+    "native-city-modern-ortho-20261006-back_diagonal_left-walk": {
+      "runtime": "src/assets/native-city-modern-ortho-runtime.json",
+      "direction": "back_diagonal_left",
+      "sha256": "cbccae2e51290075df74e97b27028693ebd9c98ca62c90e6e860e5f6ea2f0d50",
+      "frameCount": 16,
+      "frames": [
+        3,
+        10
+      ]
+    },
+    "native-city-modern-ortho-20261006-side_left-walk": {
+      "runtime": "src/assets/native-city-modern-ortho-runtime.json",
+      "direction": "side_left",
+      "sha256": "80ed3127296432c252e8c02d80692fb09606b7de5504e728c6fb8555b0b60290",
+      "frameCount": 16,
+      "frames": [
+        7,
+        15
+      ]
+    },
+    "native-city-modern-ortho-20261006-front_diagonal_left-walk": {
+      "runtime": "src/assets/native-city-modern-ortho-runtime.json",
+      "direction": "front_diagonal_left",
+      "sha256": "b2c95cf23b2e4a473fe1a9d102d1b14dfa62bc571dc7682245c98567d3e99862",
+      "frameCount": 16,
+      "frames": [
+        0,
+        8
+      ]
+    },
+    "native-city-stocky-ortho-20261006-front-walk": {
+      "runtime": "src/assets/native-city-stocky-ortho-runtime.json",
+      "direction": "front",
+      "sha256": "f5ac7acaf45cd0f97d14c463d60fd30dfa5a42196f8b01f5f899812d4f3905ab",
+      "frameCount": 16,
+      "frames": [
+        0,
+        8
+      ]
+    },
+    "native-city-stocky-ortho-20261006-front_diagonal-walk": {
+      "runtime": "src/assets/native-city-stocky-ortho-runtime.json",
+      "direction": "front_diagonal",
+      "sha256": "4fd368f758d52538065376b61cb18856869b5d7ce573877159ec4210fce11310",
+      "frameCount": 16,
+      "frames": [
+        3,
+        10
+      ]
+    },
+    "native-city-stocky-ortho-20261006-side-walk": {
+      "runtime": "src/assets/native-city-stocky-ortho-runtime.json",
+      "direction": "side",
+      "sha256": "966026dc8bd05bab834c34a349714134c02b1d3640bf56210ac300d84c30a80e",
+      "frameCount": 16,
+      "frames": [
+        8,
+        15
+      ]
+    },
+    "native-city-stocky-ortho-20261006-back_diagonal-walk": {
+      "runtime": "src/assets/native-city-stocky-ortho-runtime.json",
+      "direction": "back_diagonal",
+      "sha256": "e50ee2c8f1faddd05161fd8e437feccc902431c645d97cf64fe20f6ceafdf437",
+      "frameCount": 16,
+      "frames": [
+        0,
+        7
+      ]
+    },
+    "native-city-stocky-ortho-20261006-back-walk": {
+      "runtime": "src/assets/native-city-stocky-ortho-runtime.json",
+      "direction": "back",
+      "sha256": "e31f03945562a36dab12e3397a1926d463f7befe4417bfb4393b94420c079723",
+      "frameCount": 16,
+      "frames": [
+        0,
+        8
+      ]
+    },
+    "native-city-stocky-ortho-20261006-back_diagonal_left-walk": {
+      "runtime": "src/assets/native-city-stocky-ortho-runtime.json",
+      "direction": "back_diagonal_left",
+      "sha256": "4a8cb38acbb87236208dfa8fc033d8c27d3666aa1be7ea16a47cf0666f7e2ebd",
+      "frameCount": 16,
+      "frames": [
+        1,
+        10
+      ]
+    },
+    "native-city-stocky-ortho-20261006-side_left-walk": {
+      "runtime": "src/assets/native-city-stocky-ortho-runtime.json",
+      "direction": "side_left",
+      "sha256": "a4e34ed4a6a10465046e3b01a89e2fc22cfe3dfccb7d164c2902f1f6b28ca205",
+      "frameCount": 16,
+      "frames": [
+        8,
+        15
+      ]
+    },
+    "native-city-stocky-ortho-20261006-front_diagonal_left-walk": {
+      "runtime": "src/assets/native-city-stocky-ortho-runtime.json",
+      "direction": "front_diagonal_left",
+      "sha256": "10648e40ed45056f298ed7ac4679c0ee90da80744eebbeecc3a252fd63c35fa3",
+      "frameCount": 16,
+      "frames": [
+        0,
+        8
+      ]
+    }
+  }
+}

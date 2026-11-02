@@ -1,0 +1,68 @@
+{
+  "fighters": {
+    "yume": {
+      "packSha256": "6b518ac4435da1537073994c93cc2e631d2bb8e58906a4dc37748c1a06ff8e1f",
+      "bodyScale": 0.95,
+      "front": {
+        "slam": 0.615,
+        "combo": 0.545
+      }
+    },
+    "bravow": {
+      "packSha256": "adefc2b9b1e8cddc34c51717c012305475e0c4bfd0499a78011ce246b1bd8900",
+      "bodyScale": 0.8822055137844611,
+      "front": {
+        "slam": 0.545,
+        "combo": 0.5775
+      }
+    },
+    "beotim": {
+      "packSha256": "f7ea55b9fa54ac9b96b8478cbbe925c3f3363c0283afd4ef64e26fc9ae9c578e",
+      "bodyScale": 0.8,
+      "front": {
+        "slam": 0.625,
+        "combo": 0.7925
+      }
+    },
+    "quickcat": {
+      "packSha256": "ee14cb659605a7c96db7661b7ceaa02be49189ed99384ddb5139ab7fc23cea6a",
+      "bodyScale": 0.5063291139240507,
+      "front": {
+        "slam": 0.83,
+        "combo": 0.87
+      }
+    },
+    "kungjjak": {
+      "packSha256": "bfc741752903006b73158daca5b678aec3406e139c476b6745e185210c872caf",
+      "bodyScale": 0.8,
+      "front": {
+        "slam": 0.5825,
+        "combo": 0.8675
+      }
+    },
+    "sikeundung": {
+      "packSha256": "9e5a7e83ef14d0967f07afd1528c408491cbb83597b77f294b494a74452079a4",
+      "bodyScale": 0.7418546365914787,
+      "front": {
+        "slam": 0.485,
+        "combo": 0.74
+      }
+    },
+    "duldul": {
+      "packSha256": "535d4370e0432dbe4741b4128b4d83963efb89b071511b92fef8e45ba5779500",
+      "bodyScale": 0.95,
+      "front": {
+        "slam": 0.415,
+        "combo": 0.5825
+      }
+    },
+    "eoridung": {
+      "packSha256": "89e29f6ffc8b1dafc8fa3da25c5047e653212b22970ff78e5eef8863fc71b1f6",
+      "bodyScale": 0.72,
+      "front": {
+        "slam": 0.6309523809523809,
+        "combo": 0.7404761904761905
+      }
+    }
+  }
+}

@@ -1,0 +1,364 @@
+{
+  "note": "Plaza props as world-fixed painted volumes built from approved orthographic sheets (2026-10-18): the weekly tournament bracket notice board in the square (V1), from assets/art/tournament-board-20261018. Same authoring as src/world/native-city-otto-props.json (parts in the primary elevation's pixels: x to its right, y toward its viewer, z up); `places` are the plan points the props stand on. tools/art/package-otto-props.mjs --set plaza keys the paper off the sheet, packs one atlas and writes src/assets/native-city-plaza-props-runtime.json. The board faces the default camera (x = camera right). Its stand point, footprint and click box are read from here by src/world/NativeCityTournamentBoard.ts.",
+  "sources": "assets/art/tournament-board-20261018/generation.json",
+  "unitsPerMetre": 4.667,
+  "paper": [
+    253,
+    248,
+    238
+  ],
+  "paperTolerance": 20,
+  "enclosedMinArea": 60,
+  "atlas": {
+    "path": "art/village/plaza-props-v1/plaza-props.webp",
+    "width": 1024,
+    "padding": 6,
+    "scale": 0.6,
+    "quality": 92,
+    "alphaQuality": 100
+  },
+  "sheets": {
+    "board": "assets/art/tournament-board-20261018/board-sheet.webp"
+  },
+  "places": {
+    "board": [
+      268,
+      508
+    ]
+  },
+  "props": {
+    "board": {
+      "place": "board",
+      "orient": {
+        "xAxis": "camera",
+        "yawDeg": 0
+      },
+      "metresPerPx": 0.0045,
+      "views": {
+        "front": {
+          "sheet": "board",
+          "rect": [
+            90,
+            0,
+            775,
+            590
+          ],
+          "islands": false,
+          "u": [
+            "x",
+            [
+              0,
+              431.5
+            ],
+            [
+              100,
+              531.5
+            ]
+          ],
+          "v": [
+            "z",
+            [
+              0,
+              586
+            ],
+            [
+              100,
+              486
+            ]
+          ]
+        },
+        "front-roof": {
+          "sheet": "board",
+          "rect": [
+            90,
+            0,
+            775,
+            172
+          ],
+          "like": "front"
+        },
+        "side": {
+          "sheet": "board",
+          "rect": [
+            985,
+            0,
+            1235,
+            590
+          ],
+          "u": [
+            "y",
+            [
+              0,
+              1104
+            ],
+            [
+              100,
+              1004
+            ]
+          ],
+          "v": [
+            "z",
+            [
+              0,
+              587
+            ],
+            [
+              100,
+              487
+            ]
+          ]
+        },
+        "side-roof": {
+          "sheet": "board",
+          "rect": [
+            985,
+            0,
+            1235,
+            178
+          ],
+          "like": "side"
+        },
+        "top": {
+          "sheet": "board",
+          "rect": [
+            125,
+            738,
+            737,
+            936
+          ],
+          "u": [
+            "x",
+            [
+              -334,
+              131
+            ],
+            [
+              334,
+              731
+            ]
+          ],
+          "v": [
+            "y",
+            [
+              114,
+              931
+            ],
+            [
+              -116,
+              743
+            ]
+          ]
+        },
+        "rear": {
+          "sheet": "board",
+          "rect": [
+            835,
+            628,
+            1380,
+            1022
+          ],
+          "u": [
+            "x",
+            [
+              -277.5,
+              1310.5
+            ],
+            [
+              277.5,
+              907
+            ]
+          ],
+          "v": [
+            "z",
+            [
+              0,
+              1018.5
+            ],
+            [
+              424,
+              739
+            ]
+          ]
+        }
+      },
+      "parts": [
+        {
+          "id": "footing-left",
+          "type": "box",
+          "min": [
+            -336,
+            -52,
+            0
+          ],
+          "max": [
+            -222,
+            52,
+            81
+          ],
+          "faces": {
+            "+y": "front",
+            "-y": "rear",
+            "+x": "side",
+            "-x": "side",
+            "+z": {
+              "view": "front",
+              "rect": [
+                104,
+                507,
+                200,
+                521
+              ]
+            }
+          }
+        },
+        {
+          "id": "footing-right",
+          "type": "box",
+          "min": [
+            222,
+            -52,
+            0
+          ],
+          "max": [
+            336,
+            52,
+            81
+          ],
+          "faces": {
+            "+y": "front",
+            "-y": "rear",
+            "+x": "side",
+            "-x": "side",
+            "+z": {
+              "view": "front",
+              "rect": [
+                662,
+                507,
+                756,
+                521
+              ]
+            }
+          }
+        },
+        {
+          "id": "post-left",
+          "type": "box",
+          "min": [
+            -299,
+            -24,
+            81
+          ],
+          "max": [
+            -256,
+            24,
+            430
+          ],
+          "faces": {
+            "+y": "front",
+            "-y": "rear",
+            "+x": "side",
+            "-x": "side"
+          }
+        },
+        {
+          "id": "post-right",
+          "type": "box",
+          "min": [
+            256,
+            -24,
+            81
+          ],
+          "max": [
+            299,
+            24,
+            430
+          ],
+          "faces": {
+            "+y": "front",
+            "-y": "rear",
+            "+x": "side",
+            "-x": "side"
+          }
+        },
+        {
+          "id": "board",
+          "type": "box",
+          "min": [
+            -256,
+            -6,
+            63
+          ],
+          "max": [
+            256,
+            22,
+            424
+          ],
+          "faces": {
+            "+y": "front",
+            "-y": "rear"
+          }
+        },
+        {
+          "id": "roof",
+          "type": "hull",
+          "x": [
+            -334,
+            334
+          ],
+          "y": [
+            -116,
+            114
+          ],
+          "zBottom": 418,
+          "step": 16,
+          "silhouettes": {
+            "x": "front-roof",
+            "y": "side-roof"
+          },
+          "faces": {
+            "+z": "top",
+            "+y": "front-roof",
+            "-y": "rear",
+            "+x": "side-roof",
+            "-x": "side-roof"
+          }
+        }
+      ],
+      "shadows": [
+        {
+          "min": [
+            -336,
+            -52
+          ],
+          "max": [
+            -222,
+            52
+          ],
+          "height": 81
+        },
+        {
+          "min": [
+            222,
+            -52
+          ],
+          "max": [
+            336,
+            52
+          ],
+          "height": 81
+        },
+        {
+          "min": [
+            -299,
+            -24
+          ],
+          "max": [
+            299,
+            24
+          ],
+          "height": 526
+        }
+      ]
+    }
+  }
+}

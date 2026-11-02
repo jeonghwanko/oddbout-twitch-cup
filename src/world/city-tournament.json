@@ -1,0 +1,220 @@
+{
+  "size": 8,
+  "rulesVersion": 40,
+  "roster": [
+    {
+      "id": "player",
+      "kind": "player",
+      "rating": 100,
+      "enabled": true
+    },
+    {
+      "id": "kuma",
+      "kind": "fighter",
+      "rating": 110,
+      "enabled": true
+    },
+    {
+      "id": "yume",
+      "kind": "fighter",
+      "rating": 100,
+      "enabled": true
+    },
+    {
+      "id": "bravow",
+      "kind": "fighter",
+      "rating": 100,
+      "enabled": true
+    },
+    {
+      "id": "beotim",
+      "kind": "fighter",
+      "rating": 100,
+      "enabled": true
+    },
+    {
+      "id": "quickcat",
+      "kind": "fighter",
+      "rating": 100,
+      "enabled": true
+    },
+    {
+      "id": "kungjjak",
+      "kind": "fighter",
+      "rating": 100,
+      "enabled": true
+    },
+    {
+      "id": "sikeundung",
+      "kind": "fighter",
+      "rating": 100,
+      "enabled": true
+    },
+    {
+      "id": "duldul",
+      "kind": "fighter",
+      "rating": 100,
+      "enabled": true
+    },
+    {
+      "id": "eoridung",
+      "kind": "fighter",
+      "rating": 100,
+      "enabled": true
+    },
+    {
+      "id": "otto",
+      "kind": "otto",
+      "rating": 90,
+      "enabled": false
+    }
+  ],
+  "prize": {
+    "champion": 300,
+    "runnerUp": 100
+  },
+  "boutTimeLimitMs": 90000,
+  "bout": {
+    "dtMs": 16,
+    "startStrides": 2.5,
+    "startDelayMs": 150,
+    "damageScale": 0.8,
+    "poise": {
+      "light": 0.4,
+      "heavy": 1.2
+    },
+    "arena": {
+      "origin": [
+        284,
+        548
+      ],
+      "halfStrides": 6
+    },
+    "air": {
+      "liftBodies": 1.5,
+      "riseMs": 380,
+      "fallScale": 1.7,
+      "pushStrides": 0.5,
+      "hitLiftBodies": [
+        0.4,
+        0.3
+      ],
+      "hitPushStrides": 0.15,
+      "maxHits": 3,
+      "groundReachBodies": 0.4,
+      "spike": {
+        "speedBodiesPerSec": 14,
+        "bounceBodies": 0.45
+      },
+      "landHitStopMs": 67,
+      "launchHitStopMs": 160
+    },
+    "stringPushScale": 0.4,
+    "stringPushNote": "2026-10-22 경쟁 엔진 7단계(연타 밀림 — CityFightBoutRules.stringPushScale): 연타의 마지막 접촉 전 접촉은 이만큼만 밀고 HP 비례로 자라지 않으며, 때린 쪽이 민 만큼 따라 들어간다(nativeCityKumaFighterFollow). 전에는 선 상대에게 네 접촉 연타가 한 접촉만 들어갔다(사람·AI 모두).",
+    "ai": {
+      "measure": {
+        "share": 0.7,
+        "holdMs": [
+          120,
+          650
+        ],
+        "marginStrides": 0.35
+      },
+      "retreat": {
+        "share": 0.5,
+        "strides": [
+          0.6,
+          1.0
+        ],
+        "afterDownStrides": 1.4
+      },
+      "react": {
+        "fromMs": 120,
+        "toMs": 260,
+        "guardShare": 0.32,
+        "backstepShare": 0.14,
+        "backstepStrides": 0.8,
+        "backstepPaceScale": 2.6,
+        "vaultShare": 0.8,
+        "cornerStrides": 3,
+        "passStrides": 0.5,
+        "yieldShare": 0.85
+      },
+      "standMs": [
+        120,
+        250
+      ],
+      "standBack": {
+        "backStrides": 0.9,
+        "withinMs": 450,
+        "maxGapStrides": 1.3
+      },
+      "superLockTailMs": 500,
+      "meterTakenBonus": 3,
+      "superDamageScale": 2.3,
+      "windupSpeed": 1.25,
+      "winnerHoldMs": 900,
+      "grabWaits": true
+    },
+    "proration": {
+      "note": "2026-10-23 연타 피해 감소(관전 감사 — 경주에서 이기면 상대가 2~3초 샌드백, 한 연타가 HP 3분의 1): 한 몸이 받는 fromHit 번째부터의 타격(직전 타격과 gapMs 안, 그사이 되친 타격 없음)은 피해 × scale. 이어 치기·소환물은 빼고 근접 접촉만.",
+      "fromHit": 5,
+      "scale": 0.7,
+      "gapMs": 600
+    },
+    "koRebound": {
+      "note": "2026-10-24 KO 로프 반동(사용자: KO 로프 반동 진행해 — 관전 감사: KO 의 약 3분의 1 이 줄 끝에서 나 부딪힌 자리에 그대로 누웠다, CityFightBoutRules.koRebound): 줄 끝에 부딪힌 KO 비행은 남은 쓰러짐 시간(그린 쓰러짐의 땅 닿는 박자까지, minMs 이상일 때) 동안 strides 만큼 가운데로 되튕기고 그 높이에서 liftBodies 더 솟았다가 떨어진다. 거리는 상대 몸까지 빈 거리에서 marginStrides 를 뺀 만큼이고(누운 몸은 발자리보다 길어 이긴 쪽 발 위에 누웠다) minStrides 보다 짧으면(KO 의 대부분 — 진 쪽이 이미 로프에 붙어 있고 이긴 쪽이 0.9~1.5보 앞) 옆으로 가지 않고 로프 탄력으로 그 자리에서 popBodies 만큼만 튄다(되튕기면 이긴 쪽 머리 위로 솟았다). 두 번 부딪히지 않는다. 결과가 난 뒤의 일이라 결과·엔진 이름은 같다.",
+      "strides": 1.4,
+      "liftBodies": 0.4,
+      "minMs": 220,
+      "minStrides": 0.5,
+      "marginStrides": 0.8,
+      "popBodies": 0.25
+    },
+    "wallBounce": {
+      "note": "2026-10-22 5차 줄 끝 튕김(추천 3번 — 벽에 닿으면 튕겨 나와 한 대 더, CityFightBoutRules.wallBounce): 움찔 중에 날아가 줄 끝에 부딪힌 몸(KO·다운 비행이 아닌)은 strides 만큼 가운데로 되튕겨 liftBodies 높이로 뜬다 — 띄운 몸이라 공중 추격이 따라가거나 땅의 한 방이 낮은 몸을 친다.",
+      "strides": 1.2,
+      "liftBodies": 1.0
+    },
+    "clash": {
+      "note": "2026-10-22 5차 맞부딪힘(사용자: 맞부딪힘을 모든 공격에 적용 — CityFightBoutRules.clash): 한쪽의 근접 접촉이 닿는 순간 상대의 휘두름도 되닿으면(같은 스텝의 접촉이거나 windowMs 안에 올 다음 접촉) 둘 다 들어가지 않는다 — 두 휘두름이 끊겨 recoilMs 튕겨 나고 pushStrides 씩 밀려난다. 필살기·잡기·공중 추격·소환물은 맞부딪히지 않고 들어간다.",
+      "windowMs": 0,
+      "recoilMs": 300,
+      "jitterMs": 200,
+      "pushStrides": 0.45
+    },
+    "exchanges": {
+      "note": "2026-10-25 교전 패턴(사용자: 전투 패턴을 카테고리로 3~4가지 — CityFightBoutRules.exchanges, 수치·선수별 성향은 city-fight-exchanges.json, docs/Plan/2026-10-25-oddbout-exchange-patterns): 이 경기에서 도는 세트피스 종류. cross = 교차 돌파(둘이 서로를 관통해 달리며 닿는 순간 베기, 2~3회 왕복, 마지막은 늘 다운), pinball = 로프 핀볼(깨끗한 강타로 로프에 보내고 튕겨 오는 몸을 다시 쳐 2~3번, 마지막은 로프에 처박는 강타로 다운), rush = 러시 맞대결(맞부딪힘에서 힘겨루기 — 주먹끼리 맞닿다가 진 쪽이 막기로 밀리고 이긴 쪽 강타가 뚫어 다운). 규칙 39판(2026-10-26)에 셋을 함께 켰다(사용자 결정: 셋을 다 만든 뒤 한 번에).",
+      "kinds": [
+        "cross",
+        "pinball",
+        "rush"
+      ]
+    },
+    "traces": {
+      "ice": {
+        "everyStrides": 0.5,
+        "radiusStrides": 0.45,
+        "ms": 4500,
+        "pushScale": 1.7
+      },
+      "hole": {
+        "radiusStrides": 0.5,
+        "ms": 5000,
+        "tripMs": 380,
+        "tripDamage": 0.8
+      }
+    },
+    "power": {
+      "kuma": 0.811,
+      "yume": 1.223,
+      "bravow": 1.083,
+      "beotim": 1.926,
+      "quickcat": 1.448,
+      "kungjjak": 1.151,
+      "sikeundung": 2.064,
+      "duldul": 1.004,
+      "eoridung": 1.733
+    }
+  }
+}

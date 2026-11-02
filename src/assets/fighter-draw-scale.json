@@ -1,0 +1,87 @@
+{
+  "note": "Draw scale per fighter clip (FighterDrawScale): the clips with no reach whose painted figure is off his blows' size, each scaled back to it as drawn. Written by tools/art/audit-fighter-cell-scale.py --write from its measurement; `eye` entries are set by hand after an eye check (kept by --write). `stand` multiplies over both: the upright cells (entrance, victory, summon, run...) drawn halfway down to the guard's height, written by tools/art/fighter-stand-scale.py --write.",
+  "eye": {
+    "kuma": {
+      "fall#7": 1.1,
+      "fall#8": 1.07
+    },
+    "kungjjak": {
+      "entrance#5": 1.15,
+      "run": 1.08,
+      "summon#2": 1.07,
+      "victory#1": 1.15
+    },
+    "sikeundung": {
+      "hit#2": 0.893
+    },
+    "yume": {
+      "groggy": 0.88,
+      "run": 0.9,
+      "victory": 0.95
+    }
+  },
+  "fighters": {
+    "beotim": {
+      "idle": 1.09,
+      "run": 0.837,
+      "walk": 0.96
+    },
+    "bravow": {
+      "idle": 1.164,
+      "victory#1": 1.068
+    },
+    "duldul": {
+      "idle": 1.157
+    },
+    "eoridung": {
+      "idle": 1.137,
+      "run": 0.878,
+      "walk": 1.065
+    },
+    "kuma": {
+      "block#3": 1.056,
+      "fightIdleBall": 0.921
+    },
+    "kungjjak": {
+      "idle": 1.176
+    },
+    "quickcat": {
+      "idle": 1.074,
+      "walk": 1.048
+    },
+    "sikeundung": {
+      "idle": 1.111
+    },
+    "yume": {
+      "walk": 1.091
+    }
+  },
+  "stand": {
+    "beotim": {
+      "idle": 0.955
+    },
+    "bravow": {
+      "idle": 0.926
+    },
+    "duldul": {
+      "idle": 0.928
+    },
+    "eoridung": {
+      "idle": 0.937,
+      "walk": 0.97
+    },
+    "kungjjak": {
+      "idle": 0.922
+    },
+    "quickcat": {
+      "victory": 0.969
+    },
+    "sikeundung": {
+      "idle": 0.95
+    },
+    "yume": {
+      "victory": 0.962,
+      "walk": 0.956
+    }
+  }
+}

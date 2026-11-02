@@ -1,0 +1,379 @@
+{
+  "note": "2026-10-20 summoned objects' drawn sheets (docs/kaito-web/city-fight-summons.md; sources and prompts in assets/art/summons-20261020/, rebuilt by tools/art/package-summon-art.mjs, which also measures `bodyShare`, `pivot` and the beam's `pivotY` / `headlightY`). Side view, facing RIGHT (the view flips them). `bodyShare`: how much of a cell's width the drawn object takes - the view sizes it to its rule body along the stage line (`halfLengthStrides`) x `lengthScale`. `pivot`: the cell point placed on the object's centre (x) and its ground / lift line (y). Cells by role: `travel` loops on the object's own fight clock (`travelFrameMs`), `tell` while it waits out its tell, `beam` the sports car's headlight beams drawn out of its nose through the tell (`pivotY`: the beams' own centre line; `headlightY`: the headlights' height in the car's cells), `burst` the crane's fold (the pop `popScale` x for `popMs`, the scraps `scrapsMs`, then falling `dropShare` of the actor's height and fading over `fallMs`), `flourish` the roadster's roll cell once it has passed a body (over `ms`). 2026-10-20 second pass: `phases` (a `strike`'s cells per rule phase - `frames` looped at `frameMs`, or played once over the phase without it; `scale`: drawn this much bigger - the drill bursting up, while its warning crack keeps the zone's true size), the lightning arrow (`bolt`), the drill and the roadster's flight sheet off one Grok clip; `vapor` is no kind of its own - the cloud drawn under the roadster's blast (`blastFx`).",
+  "crane": {
+    "image": "crane.webp",
+    "frameWidth": 256,
+    "frameHeight": 256,
+    "columns": 3,
+    "rows": 2,
+    "bodyShare": 0.755,
+    "lengthScale": 2.2,
+    "pivot": [
+      0.538,
+      0.488
+    ],
+    "travel": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "travelFrameMs": 85,
+    "tell": [],
+    "beam": null,
+    "burst": {
+      "pop": 4,
+      "scraps": 5,
+      "popScale": 1.3,
+      "popMs": 60,
+      "scrapsMs": 110,
+      "fallMs": 200,
+      "dropShare": 0.15
+    },
+    "flourish": null,
+    "centres": [
+      0.539,
+      0.537,
+      0.523,
+      0.551,
+      0.496,
+      0.52
+    ]
+  },
+  "sportsCar": {
+    "image": "sports-car.webp",
+    "frameWidth": 384,
+    "frameHeight": 256,
+    "columns": 2,
+    "rows": 2,
+    "bodyShare": 0.875,
+    "lengthScale": 1.05,
+    "pivot": [
+      0.534,
+      0.813
+    ],
+    "travel": [
+      0,
+      1
+    ],
+    "travelFrameMs": 70,
+    "tell": [
+      2
+    ],
+    "beam": {
+      "frame": 3,
+      "pivotY": 0.452,
+      "headlightY": 0.489
+    },
+    "burst": null,
+    "flourish": null,
+    "centres": [
+      0.538,
+      0.531,
+      0.5,
+      0.483
+    ]
+  },
+  "roadster": {
+    "image": "roadster-flight.webp",
+    "frameWidth": 384,
+    "frameHeight": 288,
+    "columns": 5,
+    "rows": 4,
+    "bodyShare": 0.636,
+    "lengthScale": 1.05,
+    "pivot": [
+      0.503,
+      0.472
+    ],
+    "travel": [],
+    "travelFrameMs": 80,
+    "tell": [],
+    "beam": null,
+    "burst": null,
+    "flourish": null,
+    "centres": [
+      0.503,
+      0.503,
+      0.503,
+      0.503,
+      0.503,
+      0.503,
+      0.503,
+      0.503,
+      0.503,
+      0.503,
+      0.503,
+      0.503,
+      0.503,
+      0.503,
+      0.503,
+      0.503,
+      0.503,
+      0.503,
+      0.503
+    ],
+    "phases": {
+      "tell": {
+        "frames": [
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "frameMs": 70
+      },
+      "travel": {
+        "frames": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      "charge": {
+        "frames": [
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "frameMs": 55
+      },
+      "active": {
+        "frames": [
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "frameMs": 45
+      },
+      "recover": {
+        "frames": [
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "frameMs": 70
+      }
+    },
+    "blastFx": {
+      "sheet": "vapor",
+      "active": [
+        0,
+        1
+      ],
+      "recover": [
+        2,
+        3
+      ],
+      "lengthScale": 1.6
+    }
+  },
+  "bolt": {
+    "image": "bolt.webp",
+    "frameWidth": 384,
+    "frameHeight": 256,
+    "columns": 2,
+    "rows": 2,
+    "bodyShare": 0.899,
+    "lengthScale": 1.6,
+    "pivot": [
+      0.496,
+      0.536
+    ],
+    "travel": [
+      0,
+      1,
+      2
+    ],
+    "travelFrameMs": 45,
+    "tell": [],
+    "beam": null,
+    "burst": {
+      "pop": 3,
+      "scraps": 3,
+      "popScale": 1.15,
+      "popMs": 70,
+      "scrapsMs": 60,
+      "fallMs": 140,
+      "dropShare": 0
+    },
+    "flourish": null,
+    "centres": [
+      0.508,
+      0.477,
+      0.504,
+      0.501
+    ]
+  },
+  "drill": {
+    "image": "drill.webp",
+    "frameWidth": 384,
+    "frameHeight": 300,
+    "columns": 2,
+    "rows": 2,
+    "bodyShare": 0.9,
+    "lengthScale": 1.25,
+    "pivot": [
+      0.514,
+      0.833
+    ],
+    "travel": [],
+    "travelFrameMs": 60,
+    "tell": [],
+    "beam": null,
+    "burst": null,
+    "flourish": null,
+    "centres": [
+      0.514,
+      0.514,
+      0.514,
+      0.514
+    ],
+    "phases": {
+      "tell": {
+        "frames": [
+          0
+        ]
+      },
+      "active": {
+        "frames": [
+          1,
+          2
+        ],
+        "scale": 1.8
+      },
+      "recover": {
+        "frames": [
+          3
+        ],
+        "scale": 1.6
+      }
+    }
+  },
+  "vapor": {
+    "image": "vapor.webp",
+    "frameWidth": 384,
+    "frameHeight": 256,
+    "columns": 2,
+    "rows": 2,
+    "bodyShare": 0.85,
+    "lengthScale": 1,
+    "pivot": [
+      0.5,
+      0.94
+    ],
+    "travel": [],
+    "travelFrameMs": 80,
+    "tell": [],
+    "beam": null,
+    "burst": null,
+    "flourish": null,
+    "centres": [
+      0.5,
+      0.5,
+      0.5,
+      0.5
+    ]
+  },
+  "casters": {
+    "kungjjak": {
+      "bolt": {
+        "frameWidth": 384,
+        "frameHeight": 256,
+        "columns": 2,
+        "rows": 2,
+        "bodyShare": 0.777,
+        "lengthScale": 1.1,
+        "pivot": [
+          0.536,
+          0.487
+        ],
+        "travel": [
+          0,
+          1,
+          2
+        ],
+        "travelFrameMs": 45,
+        "tell": [],
+        "beam": null,
+        "burst": {
+          "pop": 3,
+          "scraps": 3,
+          "popScale": 1.15,
+          "popMs": 70,
+          "scrapsMs": 60,
+          "fallMs": 140,
+          "dropShare": 0
+        },
+        "flourish": null,
+        "centres": [
+          0.549,
+          0.536,
+          0.522,
+          0.559
+        ],
+        "liftShare": 0.6,
+        "image": "kungjjak-notes.webp",
+        "dir": "summons-20261022"
+      }
+    }
+  },
+  "bullet": {
+    "travel": [
+      0,
+      1,
+      2
+    ],
+    "travelFrameMs": 40,
+    "tell": [],
+    "beam": null,
+    "lengthScale": 2,
+    "burst": {
+      "pop": 3,
+      "scraps": 3,
+      "popScale": 1,
+      "popMs": 60,
+      "scrapsMs": 50,
+      "fallMs": 110,
+      "dropShare": 0
+    },
+    "flourish": null,
+    "image": "bullet.webp",
+    "frameWidth": 384,
+    "frameHeight": 256,
+    "columns": 2,
+    "rows": 2,
+    "bodyShare": 0.806,
+    "pivot": [
+      0.482,
+      0.514
+    ],
+    "centres": [
+      0.491,
+      0.473,
+      0.483,
+      0.525
+    ],
+    "dir": "summons-20261025"
+  }
+}

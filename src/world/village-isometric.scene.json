@@ -1,0 +1,80 @@
+{
+  "version": 2,
+  "canvas": {
+    "artWidth": 1920,
+    "artHeight": 800,
+    "worldWidth": 1280,
+    "worldHeight": 800,
+    "artOffsetX": -320
+  },
+  "projection": {
+    "type": "isometric-2to1",
+    "tileWidth": 64,
+    "tileHeight": 32,
+    "elevationHeight": 32,
+    "origin": {
+      "x": 640,
+      "y": 80
+    }
+  },
+  "player": {
+    "radius": 16,
+    "walkSpeed": 220,
+    "spawnTile": {
+      "u": 18.75,
+      "v": 18.75
+    }
+  },
+  "objects": [
+    {
+      "id": "mansion",
+      "asset": "blackthorne-manor",
+      "tile": {
+        "u": 6.5,
+        "v": 7.75
+      },
+      "role": "building",
+      "interactive": true
+    },
+    {
+      "id": "thieves-guild",
+      "asset": "thieves-guild",
+      "tile": {
+        "u": 4.0,
+        "v": 18.25
+      },
+      "role": "building",
+      "interactive": false
+    },
+    {
+      "id": "auction-house",
+      "asset": "royal-auction-house",
+      "tile": {
+        "u": 18.0,
+        "v": 3.0
+      },
+      "role": "building",
+      "interactive": true
+    },
+    {
+      "id": "tutorial",
+      "asset": "training-passage",
+      "tile": {
+        "u": 12,
+        "v": 22
+      },
+      "role": "building",
+      "interactive": true
+    },
+    {
+      "id": "fountain",
+      "asset": "magpie-fountain",
+      "tile": {
+        "u": 13.125,
+        "v": 13.125
+      },
+      "role": "landmark",
+      "interactive": false
+    }
+  ]
+}

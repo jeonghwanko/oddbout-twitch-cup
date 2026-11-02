@@ -1,0 +1,2214 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:ai-fighter:side:v1:fighter",
+  "title": "AI Fighter side-view authoring package v1",
+  "description": "제작 입력 전용. 통과는 등록/승인이 아니다. 실제 파일 검사는 별도로 수행한다.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "specVersion",
+    "localId",
+    "profile",
+    "combat",
+    "appearance",
+    "assets",
+    "clips"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "specVersion": {
+      "const": "ai-fighter-side-v1"
+    },
+    "localId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,47}$"
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "description",
+        "portrait",
+        "preview"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40,
+          "pattern": "\\S"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 600,
+          "pattern": "\\S"
+        },
+        "language": {
+          "enum": [
+            "ko",
+            "en"
+          ]
+        },
+        "concept": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 800,
+          "pattern": "\\S"
+        },
+        "names": {
+          "type": "object",
+          "additionalProperties": false,
+          "minProperties": 1,
+          "properties": {
+            "ko": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40,
+              "pattern": "\\S"
+            },
+            "en": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40,
+              "pattern": "\\S"
+            }
+          }
+        },
+        "lines": {
+          "type": "object",
+          "additionalProperties": false,
+          "minProperties": 1,
+          "properties": {
+            "challenge": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40,
+              "pattern": "\\S"
+            },
+            "win": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40,
+              "pattern": "\\S"
+            },
+            "lose": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40,
+              "pattern": "\\S"
+            }
+          }
+        },
+        "moves": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "combo",
+            "slam",
+            "dash",
+            "block"
+          ],
+          "properties": {
+            "combo": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "description"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 24,
+                  "pattern": "\\S"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160,
+                  "pattern": "\\S"
+                }
+              }
+            },
+            "slam": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "description"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 24,
+                  "pattern": "\\S"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160,
+                  "pattern": "\\S"
+                }
+              }
+            },
+            "dash": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "description"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 24,
+                  "pattern": "\\S"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160,
+                  "pattern": "\\S"
+                }
+              }
+            },
+            "block": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "description"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 24,
+                  "pattern": "\\S"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160,
+                  "pattern": "\\S"
+                }
+              }
+            }
+          }
+        },
+        "portrait": {
+          "$ref": "#/definitions/imageView"
+        },
+        "preview": {
+          "$ref": "#/definitions/imageView"
+        }
+      }
+    },
+    "combat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kitId"
+      ],
+      "properties": {
+        "kitId": {
+          "const": "standard-duel"
+        },
+        "stats": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "power",
+            "toughness",
+            "speed"
+          ],
+          "properties": {
+            "power": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            },
+            "toughness": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            },
+            "speed": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            }
+          }
+        },
+        "style": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {
+            "mix": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "slam",
+                "combo",
+                "fast"
+              ],
+              "properties": {
+                "slam": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 4
+                },
+                "combo": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 4
+                },
+                "fast": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 4
+                }
+              }
+            },
+            "special": {
+              "enum": [
+                "slam",
+                "combo",
+                "fast"
+              ]
+            },
+            "super": {
+              "enum": [
+                "slam",
+                "combo",
+                "fast",
+                "dash"
+              ]
+            },
+            "distance": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            },
+            "shockwave": {
+              "const": true
+            },
+            "summon": {
+              "enum": [
+                "crane",
+                "bolt",
+                "sportsCar",
+                "roadster"
+              ]
+            },
+            "temper": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [],
+              "properties": {
+                "guard": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 5
+                },
+                "retreat": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 5
+                },
+                "measure": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 5
+                },
+                "patience": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 5
+                }
+              }
+            },
+            "exchanges": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [],
+              "properties": {
+                "cross": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 3
+                },
+                "pinball": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 3
+                },
+                "rush": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 3
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "appearance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "projection",
+        "elevationDegrees",
+        "sourceFacing",
+        "leftFacing",
+        "bodyHeight",
+        "bodyScale"
+      ],
+      "properties": {
+        "projection": {
+          "const": "orthographic"
+        },
+        "elevationDegrees": {
+          "const": 16
+        },
+        "sourceFacing": {
+          "const": "right"
+        },
+        "leftFacing": {
+          "const": "mirror"
+        },
+        "bodyHeight": {
+          "const": 400
+        },
+        "bodyScale": {
+          "const": 1
+        }
+      }
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/asset"
+      },
+      "minItems": 1,
+      "maxItems": 16
+    },
+    "clips": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "idle",
+        "walk",
+        "run",
+        "fightIdle",
+        "combo",
+        "slam",
+        "dash",
+        "block",
+        "hit",
+        "groggy",
+        "fall"
+      ],
+      "properties": {
+        "idle": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetId",
+            "frameWidth",
+            "frameHeight",
+            "columns",
+            "rows",
+            "frames",
+            "origins",
+            "loop",
+            "durationMs"
+          ],
+          "properties": {
+            "assetId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "frameWidth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "frameHeight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "columns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "rows": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "frames": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 63
+              },
+              "minItems": 1,
+              "maxItems": 1,
+              "uniqueItems": true
+            },
+            "origins": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/origin"
+              },
+              "minItems": 1,
+              "maxItems": 1
+            },
+            "loop": {
+              "const": false
+            },
+            "durationMs": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 2000
+            },
+            "pixelScale": {
+              "type": "number",
+              "minimum": 0.25,
+              "maximum": 1
+            }
+          },
+          "description": "정지 전신. 모든 동작과 같은 정체성."
+        },
+        "walk": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetId",
+            "frameWidth",
+            "frameHeight",
+            "columns",
+            "rows",
+            "frames",
+            "origins",
+            "loop",
+            "durationMs",
+            "stridePixels"
+          ],
+          "properties": {
+            "assetId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "frameWidth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "frameHeight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "columns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "rows": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "frames": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 63
+              },
+              "minItems": 12,
+              "maxItems": 32,
+              "uniqueItems": true
+            },
+            "origins": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/origin"
+              },
+              "minItems": 12,
+              "maxItems": 32
+            },
+            "loop": {
+              "const": true
+            },
+            "durationMs": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 2000
+            },
+            "stridePixels": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 1600
+            },
+            "pixelScale": {
+              "type": "number",
+              "minimum": 0.25,
+              "maximum": 1
+            }
+          },
+          "description": "걷기 한 주기. 양발 교대, 같은 접지 기준."
+        },
+        "run": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetId",
+            "frameWidth",
+            "frameHeight",
+            "columns",
+            "rows",
+            "frames",
+            "origins",
+            "loop",
+            "durationMs"
+          ],
+          "properties": {
+            "assetId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "frameWidth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "frameHeight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "columns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "rows": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "frames": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 63
+              },
+              "minItems": 10,
+              "maxItems": 16,
+              "uniqueItems": true
+            },
+            "origins": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/origin"
+              },
+              "minItems": 10,
+              "maxItems": 16
+            },
+            "loop": {
+              "const": true
+            },
+            "durationMs": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 2000
+            },
+            "pixelScale": {
+              "type": "number",
+              "minimum": 0.25,
+              "maximum": 1
+            }
+          },
+          "description": "달리기 한 주기. 양발 교대."
+        },
+        "fightIdle": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetId",
+            "frameWidth",
+            "frameHeight",
+            "columns",
+            "rows",
+            "frames",
+            "origins",
+            "loop",
+            "sequence",
+            "hitSequenceIndices"
+          ],
+          "properties": {
+            "assetId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "frameWidth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "frameHeight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "columns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "rows": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "frames": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 63
+              },
+              "minItems": 1,
+              "maxItems": 64,
+              "uniqueItems": true
+            },
+            "origins": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/origin"
+              },
+              "minItems": 1,
+              "maxItems": 64
+            },
+            "loop": {
+              "const": true
+            },
+            "sequence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "frame",
+                  "durationMs"
+                ],
+                "properties": {
+                  "frame": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 63
+                  },
+                  "durationMs": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 2000
+                  }
+                }
+              },
+              "minItems": 1,
+              "maxItems": 128
+            },
+            "hitSequenceIndices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 127
+              },
+              "minItems": 0,
+              "maxItems": 0,
+              "uniqueItems": true
+            },
+            "pixelScale": {
+              "type": "number",
+              "minimum": 0.25,
+              "maximum": 1
+            }
+          },
+          "description": "전투 준비 자세 반복."
+        },
+        "combo": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetId",
+            "frameWidth",
+            "frameHeight",
+            "columns",
+            "rows",
+            "frames",
+            "origins",
+            "loop",
+            "sequence",
+            "hitSequenceIndices",
+            "landmarks"
+          ],
+          "properties": {
+            "assetId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "frameWidth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "frameHeight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "columns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "rows": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "frames": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 63
+              },
+              "minItems": 1,
+              "maxItems": 64,
+              "uniqueItems": true
+            },
+            "origins": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/origin"
+              },
+              "minItems": 1,
+              "maxItems": 64
+            },
+            "loop": {
+              "const": false
+            },
+            "sequence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "frame",
+                  "durationMs"
+                ],
+                "properties": {
+                  "frame": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 63
+                  },
+                  "durationMs": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 2000
+                  }
+                }
+              },
+              "minItems": 1,
+              "maxItems": 128
+            },
+            "hitSequenceIndices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 127
+              },
+              "minItems": 3,
+              "maxItems": 8,
+              "uniqueItems": true
+            },
+            "landmarks": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "spinStart"
+              ],
+              "properties": {
+                "spinStart": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 127
+                }
+              }
+            },
+            "pixelScale": {
+              "type": "number",
+              "minimum": 0.25,
+              "maximum": 1
+            }
+          },
+          "description": "3개 구간으로 나누어 재생할 연타. 접촉 시점 최소 3개."
+        },
+        "slam": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetId",
+            "frameWidth",
+            "frameHeight",
+            "columns",
+            "rows",
+            "frames",
+            "origins",
+            "loop",
+            "sequence",
+            "hitSequenceIndices"
+          ],
+          "properties": {
+            "assetId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "frameWidth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "frameHeight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "columns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "rows": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "frames": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 63
+              },
+              "minItems": 1,
+              "maxItems": 64,
+              "uniqueItems": true
+            },
+            "origins": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/origin"
+              },
+              "minItems": 1,
+              "maxItems": 64
+            },
+            "loop": {
+              "const": false
+            },
+            "sequence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "frame",
+                  "durationMs"
+                ],
+                "properties": {
+                  "frame": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 63
+                  },
+                  "durationMs": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 2000
+                  }
+                }
+              },
+              "minItems": 1,
+              "maxItems": 128
+            },
+            "hitSequenceIndices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 127
+              },
+              "minItems": 1,
+              "maxItems": 1,
+              "uniqueItems": true
+            },
+            "pixelScale": {
+              "type": "number",
+              "minimum": 0.25,
+              "maximum": 1
+            }
+          },
+          "description": "강타의 준비·접촉·회수."
+        },
+        "dash": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetId",
+            "frameWidth",
+            "frameHeight",
+            "columns",
+            "rows",
+            "frames",
+            "origins",
+            "loop",
+            "sequence",
+            "hitSequenceIndices",
+            "landmarks"
+          ],
+          "properties": {
+            "assetId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "frameWidth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "frameHeight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "columns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "rows": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "frames": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 63
+              },
+              "minItems": 1,
+              "maxItems": 64,
+              "uniqueItems": true
+            },
+            "origins": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/origin"
+              },
+              "minItems": 1,
+              "maxItems": 64
+            },
+            "loop": {
+              "const": false
+            },
+            "sequence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "frame",
+                  "durationMs"
+                ],
+                "properties": {
+                  "frame": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 63
+                  },
+                  "durationMs": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 2000
+                  }
+                }
+              },
+              "minItems": 1,
+              "maxItems": 128
+            },
+            "hitSequenceIndices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 127
+              },
+              "minItems": 0,
+              "maxItems": 1,
+              "uniqueItems": true
+            },
+            "landmarks": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "windup",
+                "recover"
+              ],
+              "properties": {
+                "windup": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "clip",
+                    "frame"
+                  ],
+                  "properties": {
+                    "clip": {
+                      "enum": [
+                        "fightIdle",
+                        "combo",
+                        "slam",
+                        "dash",
+                        "block",
+                        "hit",
+                        "groggy",
+                        "fall"
+                      ]
+                    },
+                    "frame": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 63
+                    }
+                  }
+                },
+                "recover": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "clip",
+                    "frame"
+                  ],
+                  "properties": {
+                    "clip": {
+                      "enum": [
+                        "fightIdle",
+                        "combo",
+                        "slam",
+                        "dash",
+                        "block",
+                        "hit",
+                        "groggy",
+                        "fall"
+                      ]
+                    },
+                    "frame": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 63
+                    }
+                  }
+                }
+              }
+            },
+            "pixelScale": {
+              "type": "number",
+              "minimum": 0.25,
+              "maximum": 1
+            }
+          },
+          "description": "돌진. 준비와 회수는 같은 선수의 명시한 프레임 사용."
+        },
+        "block": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetId",
+            "frameWidth",
+            "frameHeight",
+            "columns",
+            "rows",
+            "frames",
+            "origins",
+            "loop",
+            "sequence",
+            "hitSequenceIndices"
+          ],
+          "properties": {
+            "assetId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "frameWidth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "frameHeight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "columns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "rows": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "frames": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 63
+              },
+              "minItems": 1,
+              "maxItems": 64,
+              "uniqueItems": true
+            },
+            "origins": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/origin"
+              },
+              "minItems": 1,
+              "maxItems": 64
+            },
+            "loop": {
+              "const": false
+            },
+            "sequence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "frame",
+                  "durationMs"
+                ],
+                "properties": {
+                  "frame": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 63
+                  },
+                  "durationMs": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 2000
+                  }
+                }
+              },
+              "minItems": 1,
+              "maxItems": 128
+            },
+            "hitSequenceIndices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 127
+              },
+              "minItems": 1,
+              "maxItems": 1,
+              "uniqueItems": true
+            },
+            "pixelScale": {
+              "type": "number",
+              "minimum": 0.25,
+              "maximum": 1
+            }
+          },
+          "description": "가드와 막기. 접촉 직전 단계가 유지 자세."
+        },
+        "hit": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetId",
+            "frameWidth",
+            "frameHeight",
+            "columns",
+            "rows",
+            "frames",
+            "origins",
+            "loop",
+            "sequence",
+            "hitSequenceIndices",
+            "landmarks"
+          ],
+          "properties": {
+            "assetId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "frameWidth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "frameHeight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "columns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "rows": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "frames": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 63
+              },
+              "minItems": 1,
+              "maxItems": 64,
+              "uniqueItems": true
+            },
+            "origins": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/origin"
+              },
+              "minItems": 1,
+              "maxItems": 64
+            },
+            "loop": {
+              "const": false
+            },
+            "sequence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "frame",
+                  "durationMs"
+                ],
+                "properties": {
+                  "frame": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 63
+                  },
+                  "durationMs": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 2000
+                  }
+                }
+              },
+              "minItems": 1,
+              "maxItems": 128
+            },
+            "hitSequenceIndices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 127
+              },
+              "minItems": 1,
+              "maxItems": 1,
+              "uniqueItems": true
+            },
+            "landmarks": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "recoil",
+                "stagger",
+                "recover"
+              ],
+              "properties": {
+                "recoil": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 127
+                },
+                "stagger": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 127
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "recover": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 127
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              }
+            },
+            "pixelScale": {
+              "type": "number",
+              "minimum": 0.25,
+              "maximum": 1
+            }
+          },
+          "description": "피격·뒤로 젖힘·비틀거림·복귀."
+        },
+        "groggy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetId",
+            "frameWidth",
+            "frameHeight",
+            "columns",
+            "rows",
+            "frames",
+            "origins",
+            "loop",
+            "sequence",
+            "hitSequenceIndices"
+          ],
+          "properties": {
+            "assetId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "frameWidth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "frameHeight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "columns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "rows": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "frames": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 63
+              },
+              "minItems": 1,
+              "maxItems": 64,
+              "uniqueItems": true
+            },
+            "origins": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/origin"
+              },
+              "minItems": 1,
+              "maxItems": 64
+            },
+            "loop": {
+              "const": true
+            },
+            "sequence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "frame",
+                  "durationMs"
+                ],
+                "properties": {
+                  "frame": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 63
+                  },
+                  "durationMs": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 2000
+                  }
+                }
+              },
+              "minItems": 1,
+              "maxItems": 128
+            },
+            "hitSequenceIndices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 127
+              },
+              "minItems": 0,
+              "maxItems": 0,
+              "uniqueItems": true
+            },
+            "pixelScale": {
+              "type": "number",
+              "minimum": 0.25,
+              "maximum": 1
+            }
+          },
+          "description": "기절/흔들림 반복."
+        },
+        "fall": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetId",
+            "frameWidth",
+            "frameHeight",
+            "columns",
+            "rows",
+            "frames",
+            "origins",
+            "loop",
+            "sequence",
+            "hitSequenceIndices",
+            "landmarks"
+          ],
+          "properties": {
+            "assetId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "frameWidth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "frameHeight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "columns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "rows": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "frames": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 63
+              },
+              "minItems": 1,
+              "maxItems": 64,
+              "uniqueItems": true
+            },
+            "origins": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/origin"
+              },
+              "minItems": 1,
+              "maxItems": 64
+            },
+            "loop": {
+              "const": false
+            },
+            "sequence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "frame",
+                  "durationMs"
+                ],
+                "properties": {
+                  "frame": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 63
+                  },
+                  "durationMs": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 2000
+                  }
+                }
+              },
+              "minItems": 1,
+              "maxItems": 128
+            },
+            "hitSequenceIndices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 127
+              },
+              "minItems": 1,
+              "maxItems": 1,
+              "uniqueItems": true
+            },
+            "landmarks": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "lieSequenceIndex",
+                "getUp"
+              ],
+              "properties": {
+                "lieSequenceIndex": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 127
+                },
+                "getUp": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "clip",
+                      "frame",
+                      "durationMs"
+                    ],
+                    "properties": {
+                      "clip": {
+                        "enum": [
+                          "fightIdle",
+                          "combo",
+                          "slam",
+                          "dash",
+                          "block",
+                          "hit",
+                          "groggy",
+                          "fall"
+                        ]
+                      },
+                      "frame": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 63
+                      },
+                      "durationMs": {
+                        "type": "number",
+                        "minimum": 1,
+                        "maximum": 2000
+                      }
+                    }
+                  },
+                  "minItems": 2,
+                  "maxItems": 8
+                }
+              }
+            },
+            "pixelScale": {
+              "type": "number",
+              "minimum": 0.25,
+              "maximum": 1
+            }
+          },
+          "description": "넘어짐·착지·누움. 일어서기 프레임도 명시."
+        },
+        "skill": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetId",
+            "frameWidth",
+            "frameHeight",
+            "columns",
+            "rows",
+            "frames",
+            "origins",
+            "loop",
+            "sequence",
+            "hitSequenceIndices",
+            "skill"
+          ],
+          "properties": {
+            "assetId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "frameWidth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "frameHeight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "columns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "rows": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "frames": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 63
+              },
+              "minItems": 1,
+              "maxItems": 64,
+              "uniqueItems": true
+            },
+            "origins": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/origin"
+              },
+              "minItems": 1,
+              "maxItems": 64
+            },
+            "loop": {
+              "const": false
+            },
+            "sequence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "frame",
+                  "durationMs"
+                ],
+                "properties": {
+                  "frame": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 63
+                  },
+                  "durationMs": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 2000
+                  }
+                }
+              },
+              "minItems": 1,
+              "maxItems": 128
+            },
+            "hitSequenceIndices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 127
+              },
+              "minItems": 0,
+              "maxItems": 1,
+              "uniqueItems": true
+            },
+            "skill": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "stretch",
+                    "pincer",
+                    "flight",
+                    "feint",
+                    "slide",
+                    "counter",
+                    "brace"
+                  ]
+                },
+                "windupTo": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 127
+                },
+                "recoverFrom": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 127
+                },
+                "run": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 127
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "launch": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 127
+                },
+                "struck": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 127
+                },
+                "windowFrom": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 127
+                },
+                "windowTo": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 127
+                },
+                "strikeFrom": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 127
+                },
+                "strikeTo": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 127
+                }
+              }
+            },
+            "pixelScale": {
+              "type": "number",
+              "minimum": 0.25,
+              "maximum": 1
+            }
+          },
+          "description": "고유 기술 한 동작: 예고·접촉(또는 돌진, 자세 창)·회수. 종류는 skill.kind."
+        },
+        "entrance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetId",
+            "frameWidth",
+            "frameHeight",
+            "columns",
+            "rows",
+            "frames",
+            "origins",
+            "loop",
+            "sequence",
+            "hitSequenceIndices"
+          ],
+          "properties": {
+            "assetId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "frameWidth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "frameHeight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "columns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "rows": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "frames": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 63
+              },
+              "minItems": 1,
+              "maxItems": 64,
+              "uniqueItems": true
+            },
+            "origins": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/origin"
+              },
+              "minItems": 1,
+              "maxItems": 64
+            },
+            "loop": {
+              "const": false
+            },
+            "sequence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "frame",
+                  "durationMs"
+                ],
+                "properties": {
+                  "frame": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 63
+                  },
+                  "durationMs": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 2000
+                  }
+                }
+              },
+              "minItems": 1,
+              "maxItems": 128
+            },
+            "hitSequenceIndices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 127
+              },
+              "minItems": 0,
+              "maxItems": 0,
+              "uniqueItems": true
+            },
+            "pixelScale": {
+              "type": "number",
+              "minimum": 0.25,
+              "maximum": 1
+            }
+          },
+          "description": "경기 시작 전 제자리 등장 동작."
+        },
+        "victory": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "assetId",
+            "frameWidth",
+            "frameHeight",
+            "columns",
+            "rows",
+            "frames",
+            "origins",
+            "loop",
+            "sequence",
+            "hitSequenceIndices"
+          ],
+          "properties": {
+            "assetId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,47}$"
+            },
+            "frameWidth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "frameHeight": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "columns": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "rows": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8
+            },
+            "frames": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 63
+              },
+              "minItems": 1,
+              "maxItems": 64,
+              "uniqueItems": true
+            },
+            "origins": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/origin"
+              },
+              "minItems": 1,
+              "maxItems": 64
+            },
+            "loop": {
+              "const": true
+            },
+            "sequence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "frame",
+                  "durationMs"
+                ],
+                "properties": {
+                  "frame": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 63
+                  },
+                  "durationMs": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 2000
+                  }
+                }
+              },
+              "minItems": 1,
+              "maxItems": 128
+            },
+            "hitSequenceIndices": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 127
+              },
+              "minItems": 0,
+              "maxItems": 0,
+              "uniqueItems": true
+            },
+            "pixelScale": {
+              "type": "number",
+              "minimum": 0.25,
+              "maximum": 1
+            }
+          },
+          "description": "이긴 뒤 승리 자세 반복."
+        }
+      }
+    }
+  },
+  "definitions": {
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "path",
+        "mediaType",
+        "sha256",
+        "bytes",
+        "width",
+        "height"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{0,47}$"
+        },
+        "path": {
+          "type": "string",
+          "maxLength": 100,
+          "pattern": "^assets/[a-z][a-z0-9-]{0,47}\\.webp$"
+        },
+        "mediaType": {
+          "const": "image/webp"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4000000
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4096
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4096
+        }
+      }
+    },
+    "imageView": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assetId",
+        "crop"
+      ],
+      "properties": {
+        "assetId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{0,47}$"
+        },
+        "crop": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "x",
+            "y",
+            "width",
+            "height"
+          ],
+          "properties": {
+            "x": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            "y": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            "width": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            },
+            "height": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1024
+            }
+          }
+        }
+      }
+    },
+    "origin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "originX",
+        "originY",
+        "groundContacts"
+      ],
+      "properties": {
+        "originX": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1024
+        },
+        "originY": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1024
+        },
+        "groundContacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "x",
+              "y",
+              "rx",
+              "ry"
+            ],
+            "properties": {
+              "x": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1024
+              },
+              "y": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1024
+              },
+              "rx": {
+                "type": "number",
+                "minimum": 0.1,
+                "maximum": 512
+              },
+              "ry": {
+                "type": "number",
+                "minimum": 0.1,
+                "maximum": 512
+              }
+            }
+          },
+          "minItems": 0,
+          "maxItems": 2
+        }
+      }
+    }
+  }
+}

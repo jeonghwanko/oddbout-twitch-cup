@@ -1,0 +1,134 @@
+{
+  "common": {
+    "startAfterMs": 4000,
+    "cooldownMs": 8000,
+    "maxPerBout": 2,
+    "everyMs": 250,
+    "chance": 0.18,
+    "comebackGap": 0.25,
+    "comebackBonus": 0.12,
+    "maxMs": 5000
+  },
+  "cross": {
+    "minGapStrides": 2.2,
+    "maxGapStrides": 6.5,
+    "passGapStrides": 3.4,
+    "wallMarginStrides": 0.3,
+    "setMs": 220,
+    "runStridesPerSec": 9.5,
+    "accelMs": 34,
+    "accelFrom": 0.55,
+    "passSpeedUp": 0.1,
+    "turnMs": 180,
+    "turnBrakeMs": 64,
+    "turnBrakeStrides": 0.3,
+    "finalTurnMs": 360,
+    "passes": [
+      2,
+      3
+    ],
+    "tieShare": 0.3,
+    "slashLeadStrides": 0.9,
+    "slashSlowShare": 0.65,
+    "contactStrides": 0.35,
+    "chipShare": 0.045,
+    "finalShare": 0.085,
+    "finalKnockStrides": 2.6,
+    "skidMs": 280,
+    "skidStrides": 0.6,
+    "finalHoldMs": 120,
+    "slashMs": 110,
+    "struckMs": 120
+  },
+  "pinball": {
+    "chance": 0.6,
+    "ropeMinStrides": 0.5,
+    "ropeMaxStrides": 8,
+    "ropeMarginStrides": 0.25,
+    "outStridesPerSec": 13,
+    "backStridesPerSec": 9,
+    "outLiftBodies": 0.22,
+    "backLiftBodies": 0.12,
+    "ropeMs": 70,
+    "legs": [
+      2,
+      3
+    ],
+    "meetStrides": [
+      2.4,
+      1.9,
+      1.5
+    ],
+    "stepStridesPerSec": 4,
+    "contactStrides": 1.1,
+    "chipShare": 0.04,
+    "finalShare": 0.08,
+    "finalKnockStrides": 1.2,
+    "finalHoldMs": 160,
+    "slashMs": 120,
+    "struckMs": 120
+  },
+  "rush": {
+    "chance": 0.45,
+    "togetherMs": 120,
+    "maxGapStrides": 1.8,
+    "ms": [
+      1000,
+      1400
+    ],
+    "strikeMs": 140,
+    "struggleShare": 0.55,
+    "wobbleStrides": 0.12,
+    "wobbleMs": 420,
+    "driftStrides": 1.6,
+    "fistStrides": [
+      1,
+      1.7
+    ],
+    "meetOverlapStrides": 0.6,
+    "guardDepthStrides": 0.2,
+    "settleStridesPerSec": 6,
+    "chipShare": 0,
+    "finalShare": 0.09,
+    "finalKnockStrides": 2.6,
+    "finalHoldMs": 160,
+    "slashMs": 120,
+    "struckMs": 120
+  },
+  "defaults": {
+    "cross": 1,
+    "pinball": 1,
+    "rush": 1
+  },
+  "fighters": {
+    "quickcat": {
+      "cross": 2,
+      "pinball": 0.6,
+      "rush": 0.6
+    },
+    "bravow": {
+      "cross": 1.8,
+      "pinball": 0.8
+    },
+    "yume": {
+      "cross": 1.6,
+      "pinball": 0.8,
+      "rush": 1.4
+    },
+    "kuma": {
+      "cross": 0.5,
+      "pinball": 2,
+      "rush": 1.2
+    },
+    "sikeundung": {
+      "cross": 0.5,
+      "pinball": 1.6
+    },
+    "duldul": {
+      "cross": 0.8,
+      "pinball": 1,
+      "rush": 1.8
+    }
+  },
+  "note": "Shared arena battle tuning for the nine built-in fighters."
+}

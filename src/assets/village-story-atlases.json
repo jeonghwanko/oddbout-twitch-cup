@@ -1,0 +1,1394 @@
+{
+  "courier": {
+    "key": "village-story-courier-motion-v2",
+    "path": "art/village/stories/courier-motion-v2.webp",
+    "width": 2304,
+    "height": 2304,
+    "contentHeight": 156,
+    "clips": {
+      "spill": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 288,
+            "y": 0,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 576,
+            "y": 0,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 864,
+            "y": 0,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1152,
+            "y": 0,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1440,
+            "y": 0,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1728,
+            "y": 0,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 2016,
+            "y": 0,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 0,
+            "y": 288,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 288,
+            "y": 288,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 576,
+            "y": 288,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 864,
+            "y": 288,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1152,
+            "y": 288,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1440,
+            "y": 288,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1728,
+            "y": 288,
+            "width": 288,
+            "height": 288
+          }
+        ],
+        "durationsMs": [
+          80,
+          80,
+          80,
+          80,
+          80,
+          80,
+          80,
+          80,
+          80,
+          80,
+          80,
+          80,
+          80,
+          40,
+          20
+        ],
+        "loop": false,
+        "originX": 144,
+        "originY": 280
+      },
+      "gather": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 576,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 288,
+            "y": 576,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 576,
+            "y": 576,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 864,
+            "y": 576,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1152,
+            "y": 576,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1440,
+            "y": 576,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1728,
+            "y": 576,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 2016,
+            "y": 576,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 0,
+            "y": 864,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 288,
+            "y": 864,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 576,
+            "y": 864,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 864,
+            "y": 864,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1152,
+            "y": 864,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1440,
+            "y": 864,
+            "width": 288,
+            "height": 288
+          }
+        ],
+        "durationsMs": [
+          91,
+          90,
+          91,
+          90,
+          91,
+          90,
+          91,
+          91,
+          90,
+          91,
+          90,
+          91,
+          90,
+          23
+        ],
+        "loop": false,
+        "originX": 144,
+        "originY": 280
+      },
+      "thank": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 1152,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 288,
+            "y": 1152,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 576,
+            "y": 1152,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 864,
+            "y": 1152,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1152,
+            "y": 1152,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1440,
+            "y": 1152,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1728,
+            "y": 1152,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 2016,
+            "y": 1152,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 0,
+            "y": 1440,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 288,
+            "y": 1440,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 576,
+            "y": 1440,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 864,
+            "y": 1440,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1152,
+            "y": 1440,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1440,
+            "y": 1440,
+            "width": 288,
+            "height": 288
+          }
+        ],
+        "durationsMs": [
+          91,
+          90,
+          91,
+          90,
+          91,
+          90,
+          91,
+          91,
+          90,
+          91,
+          90,
+          91,
+          90,
+          23
+        ],
+        "loop": false,
+        "originX": 144,
+        "originY": 280
+      },
+      "gossip": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 1728,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 288,
+            "y": 1728,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 576,
+            "y": 1728,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 864,
+            "y": 1728,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1152,
+            "y": 1728,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1440,
+            "y": 1728,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1728,
+            "y": 1728,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 2016,
+            "y": 1728,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 0,
+            "y": 2016,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 288,
+            "y": 2016,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 576,
+            "y": 2016,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 864,
+            "y": 2016,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1152,
+            "y": 2016,
+            "width": 288,
+            "height": 288
+          },
+          {
+            "x": 1440,
+            "y": 2016,
+            "width": 288,
+            "height": 288
+          }
+        ],
+        "durationsMs": [
+          106,
+          105,
+          106,
+          106,
+          105,
+          106,
+          106,
+          105,
+          106,
+          106,
+          105,
+          106,
+          106,
+          26
+        ],
+        "loop": false,
+        "originX": 144,
+        "originY": 280
+      }
+    }
+  },
+  "apprentice": {
+    "key": "village-story-apprentice-motion-v2",
+    "path": "art/village/stories/apprentice-motion-v2.webp",
+    "width": 2048,
+    "height": 1536,
+    "contentHeight": 156,
+    "clips": {
+      "stumble": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 256,
+            "y": 0,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 512,
+            "y": 0,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 768,
+            "y": 0,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1024,
+            "y": 0,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1280,
+            "y": 0,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1536,
+            "y": 0,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1792,
+            "y": 0,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 0,
+            "y": 256,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 256,
+            "y": 256,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 512,
+            "y": 256,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 768,
+            "y": 256,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1024,
+            "y": 256,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1280,
+            "y": 256,
+            "width": 256,
+            "height": 256
+          }
+        ],
+        "durationsMs": [
+          98,
+          98,
+          98,
+          98,
+          99,
+          98,
+          98,
+          98,
+          98,
+          98,
+          98,
+          98,
+          98,
+          25
+        ],
+        "loop": false,
+        "originX": 128,
+        "originY": 248
+      },
+      "vault": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 512,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 256,
+            "y": 512,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 512,
+            "y": 512,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 768,
+            "y": 512,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1024,
+            "y": 512,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1280,
+            "y": 512,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1536,
+            "y": 512,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1792,
+            "y": 512,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 0,
+            "y": 768,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 256,
+            "y": 768,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 512,
+            "y": 768,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 768,
+            "y": 768,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1024,
+            "y": 768,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1280,
+            "y": 768,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1536,
+            "y": 768,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1792,
+            "y": 768,
+            "width": 256,
+            "height": 256
+          }
+        ],
+        "durationsMs": [
+          95,
+          95,
+          95,
+          95,
+          95,
+          94,
+          95,
+          95,
+          95,
+          95,
+          95,
+          95,
+          95,
+          95,
+          47,
+          24
+        ],
+        "loop": false,
+        "originX": 128,
+        "originY": 248
+      },
+      "bow": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 1024,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 256,
+            "y": 1024,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 512,
+            "y": 1024,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 768,
+            "y": 1024,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1024,
+            "y": 1024,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1280,
+            "y": 1024,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1536,
+            "y": 1024,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1792,
+            "y": 1024,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 0,
+            "y": 1280,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 256,
+            "y": 1280,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 512,
+            "y": 1280,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 768,
+            "y": 1280,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1024,
+            "y": 1280,
+            "width": 256,
+            "height": 256
+          },
+          {
+            "x": 1280,
+            "y": 1280,
+            "width": 256,
+            "height": 256
+          }
+        ],
+        "durationsMs": [
+          91,
+          90,
+          91,
+          90,
+          91,
+          90,
+          91,
+          91,
+          90,
+          91,
+          90,
+          91,
+          90,
+          23
+        ],
+        "loop": false,
+        "originX": 128,
+        "originY": 248
+      }
+    }
+  },
+  "magpie": {
+    "key": "village-story-magpie-v1",
+    "path": "art/village/stories/magpie-v1.webp",
+    "width": 1152,
+    "height": 384,
+    "clips": {
+      "flap": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 192,
+            "y": 0,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 384,
+            "y": 0,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 576,
+            "y": 0,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 768,
+            "y": 0,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 960,
+            "y": 0,
+            "width": 192,
+            "height": 192
+          }
+        ],
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "loop": true,
+        "originX": 96,
+        "originY": 180
+      },
+      "perch": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 192,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 192,
+            "y": 192,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 384,
+            "y": 192,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 576,
+            "y": 192,
+            "width": 192,
+            "height": 192
+          }
+        ],
+        "durationsMs": [
+          200,
+          200,
+          200,
+          200
+        ],
+        "loop": false,
+        "originX": 96,
+        "originY": 180
+      }
+    },
+    "sourceHash": "332b8aabf17e955d5de14ffbeb61a551b5ac73242a131402152c4cf0b729052c"
+  },
+  "props": {
+    "key": "village-story-props-v1",
+    "path": "art/village/stories/props-v1.webp",
+    "width": 192,
+    "height": 1536,
+    "clips": {
+      "cart": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192
+          }
+        ],
+        "durationsMs": [
+          167
+        ],
+        "loop": false,
+        "originX": 96,
+        "originY": 180
+      },
+      "apple": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 192,
+            "width": 192,
+            "height": 192
+          }
+        ],
+        "durationsMs": [
+          167
+        ],
+        "loop": false,
+        "originX": 96,
+        "originY": 180
+      },
+      "pear": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 384,
+            "width": 192,
+            "height": 192
+          }
+        ],
+        "durationsMs": [
+          167
+        ],
+        "loop": false,
+        "originX": 96,
+        "originY": 180
+      },
+      "basket": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 576,
+            "width": 192,
+            "height": 192
+          }
+        ],
+        "durationsMs": [
+          167
+        ],
+        "loop": false,
+        "originX": 96,
+        "originY": 180
+      },
+      "board": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 768,
+            "width": 192,
+            "height": 192
+          }
+        ],
+        "durationsMs": [
+          167
+        ],
+        "loop": false,
+        "originX": 96,
+        "originY": 180
+      },
+      "ribbon": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 960,
+            "width": 192,
+            "height": 192
+          }
+        ],
+        "durationsMs": [
+          167
+        ],
+        "loop": false,
+        "originX": 96,
+        "originY": 180
+      },
+      "notice": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 1152,
+            "width": 192,
+            "height": 192
+          }
+        ],
+        "durationsMs": [
+          167
+        ],
+        "loop": false,
+        "originX": 96,
+        "originY": 180
+      },
+      "watch": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 1344,
+            "width": 192,
+            "height": 192
+          }
+        ],
+        "durationsMs": [
+          167
+        ],
+        "loop": false,
+        "originX": 96,
+        "originY": 180
+      }
+    },
+    "sourceHash": "2bcc9857fcc08bcc0fdd0255950e867f724fd6a29c315feeda5b22abeaaf16d9"
+  },
+  "clockmaker": {
+    "key": "village-story-clockmaker-motion-v2",
+    "path": "art/village/stories/clockmaker-motion-v2.webp",
+    "width": 1536,
+    "height": 1152,
+    "contentHeight": 156,
+    "clips": {
+      "explain": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 0,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 192,
+            "y": 0,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 384,
+            "y": 0,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 576,
+            "y": 0,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 768,
+            "y": 0,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 960,
+            "y": 0,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 1152,
+            "y": 0,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 1344,
+            "y": 0,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 0,
+            "y": 192,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 192,
+            "y": 192,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 384,
+            "y": 192,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 576,
+            "y": 192,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 768,
+            "y": 192,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 960,
+            "y": 192,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 1152,
+            "y": 192,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 1344,
+            "y": 192,
+            "width": 192,
+            "height": 192
+          }
+        ],
+        "durationsMs": [
+          102,
+          101,
+          102,
+          102,
+          101,
+          102,
+          102,
+          102,
+          101,
+          102,
+          102,
+          101,
+          102,
+          102,
+          51,
+          25
+        ],
+        "loop": false,
+        "originX": 96,
+        "originY": 184
+      },
+      "concern": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 384,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 192,
+            "y": 384,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 384,
+            "y": 384,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 576,
+            "y": 384,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 768,
+            "y": 384,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 960,
+            "y": 384,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 1152,
+            "y": 384,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 1344,
+            "y": 384,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 0,
+            "y": 576,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 192,
+            "y": 576,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 384,
+            "y": 576,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 576,
+            "y": 576,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 768,
+            "y": 576,
+            "width": 192,
+            "height": 192
+          }
+        ],
+        "durationsMs": [
+          122,
+          121,
+          122,
+          122,
+          122,
+          121,
+          122,
+          122,
+          122,
+          121,
+          122,
+          31,
+          30
+        ],
+        "loop": false,
+        "originX": 96,
+        "originY": 184
+      },
+      "relief": {
+        "frames": [
+          {
+            "x": 0,
+            "y": 768,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 192,
+            "y": 768,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 384,
+            "y": 768,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 576,
+            "y": 768,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 768,
+            "y": 768,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 960,
+            "y": 768,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 1152,
+            "y": 768,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 1344,
+            "y": 768,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 0,
+            "y": 960,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 192,
+            "y": 960,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 384,
+            "y": 960,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 576,
+            "y": 960,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 768,
+            "y": 960,
+            "width": 192,
+            "height": 192
+          },
+          {
+            "x": 960,
+            "y": 960,
+            "width": 192,
+            "height": 192
+          }
+        ],
+        "durationsMs": [
+          106,
+          105,
+          106,
+          106,
+          105,
+          106,
+          106,
+          105,
+          106,
+          106,
+          105,
+          106,
+          106,
+          26
+        ],
+        "loop": false,
+        "originX": 96,
+        "originY": 184
+      }
+    },
+    "postProcess": {
+      "kind": "edge-v1",
+      "tool": "kaito_web/tools/art/bake-actor-edge.mjs",
+      "date": "2026-09-23",
+      "archive": "assets/art-archive/actor-edge-20260923/clockmaker-motion-v2.orig.webp",
+      "params": {
+        "alphaThreshold": 128,
+        "alphaSnapBelow": 16,
+        "featherPx": 2,
+        "outlinePx": 2,
+        "outlineLuminanceMul": 0.45,
+        "outlineSaturationMul": 0.9,
+        "outlineBlend": 0.8,
+        "rimPx": 1,
+        "rimColor": "#ffc66d",
+        "rimAlpha": 0.4,
+        "rimDirection": [
+          -0.6,
+          -0.8
+        ],
+        "rimDot": 0.35,
+        "normalBlurRadiusPx": 2
+      },
+      "encode": {
+        "quality": 45,
+        "alphaQuality": 100,
+        "effort": 6
+      },
+      "sha256": {
+        "before": "721243e5a342b2ec1be398f65b7f8352a0be278828556741865e259fc09637d6",
+        "after": "44583033886279a94d5cb19d7e21e141b3f545d852242398341ea420d5186192"
+      }
+    }
+  }
+}
