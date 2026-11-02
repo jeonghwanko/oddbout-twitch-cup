@@ -105,6 +105,7 @@ If the service is missing or unavailable, the nine built-in fighters remain usab
 | `npm run dev` | Development server on strict port 5178 |
 | `npm test` | All `test/**/*.test.ts` tests |
 | `npm test -- test/twitch-tournament.test.ts` | A focused test file |
+| `npm run test:browser -- --seed=123` | Three real local Chrome bouts, champion and New cup; requires a running local server and installed Chrome |
 | `npm run lint:types` | TypeScript checking; this is not a formatting linter |
 | `npm run build` | Production build in `dist/` |
 | `npm run check` | Type checking → all tests → production build |
@@ -135,6 +136,8 @@ Stop `dev` before using `preview`, since both use port 5178. Rebuild after sourc
 | `test/`, `docs/` | Regression tests and development references |
 
 The parent page owns the bracket. A single iframe normally hosts consecutive matches, receives validated start requests, and returns ready/error/result messages. Only a result matching the expected origin, window, bout ID, fighters, and seed can update the cup. See [architecture.md](docs/architecture.md) before changing these boundaries.
+
+The broadcast host uses Phaser's timer scheduler with unsmoothed elapsed time. This prevents stalled `requestAnimationFrame` delivery from stretching a match until the unchanged 240-second timeout. Ordinary game pages retain their frame policy; combat rules, seeded results, intro and hitstop remain unchanged. A hidden or suspended browser still cannot be relied on to run a stream. The [local browser test](docs/testing.md#로컬-playwright로-세-경기-검증) can reproduce a 1 Hz rAF stall and verify three complete bouts without Twitch credentials.
 
 ## First-bout performance
 

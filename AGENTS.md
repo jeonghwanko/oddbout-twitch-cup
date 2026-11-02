@@ -24,6 +24,7 @@
 - 빌드 미리보기: `npm run preview` (5178 포트; 개발 서버와 동시에 실행하지 않는다).
 - 청크 분석: `npm run analyze:build`. 측정값·성능 경계·예산은 [`docs/performance.md`](docs/performance.md). Phaser 배포본과 미디어 목록 변환을 바꾸면 빌드 예산 및 런타임 미디어 테스트를 확인한다.
 - 실제 첫 경기 측정: 빌드 후 `npm run measure:first-bout -- --ports=5186,5187,5188`. 새 출처·no-store·캐시 적중 0을 확인하고 로컬 측정의 범위를 명시한다.
+- 실제 세 경기 검증: 로컬 서버와 설치된 Chrome에서 `npm run test:browser -- --seed=123`. 시계 변경은 `--raf-ms=1000` 조건도 확인한다. 상세 조건은 `docs/testing.md`를 따른다.
 - 측정 비교에는 저장이 확인된 `kind: ready`만 사용한다. `invalid`·오류·재시도·숨김·누락된 리소스를 정상 cold sample로 바꾸지 않는다. 실행 편차와 제외 조건도 기록한다.
 
 ## 코드 소유 경로
@@ -44,6 +45,7 @@
 - `!join <이름>`은 메시지 전체가 명령이어야 한다. 기존 command 정규화와 중복 처리 계약을 유지한다.
 - iframe 메시지는 기대한 출처·창·경기 ID·선수·seed가 일치해야 한다. ready/error를 승리 결과로 해석하지 않는다.
 - 전투는 seed 기반 결정론에 의존한다. 선택 순서, 난수 소비 순서, 결과 digest를 바꾸는 수정은 재현성 영향까지 확인한다.
+- 방송 호스트만 `TWITCH_RENDER_FRAME_RATE`의 timer/unsmoothed 정책을 사용한다. 진행 지연은 rawDelta·screenMs·simMs·가시성을 비교해 진단한다. 재현 없이 240초 watchdog이나 고정 시뮬레이션 스텝을 바꾸지 않는다.
 - OAuth 토큰은 메모리에서만 다루고 저장소에 기록하지 않는다. 채팅 어댑터는 읽기 전용이며 프로토콜 응답 외 메시지를 보내지 않는다.
 
 ## 협업과 모델 선택

@@ -6,6 +6,7 @@ import { createTwitchArenaStartGate, twitchArenaCorner, twitchBoutBootTimeoutMs,
 import type { CityFightBoutResult } from "../../sim/cityFight/bout/CityFightFighterBout";
 import { bootGame } from "./GameBoot";
 import { sfx } from "../audio/sfx";
+import { TWITCH_RENDER_FRAME_RATE } from "../RenderFrameRate";
 
 performance.mark?.("oddbout:host-module");
 
@@ -117,7 +118,8 @@ export async function bootTwitchArenaBout(initialRequest: TwitchArenaBoutRequest
         if (!disposed) window.parent.postMessage({ type: "oddbout:twitch:host-ready", protocol: 1 }, origin);
       }
     }
-    game = await bootGame({ options, title: "ODDBOUT · Twitch", scenes: [TwitchHostScene], displayFontAfterIntro: false });
+    game = await bootGame({ options, title: "ODDBOUT · Twitch", scenes: [TwitchHostScene], displayFontAfterIntro: false,
+      frameRate: TWITCH_RENDER_FRAME_RATE });
     if (disposed) { game.loop.stop(); sfx.shutdown(); }
   } catch { fatal(); }
 }

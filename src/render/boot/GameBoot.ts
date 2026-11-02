@@ -29,6 +29,8 @@ export interface GameBootSpec {
   readonly scenes: readonly SceneClass[];
   /** 첫 씬이 인트로 영상이면 표제 글꼴을 영상 뒤로 미룬다(`IntroScene`이 시작한다). */
   readonly displayFontAfterIntro: boolean;
+  /** Optional host-specific scheduling; ordinary game pages retain the default frame policy. */
+  readonly frameRate?: Phaser.Types.Core.FPSConfig;
 }
 
 /**
@@ -74,7 +76,7 @@ export async function bootGame(spec: GameBootSpec): Promise<Phaser.Game> {
     // 알파가 있는 컨텍스트로 부팅해 마을 3D 캔버스를 게임 캔버스 밑에 깔 수 있게 한다. 평소의 하늘색 불투명
     // 지우기는 부팅 직후 `installGameCanvasBackground` 가 건다(`render/GameCanvasUnderlay.ts`).
     transparent: true,
-    fps: RENDER_FRAME_RATE,
+    fps: spec.frameRate ?? RENDER_FRAME_RATE,
     // 소리는 `render/audio` 의 WebAudio 싱글턴 하나가 소유한다. Phaser 사운드 매니저를 켜 두면
     // 아무도 쓰지 않는 두 번째 AudioContext 가 생긴다(co-op 부팅·E2E 픽스처와 같은 설정).
     audio: { noAudio: true },

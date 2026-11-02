@@ -65,6 +65,13 @@ function messages(request: TwitchArenaBoutRequest) {
 }
 
 describe("Twitch arena host recovery", () => {
+  it("boots with the broadcast timer and unsmoothed frame policy", async () => {
+    await boot();
+    expect(mocks.boot).toHaveBeenCalledExactlyOnceWith(expect.objectContaining({
+      frameRate: expect.objectContaining({ target: 60, limit: 0, forceSetTimeOut: true, smoothStep: false }),
+    }));
+  });
+
   it("runs sequential bouts in one host with each attempt's own lifecycle messages", async () => {
     await boot();
     await start(first); mocks.broadcasts[0]!.onReady(); mocks.broadcasts[0]!.onResult(result);

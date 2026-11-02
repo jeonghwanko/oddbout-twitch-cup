@@ -22,6 +22,7 @@ Cup 흐름은 채팅에서 `!join`을 받아 등록된 선수 command와 대조�
 - `src/app/TwitchArenaBout.ts`: iframe URL과 `postMessage` 자료의 유효성 계약.
 - `src/app/TwitchBoutRecovery.ts`: 부팅 재시도 및 실패 상태 규칙.
 - `src/render/boot/TwitchArenaBoot.ts`: 전투 모듈 import와 게임/글꼴 부팅을 동시에 시작하고, 선수 로드·씬 실행·결과 메시지를 연결한다. host-ready와 bout-ready는 별개다.
+- `src/render/RenderFrameRate.ts`: 기본 페이지는 기존 rAF/smoothing 정책을 유지한다. 방송 호스트만 `GameBootSpec.frameRate`로 timer, unsmoothed delta, target 60, limit 0을 전달한다. timer 자체가 주기를 정하므로 FPS limit을 중복 적용하지 않는다. 씬의 숨김 처리·100ms 상한과 전투의 고정 스텝·인트로·hitstop·240초 watchdog은 유지한다.
 - `src/render/scenes/village/PhaserFightDeps.ts`: arena의 공통 텍스처/오디오 어댑터. `NativeCityFightDeps.ts`의 마을 전용 family/KTX2 경로와 분리한다.
 - `build/runtimeMedia.ts`: Vite에서 오디오·글꼴 목록의 런타임 필드만 투영한다. 원본 출처 정보는 수정하지 않는다. Phaser 배포본 선택과 함께 [performance.md](performance.md)를 참고한다.
 - `src/sim`: 규칙과 전투 상태 계산. `src/render`: Phaser 화면·효과·장면. `src/assets`와 `src/world`: 아트 카탈로그 및 게임 데이터.
@@ -43,7 +44,7 @@ Cup 흐름은 채팅에서 `!join`을 받아 등록된 선수 command와 대조�
 
 `vitest.config.ts`는 `test/**/*.test.ts`를 실행한다. 테스트는 토너먼트 규칙, command roster, IRC adapter, OAuth 경계, iframe 계약, 실패 복구, 등록 선수의 전투기 선택, 세 페이지 빌드 설정을 다룬다. `twitch-ui.test.ts`는 jsdom에서 실제 화면 제어 코드와 상태 규칙을 함께 실행하며 외부 인증·채팅·선수 API를 mock한다. `twitch-arena-host.test.ts`는 Phaser와 에셋 로더를 mock하고 실제 호스트 제어 코드의 연속 경기·오류 복구를 검증한다. 통합 확인 명령은 `npm run check`이다.
 
-이 테스트 집합에는 브라우저에서 Twitch 로그인·실제 채팅·실시간 iframe 전투를 통합 실행하는 검증이 포함되어 있지 않다. `twitch-site-build.test.ts`는 Vite 입력 페이지와 포트 설정을 검사하며, 프로덕션 산출물의 전 화면 동작을 검증하지 않는다. 수동 점검과 기능별 테스트 선택은 [testing.md](testing.md)를 따른다.
+`twitch-frame-clock.test.ts`는 실제 Phaser TimeStep으로 rAF 정체·blur delta 손실·timer 진행과 종료를 검사한다. 별도 `npm run test:browser`는 로컬 Chrome에서 실제 iframe 전투 세 경기·우승·New cup을 확인하며 CI의 `check`에는 포함하지 않는다. Twitch 로그인·실제 채팅은 별도 확인이 필요하다. `twitch-site-build.test.ts`는 Vite 입력 페이지와 포트 설정을 검사하며, 프로덕션 산출물의 전 화면 동작을 검증하지 않는다. 점검 조건과 기능별 테스트 선택은 [testing.md](testing.md)를 따른다.
 
 ## 저장소 범위와 참고 사항
 

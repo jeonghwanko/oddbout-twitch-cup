@@ -1,0 +1,294 @@
+{
+  "date": "2026-11-02",
+  "baselineCommit": "6288767629edc9644e912e8d1148149d75693e01",
+  "method": {
+    "playwright": "1.64.1",
+    "browser": "156.0.8078.76",
+    "os": "Windows",
+    "headless": true,
+    "viewport": {
+      "width": 1600,
+      "height": 1000,
+      "deviceScaleFactor": 1
+    },
+    "server": "Production dist served on loopback with no-store and gzip; passive first-bout probe enabled.",
+    "isolation": "Separate Chrome process and isolated context per run, no user profile or Twitch credentials.",
+    "fault": "Only requestAnimationFrame/cancelAnimationFrame replaced with a 1000ms timer in the fault runs. Native setTimeout remains unchanged. Seeds fixed to 123,124,125 only in the test parent document. No result or simulation-time injection.",
+    "backgroundPolicy": "Playwright flags disabling Chrome background timer/occlusion/renderer throttling were excluded.",
+    "limits": "Controlled scheduler starvation, not a measurement of native OS occlusion. Wall time sampled every 5 seconds. Not a CDN or cold-cache speed comparison. Actual Twitch login/chat, creator API and audible sound were not tested."
+  },
+  "runs": [
+    {
+      "name": "pw-before-normal-cup",
+      "build": "baseline",
+      "rafMs": 0,
+      "outcome": "complete",
+      "observedCupWallMs": 125293,
+      "resetVerified": true,
+      "jsErrors": [],
+      "bouts": [
+        {
+          "a": "kuma",
+          "b": "yume",
+          "seed": 123,
+          "readyToOutcomeMs": 43069.6,
+          "winnerId": "yume",
+          "result": {
+            "winner": 1,
+            "how": "ko",
+            "ms": 33120,
+            "hp": [
+              0,
+              0.38052576000000005
+            ],
+            "contacts": [
+              19,
+              26
+            ],
+            "digest": "4c99b17b"
+          }
+        },
+        {
+          "a": "bravow",
+          "b": "beotim",
+          "seed": 124,
+          "readyToOutcomeMs": 41211.7,
+          "winnerId": "bravow",
+          "result": {
+            "winner": 0,
+            "how": "ko",
+            "ms": 30608,
+            "hp": [
+              0.35671600000000026,
+              0
+            ],
+            "contacts": [
+              30,
+              15
+            ],
+            "digest": "51cbeb4f"
+          }
+        },
+        {
+          "a": "yume",
+          "b": "bravow",
+          "seed": 125,
+          "readyToOutcomeMs": 29316,
+          "winnerId": "yume",
+          "result": {
+            "winner": 0,
+            "how": "ko",
+            "ms": 20192,
+            "hp": [
+              0.8548779999999998,
+              0
+            ],
+            "contacts": [
+              25,
+              8
+            ],
+            "digest": "3d090aff"
+          }
+        }
+      ],
+      "sampledClocks": [
+        {
+          "wallMs": 25110,
+          "round": "Semifinal 1",
+          "hidden": false,
+          "focused": true,
+          "inFocus": true,
+          "rawDelta": 7,
+          "actualFps": 141.6,
+          "screenMs": 23527.1,
+          "simMs": 18544,
+          "smoothStep": true,
+          "setTimeoutLoop": false
+        }
+      ],
+      "requestFailures": [
+        {
+          "path": "/art/characters/yume/native-city-yume-side-20261011/slam.webp",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "path": "/art/characters/yume/native-city-yume-side-20261011/walk.webp",
+          "error": "net::ERR_ABORTED"
+        }
+      ]
+    },
+    {
+      "name": "pw-before-slow-raf",
+      "build": "baseline",
+      "rafMs": 1000,
+      "outcome": "failed",
+      "observedCupWallMs": 245578,
+      "resetVerified": false,
+      "jsErrors": [],
+      "bouts": [
+        {
+          "a": "kuma",
+          "b": "yume",
+          "seed": 123,
+          "readyToOutcomeMs": 239955.9,
+          "error": "The battle exceeded its time limit. Retry this match."
+        }
+      ],
+      "sampledClocks": [
+        {
+          "wallMs": 25122,
+          "round": "Semifinal 1",
+          "hidden": false,
+          "focused": true,
+          "inFocus": true,
+          "rawDelta": 1008.3,
+          "actualFps": 1.1,
+          "screenMs": 366.7,
+          "simMs": 0,
+          "smoothStep": true,
+          "setTimeoutLoop": false
+        },
+        {
+          "wallMs": 55193,
+          "round": "Semifinal 1",
+          "hidden": false,
+          "focused": true,
+          "inFocus": true,
+          "rawDelta": 1006.7,
+          "actualFps": 1,
+          "screenMs": 866.7,
+          "simMs": 0,
+          "smoothStep": true,
+          "setTimeoutLoop": false
+        },
+        {
+          "wallMs": 205473,
+          "round": "Semifinal 1",
+          "hidden": false,
+          "focused": true,
+          "inFocus": true,
+          "rawDelta": 1011.9,
+          "actualFps": 1,
+          "screenMs": 3333.3,
+          "simMs": 1552,
+          "smoothStep": true,
+          "setTimeoutLoop": false
+        }
+      ],
+      "requestFailures": []
+    },
+    {
+      "name": "pw-after-slow-raf",
+      "build": "fixed working tree",
+      "rafMs": 1000,
+      "outcome": "complete",
+      "observedCupWallMs": 125444,
+      "resetVerified": true,
+      "jsErrors": [],
+      "bouts": [
+        {
+          "a": "kuma",
+          "b": "yume",
+          "seed": 123,
+          "readyToOutcomeMs": 43002.4,
+          "winnerId": "yume",
+          "result": {
+            "winner": 1,
+            "how": "ko",
+            "ms": 33120,
+            "hp": [
+              0,
+              0.38052576000000005
+            ],
+            "contacts": [
+              19,
+              26
+            ],
+            "digest": "4c99b17b"
+          }
+        },
+        {
+          "a": "bravow",
+          "b": "beotim",
+          "seed": 124,
+          "readyToOutcomeMs": 41003.2,
+          "winnerId": "bravow",
+          "result": {
+            "winner": 0,
+            "how": "ko",
+            "ms": 30608,
+            "hp": [
+              0.35671600000000026,
+              0
+            ],
+            "contacts": [
+              30,
+              15
+            ],
+            "digest": "51cbeb4f"
+          }
+        },
+        {
+          "a": "yume",
+          "b": "bravow",
+          "seed": 125,
+          "readyToOutcomeMs": 29229.9,
+          "winnerId": "yume",
+          "result": {
+            "winner": 0,
+            "how": "ko",
+            "ms": 20192,
+            "hp": [
+              0.8548779999999998,
+              0
+            ],
+            "contacts": [
+              25,
+              8
+            ],
+            "digest": "3d090aff"
+          }
+        }
+      ],
+      "sampledClocks": [
+        {
+          "wallMs": 25200,
+          "round": "Semifinal 1",
+          "hidden": false,
+          "focused": true,
+          "inFocus": true,
+          "rawDelta": 16.8,
+          "actualFps": 54.5,
+          "screenMs": 22884.5,
+          "simMs": 18000,
+          "smoothStep": false,
+          "setTimeoutLoop": true
+        }
+      ],
+      "requestFailures": [
+        {
+          "path": "/art/characters/yume/native-city-yume-side-20261011/walk.webp",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "path": "/art/characters/yume/native-city-yume-side-20261011/slam.webp",
+          "error": "net::ERR_ABORTED"
+        }
+      ]
+    }
+  ],
+  "comparison": {
+    "allThreeFullResultObjectsEqual": true,
+    "includes": [
+      "winnerId",
+      "winner index",
+      "how",
+      "simulation ms",
+      "hp",
+      "contacts",
+      "digest"
+    ],
+    "newCupResetVerified": true
+  },
+  "requestFailureNote": "Two ERR_ABORTED image requests were recorded in each completed run. These reports include post-completion reset cleanup and do not timestamp failed requests, so their exact phase is not established. No JavaScript or bout error occurred in either completed run."
+}

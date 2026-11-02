@@ -10,3 +10,12 @@ export const RENDER_FRAME_RATE = Object.freeze({
   forceSetTimeOut: false,
   smoothStep: true,
 } as const);
+
+/** A visible broadcast iframe can receive rAF at 1Hz. Keep its presentation clock on timers and preserve elapsed time after blur. */
+export const TWITCH_RENDER_FRAME_RATE = Object.freeze({
+  ...RENDER_FRAME_RATE,
+  forceSetTimeOut: true,
+  smoothStep: false,
+  // The timer already targets 60Hz; another limit drops rounded 16ms ticks to about 30Hz.
+  limit: 0,
+} as const);
