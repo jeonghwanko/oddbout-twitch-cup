@@ -24,24 +24,28 @@ async function file(path) {
   files.set(path, entry); return entry;
 }
 for (const port of ports) {
-  createServer(async (req, res) => {
+  const serve = async (req, res) => {
     res.setHeader('Cache-Control', 'no-store');
     const url = new URL(req.url ?? '/', `http://127.0.0.1:${port}`);
     if (url.pathname === '/__profile' && req.method === 'POST') {
       if (req.headers.origin !== `http://127.0.0.1:${port}`) { res.writeHead(403).end(); return; }
-      let body = '', bytes = 0;
+      const chunks = [];
+      let bytes = 0;
       for await (const chunk of req) {
         bytes += chunk.length;
         if (bytes > 2_000_000) { res.writeHead(413).end(); return; }
-        body += chunk;
+        chunks.push(chunk);
       }
+      let payload;
       try {
-        const report = { ...JSON.parse(body), label: args.label ?? 'sample', port, recordedAt: new Date().toISOString() };
-        await appendFile(out, JSON.stringify(report) + '\n');
-        console.log(JSON.stringify({ label: report.label, port, kind: report.kind, readyMs: report.readyMs,
-          bytes: report.frameEncodedBytes, cacheHits: report.cacheHits?.length }));
-        res.writeHead(204).end();
-      } catch { res.writeHead(400).end(); }
+        // Decode once: a TCP chunk can end in the middle of a Korean character.
+        payload = JSON.parse(Buffer.concat(chunks).toString('utf8'));
+      } catch { res.writeHead(400).end(); return; }
+      const report = { ...payload, label: args.label ?? 'sample', port, recordedAt: new Date().toISOString() };
+      await appendFile(out, JSON.stringify(report) + '\n');
+      console.log(JSON.stringify({ label: report.label, port, kind: report.kind, readyMs: report.readyMs,
+        bytes: report.frameEncodedBytes, cacheHits: report.cacheHits?.length }));
+      res.writeHead(204).end();
       return;
     }
     if (req.method !== 'GET' && req.method !== 'HEAD') { res.writeHead(405).end(); return; }
@@ -57,5 +61,10 @@ for (const port of ports) {
       if (useGzip) res.setHeader('Content-Encoding', 'gzip');
       res.writeHead(200).end(req.method === 'HEAD' ? undefined : body);
     } catch { res.writeHead(404).end('Not found'); }
+  };
+  createServer((req, res) => {
+    // Node's HTTP emitter does not handle a rejected async request callback.
+    // Reloading/closing the tab during POST must not terminate every sample port.
+    void serve(req, res).catch(() => { if (!res.destroyed) res.writeHead(500).end('Could not record request'); });
   }).listen(port, '127.0.0.1', () => console.log(`Sample ${args.label ?? ''}: http://127.0.0.1:${port}/twitch.html?lang=en`));
 }

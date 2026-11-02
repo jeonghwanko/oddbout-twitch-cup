@@ -24,6 +24,7 @@
 - 빌드 미리보기: `npm run preview` (5178 포트; 개발 서버와 동시에 실행하지 않는다).
 - 청크 분석: `npm run analyze:build`. 측정값·성능 경계·예산은 [`docs/performance.md`](docs/performance.md). Phaser 배포본과 미디어 목록 변환을 바꾸면 빌드 예산 및 런타임 미디어 테스트를 확인한다.
 - 실제 첫 경기 측정: 빌드 후 `npm run measure:first-bout -- --ports=5186,5187,5188`. 새 출처·no-store·캐시 적중 0을 확인하고 로컬 측정의 범위를 명시한다.
+- 측정 비교에는 저장이 확인된 `kind: ready`만 사용한다. `invalid`·오류·재시도·숨김·누락된 리소스를 정상 cold sample로 바꾸지 않는다. 실행 편차와 제외 조건도 기록한다.
 
 ## 코드 소유 경로
 

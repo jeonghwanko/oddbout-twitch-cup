@@ -221,10 +221,10 @@ function runMatch(automaticRetry = false): void {
 window.addEventListener("message", event => {
   if (!request || !frame || failed) return;
   if (validateTwitchArenaHostReady(event, location.origin, frame.contentWindow)) {
-    if (!hostReady) {
-      hostReady = true;
-      frame.contentWindow?.postMessage({ ...request, type: "oddbout:twitch:start-bout" }, location.origin);
-    }
+    // Navigation keeps the WindowProxy: a queued ready from the retired document
+    // must not suppress the replacement's ready. The host consumes each start token once.
+    hostReady = true;
+    frame.contentWindow?.postMessage({ ...request, type: "oddbout:twitch:start-bout" }, location.origin);
     return;
   }
   const message = validateTwitchArenaBoutMessage(event, location.origin, frame.contentWindow, request); if (!message) return;
@@ -237,7 +237,10 @@ window.addEventListener("message", event => {
     }, TWITCH_ARENA_BOUT_TIMEOUT_MS);
     notice(""); return;
   }
-  if (message.type === "oddbout:twitch:bout-error") { failBout("Could not load the match. Select Retry match."); return; }
+  if (message.type === "oddbout:twitch:bout-error") {
+    // The envelope and bounded message have already been validated; notice uses textContent.
+    failBout(message.message.trim() || "Could not load the match. Select Retry match."); return;
+  }
   const matchId = state.activeMatchId; if (!matchId) return;
   const outcome = applyTwitchMatchResult(state, matchId, message.winnerId); if (!outcome.applied) return;
   clearTimeout(watchdog); clearTimeout(bootWatchdog); clearTimeout(navigation);

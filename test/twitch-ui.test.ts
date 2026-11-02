@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi, type MockInstance } from "vitest";
-import { parseTwitchArenaBoutRequest, type TwitchArenaBoutRequest } from "../src/app/TwitchArenaBout";
+import { parseTwitchArenaBoutRequest, twitchBoutBootTimeoutMs, type TwitchArenaBoutRequest } from "../src/app/TwitchArenaBout";
 import { CITY_FIGHTER_IDS } from "../src/sim/cityFight/CityFighterIds";
 import type { TwitchChatCallbacks, TwitchChatClientOptions } from "../src/platform/twitchChat";
 import type { TwitchSession } from "../src/platform/twitchAuth";
@@ -69,6 +69,43 @@ function result(frame: HTMLIFrameElement, request: TwitchArenaBoutRequest): void
 }
 
 describe("Twitch Cup browser controls", () => {
+  it("shows the validated host failure reason without changing the bracket", async () => {
+    await connect(); for (let i = 1; i <= 4; i++) viewer(i);
+    const bout = await start();
+    const message = "The battle exceeded its time limit. Retry this match.";
+    send(bout.frame, { ...bout.request, type: "oddbout:twitch:bout-error", message });
+    expect(element("notice").textContent).toBe(message);
+    expect(element("retry").hidden).toBe(false);
+    expect(element("round").textContent).toBe("Semifinal 1");
+    expect(document.querySelector("#bracket .won")).toBeNull();
+  });
+
+  it("resends the retry token on fresh host-ready after a stale document's ready was accepted", async () => {
+    await connect(); for (let i = 1; i <= 4; i++) viewer(i);
+    click("start"); await vi.advanceTimersByTimeAsync(0);
+    const frame = document.querySelector<HTMLIFrameElement>("#arena iframe")!;
+    const initial = parseTwitchArenaBoutRequest(new URL(frame.src).search)!;
+    await vi.advanceTimersByTimeAsync(twitchBoutBootTimeoutMs(initial) + 1);
+    const retry = parseTwitchArenaBoutRequest(new URL(frame.src).search)!;
+    expect(retry).toMatchObject({ a: initial.a, b: initial.b, seed: initial.seed });
+    expect(retry.boutId).not.toBe(initial.boutId);
+    const post = vi.spyOn(frame.contentWindow!, "postMessage").mockImplementation(() => {});
+    // A queued ready from the old document has the same WindowProxy after navigation.
+    // Its start can be lost before the replacement document installs its listener.
+    send(frame, { type: "oddbout:twitch:host-ready", protocol: 1 });
+    expect(post).toHaveBeenCalledTimes(1);
+    send(frame, { type: "oddbout:twitch:host-ready", protocol: 1 });
+    expect(post).toHaveBeenCalledTimes(2);
+    for (const [data, origin] of post.mock.calls) {
+      expect(data).toEqual({ ...retry, type: "oddbout:twitch:start-bout" });
+      expect(origin).toBe(location.origin);
+    }
+    send(frame, { ...retry, type: "oddbout:twitch:bout-ready" });
+    result(frame, retry);
+    expect(document.querySelector("#bracket .match .won")).not.toBeNull();
+    expect(element("retry").hidden).toBe(true);
+  });
+
   it("links the wordmark to the standalone cup entry", () => {
     expect(document.querySelector<HTMLAnchorElement>(".wordmark")!.getAttribute("href")).toBe("./twitch.html");
   });

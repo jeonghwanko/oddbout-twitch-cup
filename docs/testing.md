@@ -23,6 +23,8 @@ npm run lint:types
 | 실제 청크 크기·불필요한 의존성 재유입 | `test/twitch-build-budget.test.ts` |
 | 빌드의 오디오·글꼴 목록 축약 | `test/twitch-runtime-media.test.ts` |
 | 경기의 좌우 이동 이미지·준비 판정 | `test/twitch-arena-gait.test.ts` |
+| 첫 경기 측정의 실패·재시도·숨김·캐시·저장 오류 | `test/first-bout-probe.test.ts` |
+| 측정 서버의 중단된 POST·UTF-8 분할 수신 | `test/first-bout-server.test.ts` |
 
 새 테스트는 `test/` 아래 `*.test.ts`로 만든다. 기본 환경은 Node이며 DOM이 필요한 파일만 `// @vitest-environment jsdom`을 사용한다. 외부 서비스와 브라우저 경계를 mock하고, 검증하려는 실제 상태 규칙은 유지한다. 가짜 타이머·전역 listener·mock은 테스트가 끝날 때 정리한다. [Vitest 환경 문서](https://vitest.dev/guide/environment)를 참고한다.
 

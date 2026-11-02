@@ -34,6 +34,7 @@ Cup 흐름은 채팅에서 `!join`을 받아 등록된 선수 command와 대조�
 - `!join` 파서는 메시지 전체에 단일 command가 있어야 한다. 허용 문자는 영문자·숫자·밑줄·하이픈이며 길이는 1–64자다. 매칭 전에 소문자화한다.
 - OAuth 응답은 popup의 origin, source, state를 확인하고 Twitch validate 응답에서 client ID, 사용자, scope, 만료를 검증한다. access token은 브라우저 저장소가 아니라 메모리에서만 유지한다.
 - iframe 요청과 응답은 동일 origin/source 및 경기 ID, 선수 쌍, seed가 일치해야 한다. seed는 unsigned 32-bit 정수다. ready/error 메시지는 경기 결과가 아니다.
+- iframe 재탐색은 WindowProxy를 바꾸지 않는다. 이전 문서의 지연된 host-ready가 새 문서의 준비를 가리지 않도록 검증된 host-ready마다 현재 start 요청을 재전송한다. 호스트는 각 요청 토큰을 한 번만 실행한다.
 - 부팅 watchdog은 기본 25초이며 등록 선수 한 명마다 20초를 더한다. 부팅 재시도는 한 번으로 제한된다. 전투 결과는 시뮬레이션의 seed와 digest를 포함한다.
 - 호스트의 전역 치명적 오류 이후에는 새 경기 요청에 해당 요청 ID의 오류를 즉시 응답한다. 수동 재시도로 iframe을 새로 만든다. 일반 선수 로딩·경기 오류는 같은 호스트의 후속 요청을 막지 않는다.
 - 시뮬레이션은 seed 기반 선택에 의존한다. `src/sim/cityFight/bout/CityFightFighterBout.ts`의 난수 소비와 업데이트 순서를 변경할 때 결과 재현성도 확인한다.
