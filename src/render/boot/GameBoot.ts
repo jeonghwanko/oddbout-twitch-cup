@@ -57,7 +57,9 @@ export async function bootGame(spec: GameBootSpec): Promise<Phaser.Game> {
   // 첫 화면이 폴백 폭 그대로 남으므로 부팅을 글꼴 뒤로 미룬다. 표제용 조선궁서체는
   // 3.4MB 라 여기서 기다리지 않고, 도착한 뒤 useDisplayFont 가 다시 달아 준다.
   // 인트로로 여는 부팅은 영상이 먼저 받히도록 IntroScene 이 표제 글꼴을 늦게 시작한다.
+  performance.mark?.("oddbout:fonts-start");
   await loadUiFont();
+  performance.mark?.("oddbout:fonts-ready");
   if (!spec.displayFontAfterIntro) startDisplayFontLoad();
 
   const game = new Phaser.Game({

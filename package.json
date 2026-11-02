@@ -10,6 +10,7 @@
     "dev": "vite --port 5178 --strictPort",
     "build": "vite build",
     "analyze:build": "node scripts/analyze-build.mjs",
+    "measure:first-bout": "node scripts/measure-first-bout.mjs",
     "preview": "vite preview --port 5178 --strictPort",
     "test": "vitest run",
     "lint:types": "tsc --noEmit",

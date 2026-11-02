@@ -1,0 +1,241 @@
+{
+  "date": "2026-11-02",
+  "baseline": "95da1b4 plus passive User Timing marks",
+  "method": "Real Chrome local-demo UI; capture Start cup click to first bout-ready; production build; gzip text; no-store responses; separate origin ports per sample; no network/CPU throttling",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+  "notes": [
+    "HTTP cache cold, not a fresh browser process: OS disk, font/GPU/driver and process caches were not reset.",
+    "Parent width stayed 1897 CSS px; browser chrome changed parent height between 973 and 1035. The normal arena uses width-based 16:9 sizing, not viewport height.",
+    "Three preliminary before samples with varying parent height were excluded before the final comparison batch.",
+    "Local loopback measurements are not production/CDN/mobile latency guarantees.",
+    "Resource byte totals are completed same-origin iframe subresources at ready, excluding lobby, iframe HTML, HTTP headers and later audio/intro requests."
+  ],
+  "additionalObservation": {
+    "purpose": "Full-cup smoke after the comparison batch, same optimized build",
+    "port": 5193,
+    "readyMs": 1338.9,
+    "sceneToReadyMs": 513.8,
+    "encodedBodyBytes": 12135269,
+    "resourceCount": 81,
+    "cacheHits": 0,
+    "non200": 0,
+    "parentViewport": [1897, 973],
+    "devicePixelRatio": 1.3499999046325684,
+    "hiddenAtReady": false,
+    "cupResults": ["kuma/yume: yume", "bravow/beotim: beotim", "yume/beotim: beotim"],
+    "note": "Large variability beyond the comparison batch; net.webp had not completed by ready. Do not generalize the batch percentage to other browser/system states."
+  },
+  "before": [
+    {
+      "port": 5186,
+      "readyMs": 5840.9,
+      "hostReadyMs": 1872.5,
+      "encodedBodyBytes": 16143626,
+      "resourceCount": 99,
+      "cacheHits": 0,
+      "revalidated": 0,
+      "non200": 0,
+      "parentViewport": [
+        1897,
+        973
+      ],
+      "devicePixelRatio": 1.3499999046325684,
+      "hidden": false,
+      "phasesMs": {
+        "engineModule": 1176.8,
+        "fontsWait": 344.1,
+        "packsWait": 86.8,
+        "sceneToReady": 3792.1
+      }
+    },
+    {
+      "port": 5187,
+      "readyMs": 7850.6,
+      "hostReadyMs": 1743.8,
+      "encodedBodyBytes": 16143626,
+      "resourceCount": 99,
+      "cacheHits": 0,
+      "revalidated": 0,
+      "non200": 0,
+      "parentViewport": [
+        1897,
+        973
+      ],
+      "devicePixelRatio": 1.3499999046325684,
+      "hidden": false,
+      "phasesMs": {
+        "engineModule": 1177.6,
+        "fontsWait": 200.3,
+        "packsWait": 20.2,
+        "sceneToReady": 5926.4
+      }
+    },
+    {
+      "port": 5188,
+      "readyMs": 6941.1,
+      "hostReadyMs": 1700.1,
+      "encodedBodyBytes": 16143626,
+      "resourceCount": 99,
+      "cacheHits": 0,
+      "revalidated": 0,
+      "non200": 0,
+      "parentViewport": [
+        1897,
+        973
+      ],
+      "devicePixelRatio": 1.3499999046325684,
+      "hidden": false,
+      "phasesMs": {
+        "engineModule": 1088.9,
+        "fontsWait": 208.1,
+        "packsWait": 21.7,
+        "sceneToReady": 5047.7
+      }
+    }
+  ],
+  "after": [
+    {
+      "port": 5190,
+      "readyMs": 5940.6,
+      "hostReadyMs": 1582.4,
+      "encodedBodyBytes": 12445943,
+      "resourceCount": 82,
+      "cacheHits": 0,
+      "revalidated": 0,
+      "non200": 0,
+      "parentViewport": [
+        1897,
+        1035
+      ],
+      "devicePixelRatio": 1.3499999046325684,
+      "hidden": false,
+      "phasesMs": {
+        "engineModule": 1145.6,
+        "fontsWait": 2.3,
+        "packsWait": 26.4,
+        "sceneToReady": 4017.2
+      }
+    },
+    {
+      "port": 5191,
+      "readyMs": 6153,
+      "hostReadyMs": 1800.3,
+      "encodedBodyBytes": 12445943,
+      "resourceCount": 82,
+      "cacheHits": 0,
+      "revalidated": 0,
+      "non200": 0,
+      "parentViewport": [
+        1897,
+        973
+      ],
+      "devicePixelRatio": 1.3499999046325684,
+      "hidden": false,
+      "phasesMs": {
+        "engineModule": 1299,
+        "fontsWait": 1.8,
+        "packsWait": 23.8,
+        "sceneToReady": 4014.3
+      }
+    },
+    {
+      "port": 5192,
+      "readyMs": 6009.1,
+      "hostReadyMs": 1700.6,
+      "encodedBodyBytes": 12445943,
+      "resourceCount": 82,
+      "cacheHits": 0,
+      "revalidated": 0,
+      "non200": 0,
+      "parentViewport": [
+        1897,
+        1035
+      ],
+      "devicePixelRatio": 1.3499999046325684,
+      "hidden": false,
+      "phasesMs": {
+        "engineModule": 1219.4,
+        "fontsWait": 1.8,
+        "packsWait": 21.9,
+        "sceneToReady": 4007
+      }
+    }
+  ],
+  "summary": {
+    "beforeMedianMs": 6941.1,
+    "afterMedianMs": 6009.1,
+    "improvementPercent": 13.4,
+    "bodyReductionPercent": 22.9,
+    "removedImageBytes": 3697742
+  },
+  "removedImages": [
+    {
+      "path": "/art/characters/kuma/native-city-kuma-ortho-20261007/front-idle.webp",
+      "encodedBytes": 36204
+    },
+    {
+      "path": "/art/characters/kuma/native-city-kuma-ortho-20261007/front-walk.webp",
+      "encodedBytes": 526430
+    },
+    {
+      "path": "/art/characters/kuma/native-city-kuma-ortho-20261007/front_diagonal-idle.webp",
+      "encodedBytes": 30312
+    },
+    {
+      "path": "/art/characters/kuma/native-city-kuma-ortho-20261007/front_diagonal-walk.webp",
+      "encodedBytes": 477488
+    },
+    {
+      "path": "/art/characters/kuma/native-city-kuma-ortho-20261007/back_diagonal-idle.webp",
+      "encodedBytes": 25290
+    },
+    {
+      "path": "/art/characters/kuma/native-city-kuma-ortho-20261007/back_diagonal-walk.webp",
+      "encodedBytes": 402012
+    },
+    {
+      "path": "/art/characters/kuma/native-city-kuma-ortho-20261007/back-idle.webp",
+      "encodedBytes": 30306
+    },
+    {
+      "path": "/art/characters/kuma/native-city-kuma-ortho-20261007/back-walk.webp",
+      "encodedBytes": 444024
+    },
+    {
+      "path": "/art/characters/kuma/native-city-kuma-ortho-20261007/back_diagonal_left-idle.webp",
+      "encodedBytes": 26208
+    },
+    {
+      "path": "/art/characters/yume/native-city-yume-side-20261011/front-idle.webp",
+      "encodedBytes": 20722
+    },
+    {
+      "path": "/art/characters/yume/native-city-yume-side-20261011/front-walk.webp",
+      "encodedBytes": 462336
+    },
+    {
+      "path": "/art/characters/yume/native-city-yume-side-20261011/front_diagonal-idle.webp",
+      "encodedBytes": 19892
+    },
+    {
+      "path": "/art/characters/yume/native-city-yume-side-20261011/front_diagonal-walk.webp",
+      "encodedBytes": 410654
+    },
+    {
+      "path": "/art/characters/yume/native-city-yume-side-20261011/back_diagonal-idle.webp",
+      "encodedBytes": 18808
+    },
+    {
+      "path": "/art/characters/yume/native-city-yume-side-20261011/back_diagonal-walk.webp",
+      "encodedBytes": 372672
+    },
+    {
+      "path": "/art/characters/yume/native-city-yume-side-20261011/back-idle.webp",
+      "encodedBytes": 19372
+    },
+    {
+      "path": "/art/characters/yume/native-city-yume-side-20261011/back-walk.webp",
+      "encodedBytes": 375012
+    }
+  ]
+}

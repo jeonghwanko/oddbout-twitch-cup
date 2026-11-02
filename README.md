@@ -111,6 +111,7 @@ If the service is missing or unavailable, the nine built-in fighters remain usab
 | `npm run preview` | Serve the last production build on strict port 5178 |
 | `npm run analyze:build` | Report chunk sizes and module contributions without changing `dist/` |
 | `npm run analyze:build -- bundle-report.json` | Also save the full bundle report to a local JSON file |
+| `npm run measure:first-bout -- --ports=5186,5187,5188` | Local no-store/gzip server for first-bout browser measurements; run after building |
 
 Stop `dev` before using `preview`, since both use port 5178. Rebuild after source or environment changes before testing with `preview`. Generated bundle reports are local diagnostic artifacts; avoid committing them unless the task specifically needs a baseline.
 
@@ -141,7 +142,9 @@ The 2026-11-02 optimization reduced the two largest JavaScript chunks from **2,5
 
 The build uses the same Phaser 3.90.0 version's official Arcade distribution, strips unused provenance fields from the runtime media payload while keeping the source records, and excludes a village-only KTX2 catalogue from the arena dependency graph. Battle-module loading overlaps game/font initialization. Seeded combat rules remain unchanged.
 
-Large-chunk warnings still exist. Use the [measurement procedure and byte budgets](docs/performance.md) to investigate them; do not suppress warnings or raise budgets without understanding the dependency change. The actual loading-time improvement across devices and networks has not been measured.
+In a separate follow-up, three cold-HTTP-cache Chrome runs on local loopback measured **6.94 → 6.01 seconds median** from Start cup to battle-ready. Removing 17 unused front/back/diagonal movement sheets and preloading the same required fonts reduced completed iframe resource bodies from **16.14 → 12.45 MB**. This is a small local sample, not a production or mobile latency guarantee; OS/GPU caches were not reset. A later full-cup smoke run reached ready in 1.34 seconds with no HTTP cache hits, showing substantial run-to-run variability; its observation is also recorded.
+
+Large-chunk warnings still exist. Use the [measurement procedure, sample records, and byte budgets](docs/performance.md) to investigate them; do not suppress warnings or raise budgets without understanding the dependency change. The village screen is not an entrypoint, but some inherited village-related shared code and data remain in the dependency graph.
 
 ## Build and host
 

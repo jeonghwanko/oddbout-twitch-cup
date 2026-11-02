@@ -3,7 +3,8 @@ import type { SpriteSheetAssetDefinition } from "../../../assets/RuntimeArtTypes
 import { ARENA_RING_ART } from "../../../assets/ArenaArtCatalog";
 import { cityFighterPack } from "../../art/CityFighterPacks";
 import { registeredArenaPack } from "../../art/RegisteredArenaFighters";
-import { kumaCombatSheetsAt, kumaRunSheetsAt, kumaVillageSheets } from "../../art/NativeCityKumaArt";
+import { kumaCombatSheetsAt, kumaRunSheetsAt } from "../../art/NativeCityKumaArt";
+import { arenaGaitSheets } from "../../art/ArenaGaitSheets";
 import { NATIVE_CITY_SIDE_HEADINGS, nativeCityOrthoActionAssets, nativeCityOrthoActionClip, nativeCityOrthoClipSheets, nativeCityOrthoGaitAssets,
   type NativeCityOrthoAction, type NativeCityOrthoPack } from "../../art/NativeCityOrthoPack";
 import { preloadCharacterSpriteSheets, preloadImageAssets } from "../../art/PhaserAssetLoader";
@@ -34,7 +35,7 @@ function fighterSheets(id: string, played = false): SpriteSheetAssetDefinition[]
   // Registered v1 packs contain only the two arena side headings. Do not route them through the eight-heading village gait loop.
   if (registered) return [...nativeCityOrthoGaitAssets(registered, ["idle", "walk", "run"]), ...nativeCityOrthoActionAssets(registered)];
   const pack = cityFighterPack(id);
-  return pack ? distinctSheets([...kumaVillageSheets(pack), ...stageFighterSheets(pack),
+  return pack ? distinctSheets([...arenaGaitSheets(pack, ["idle", "walk"]), ...stageFighterSheets(pack),
     ...(played ? nativeCityOrthoActionAssets(pack, ["dodge"]) : [])]) : [];
 }
 

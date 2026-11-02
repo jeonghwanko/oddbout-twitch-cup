@@ -7,6 +7,8 @@ import type { CityFightBoutResult } from "../../sim/cityFight/bout/CityFightFigh
 import { bootGame } from "./GameBoot";
 import { sfx } from "../audio/sfx";
 
+performance.mark?.("oddbout:host-module");
+
 /** One game/document hosts all exhibitions. The parent owns the bracket and attempt tokens. */
 export async function bootTwitchArenaBout(initialRequest: TwitchArenaBoutRequest, options: RuntimeOptions): Promise<void> {
   const origin = location.origin;
@@ -56,7 +58,7 @@ export async function bootTwitchArenaBout(initialRequest: TwitchArenaBoutRequest
     // failures immediately, even if the parent has not sent its first start command yet.
     const resources = Promise.all([
       import("../scenes/ArenaDuelScene"), import("../art/CityFighterPacks"), import("../art/RegisteredArenaFighters"),
-    ]).catch(() => { fatal(); return null; });
+    ]).then(deps => { performance.mark?.("oddbout:modules-ready"); return deps; }).catch(() => { fatal(); return null; });
     const start = async (request: TwitchArenaBoutRequest): Promise<void> => {
       const hostGame = game;
       if (disposed || !hostGame || !acceptStart(request)) return;
@@ -76,7 +78,9 @@ export async function bootTwitchArenaBout(initialRequest: TwitchArenaBoutRequest
         const loadCorner = (id: string): Promise<boolean> => twitchArenaCorner(id) === "fighter"
           ? loadCityFighterPack(id).then(pack => pack !== null)
           : prepareRegisteredCupFighter(id).then(() => registeredArenaDuelReady(id), () => false);
+        performance.mark?.("oddbout:packs-start");
         const loaded = await Promise.all([request.a, request.b].map(loadCorner));
+        performance.mark?.("oddbout:packs-ready");
         if (!current(attempt)) return;
         if (!loaded.every(Boolean)) { fail(attempt, "Could not load the battle fighters"); return; }
         const onResult = (result: CityFightBoutResult) => {
@@ -90,11 +94,13 @@ export async function bootTwitchArenaBout(initialRequest: TwitchArenaBoutRequest
               broadcast: { onReady: () => {
                 if (!current(attempt) || attempt.ready) return;
                 attempt.ready = true; window.clearTimeout(attempt.deadline);
+                performance.mark?.("oddbout:bout-ready");
                 attempt.deadline = window.setTimeout(() => fail(attempt, "The battle exceeded its time limit. Retry this match."), TWITCH_ARENA_BOUT_TIMEOUT_MS);
                 send({ ...request, type: "oddbout:twitch:bout-ready" });
               }, onResult, onError: message => fail(attempt, message) } });
           }
         }
+        performance.mark?.("oddbout:scene-add");
         hostGame.scene.add(SCENE_KEYS.arenaDuel, TwitchArenaScene, true);
       } catch { fail(attempt, "Could not load the battle. Retry this match."); }
     };
@@ -107,6 +113,7 @@ export async function bootTwitchArenaBout(initialRequest: TwitchArenaBoutRequest
       constructor() { super("TwitchArenaHost"); }
       create(): void {
         game = this.game;
+        performance.mark?.("oddbout:host-ready");
         if (!disposed) window.parent.postMessage({ type: "oddbout:twitch:host-ready", protocol: 1 }, origin);
       }
     }

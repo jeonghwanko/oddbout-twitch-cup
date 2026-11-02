@@ -1,5 +1,6 @@
 import type Phaser from "phaser";
 import { nativeCityOrthoGaitAssets } from "../art/NativeCityOrthoPack";
+import { arenaGaitSheets } from "../art/ArenaGaitSheets";
 import type { NativeCityFightHpBarFrame } from "./NativeCityFightHpBarView";
 import { kumaFightSkills, kumaFightStatuses, type CityFightFoeSkill, type CityFightFoeStatus } from "../../sim/cityFight/CityFightStatus";
 import type { SpriteSheetAssetDefinition } from "../../assets/RuntimeArtTypes";
@@ -230,7 +231,8 @@ export class NativeCityKumaView {
       this.moveFx.setPack(pack);
       this.gunFx.setPack(pack);
       this.drawScale = fighterDrawScaleIndex(profile.drawScalePack ?? pack, fighterDrawScales(skinId ?? actorId));
-      this.sheets = profile.pack ? nativeCityOrthoGaitAssets(this.pack, ["idle", "walk"]) : kumaVillageSheets(this.pack);
+      this.sheets = profile.arenaMotion ? arenaGaitSheets(this.pack, ["idle", "walk"])
+        : profile.pack ? nativeCityOrthoGaitAssets(this.pack, ["idle", "walk"]) : kumaVillageSheets(this.pack);
       // 그의 몸 시트는 한 묶음이다(3D 카드가 하나를 맡으면 Phaser 사본을 함께 내린다). 대화 초상 시트는 Phaser 가 그리므로 뺀다.
       // In the 3D village they are born low from the start (`NativeCityFightArt.family`).
       const body = [...this.sheets, ...kumaCombatSheets(this.pack),

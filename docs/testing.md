@@ -22,6 +22,7 @@ npm run lint:types
 | Vite 입력·포트 | `test/twitch-site-build.test.ts` |
 | 실제 청크 크기·불필요한 의존성 재유입 | `test/twitch-build-budget.test.ts` |
 | 빌드의 오디오·글꼴 목록 축약 | `test/twitch-runtime-media.test.ts` |
+| 경기의 좌우 이동 이미지·준비 판정 | `test/twitch-arena-gait.test.ts` |
 
 새 테스트는 `test/` 아래 `*.test.ts`로 만든다. 기본 환경은 Node이며 DOM이 필요한 파일만 `// @vitest-environment jsdom`을 사용한다. 외부 서비스와 브라우저 경계를 mock하고, 검증하려는 실제 상태 규칙은 유지한다. 가짜 타이머·전역 listener·mock은 테스트가 끝날 때 정리한다. [Vitest 환경 문서](https://vitest.dev/guide/environment)를 참고한다.
 
@@ -53,3 +54,5 @@ npm run preview
 HTML 진입점은 세 개이며, `public/` 미디어도 `dist/`로 복사된다. 큰 청크 경고는 빌드 실패와 구분한다. `npm run analyze:build`로 청크 구성과 크기를 확인한다. 적용한 최적화·바이트 예산·시간 측정의 한계는 [performance.md](performance.md)를 따른다. 정적 글꼴은 `/fonts/...` 형태로 참조해 Vite가 public 파일로 인식하게 한다. [Vite public 디렉터리 규칙](https://vite.dev/guide/assets#the-public-directory).
 
 CI의 체크아웃·Node 설정은 공식 [checkout](https://github.com/actions/checkout)과 [setup-node](https://github.com/actions/setup-node)를 사용하며, 배포 단계는 없다.
+
+캐시 없는 첫 경기 실측은 [performance.md](performance.md)의 `npm run measure:first-bout` 절차를 따른다. 테스트 실행 시간이나 청크 크기를 사용자 로딩 시간으로 대신 보고하지 않는다. 측정 중에는 빌드/전체 테스트를 동시에 실행하지 않는다.
