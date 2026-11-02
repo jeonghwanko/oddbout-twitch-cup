@@ -60,6 +60,21 @@ function checkedBout(bout: BroadcastBout, request: BroadcastBoutInput): Broadcas
   return { ...request, winnerId: bout.winnerId, winner: bout.winner, how: bout.how, ms: bout.ms, hp: [...bout.hp], contacts: [...bout.contacts], digest: bout.digest };
 }
 
+/** How long the winner card stays on screen: between bouts, and after the final before the result returns (the
+ * runner closes the browser as soon as it does). Zero in unit tests; the broadcast page uses the Twitch cup's pace. */
+export interface BroadcastCupHolds { betweenBoutsMs: number; afterFinalMs: number }
+
+/** Rejects on abort between bouts (the cup is not complete); after the final it only ends the hold early. */
+function hold(ms: number, signal: AbortSignal, rejectOnAbort: boolean): Promise<void> {
+  if (ms <= 0) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const done = (): void => { clearTimeout(timer); signal.removeEventListener("abort", aborted); resolve(); };
+    const aborted = (): void => { clearTimeout(timer); if (rejectOnAbort) reject(new BroadcastCupError("broadcast_cancelled")); else resolve(); };
+    const timer = setTimeout(done, ms);
+    if (signal.aborted) aborted(); else signal.addEventListener("abort", aborted, { once: true });
+  });
+}
+
 /** Agent exhibitions have no viewer registration or Twitch identity. The caller
  * supplies four fighters; the existing host still verifies registered packages.
  * Job history lasts for this document only and is never a server ledger. */
@@ -67,7 +82,8 @@ export class BroadcastCup {
   private state: BroadcastCupStatus = { status: "idle", round: 0, fighterIds: [], bouts: [] };
   private readonly jobs = new Map<string, { fingerprint: string; result: Promise<BroadcastCupResult> }>();
   private active: AbortController | null = null;
-  constructor(private readonly runBout: RunBroadcastBout, private readonly changed: (status: BroadcastCupStatus) => void = () => {}) {}
+  constructor(private readonly runBout: RunBroadcastBout, private readonly changed: (status: BroadcastCupStatus) => void = () => {},
+    private readonly holds: BroadcastCupHolds = { betweenBoutsMs: 0, afterFinalMs: 0 }) {}
 
   getStatus(): BroadcastCupStatus { return structuredClone(this.state); }
 
@@ -110,6 +126,8 @@ export class BroadcastCup {
         bouts.push(checkedBout(bout, request));
         this.state = { status: index === 2 ? "completed" : "running", round: index + 1, fighterIds: input.fighterIds, bouts: [...bouts], ...(index === 2 ? { winnerId: bout.winnerId } : {}) };
         this.notify();
+        // Without this the next bout replaces the winner card at once, and the champion card closes with the browser.
+        await hold(index < 2 ? this.holds.betweenBoutsMs : this.holds.afterFinalMs, controller.signal, index < 2);
       }
       return { protocolVersion: 1, jobId: input.jobId, leaseToken: input.leaseToken, seed: input.seed, winnerId: bouts[2]!.winnerId, bouts };
     } catch {
