@@ -1,0 +1,9 @@
+@font-face{font-family:Pretendard;src:url('/fonts/Pretendard-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Pretendard;src:url('/fonts/Pretendard-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+/* Shared presentation tokens for the Twitch lobby and exhibition output. */
+:root{color-scheme:light;--studio-paper:#f7f6f0;--studio-ink:#0b222b;--studio-lime:#ddff4b;--studio-muted:#63747b;--studio-line:#dfe4df;--studio-soft:#eef1e8;--studio-on-dark:#b8cbd0;font-family:Pretendard,system-ui,sans-serif;color:var(--studio-ink);background:var(--studio-paper);font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}a{color:inherit;text-underline-offset:4px}:focus-visible{outline:3px solid #367787;outline-offset:4px}[hidden]{display:none!important}
+.studio-logo{display:block;width:162px;height:auto}
+.studio-faces{display:flex;justify-content:center;padding:0 8px}.studio-faces img{width:clamp(64px,7.5vw,104px);height:auto;flex-shrink:0;aspect-ratio:1;object-fit:cover;border-radius:50%;border:5px solid var(--studio-ink);outline:1px solid #647c80;background:#d1dcc8;margin-left:-8px}
+.studio-stats{display:flex;justify-content:space-between;gap:24px;border-top:1px solid #ffffff30;margin-top:24px;padding-top:13px;color:var(--studio-on-dark);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.studio-stats span:nth-child(2){color:var(--studio-lime)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}

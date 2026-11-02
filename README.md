@@ -60,6 +60,8 @@ The nine built-in commands are `kuma`, `yume`, `bravow`, `beotim`, `quickcat`, `
 
 **Stream view** hides the host controls for a cleaner broadcast layout; **Host view** restores them. Keep the game tab visible during the stream. The cup runs in the browser, and a fresh page load does not restore an earlier tournament. A failed bout exposes **Retry match**, which retains its pairing and seed. **New cup** starts a fresh tournament; disconnecting also clears the old cup.
 
+The Cup and exhibition screens share the Broadcast Studio visual style: cream backgrounds, navy stages, lime highlights, and the existing ODDBOUT portraits. `src/broadcast-theme.css` owns their shared colors and typography; `src/twitch.css` and `src/broadcast.css` own each layout. The Twitch page in `crashbang-heroes/kaito_web` is a separate implementation; changes do not sync between repositories automatically.
+
 ## Agent exhibition renderer
 
 `/broadcast.html` is a separate stream view for a locally controlled agent runner. It starts idle and runs actual Phaser battles through the existing same-origin `fighter.html` host. It does not connect Twitch chat, register viewers, or process payments. The ordinary Twitch Cup modes remain unchanged.
