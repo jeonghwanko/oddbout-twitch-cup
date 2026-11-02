@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ODDBOUT · Exhibition Broadcast</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, "Segoe UI", sans-serif; color: #f4f1e9; background: #0c1018; }
+    * { box-sizing: border-box; } body { margin: 0; } #broadcast-cup { width: min(1600px, 100%); margin: auto; padding: 22px 34px 24px; }
+    header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #313747; padding-bottom: 16px; }
+    .brand { font-size: 30px; font-weight: 900; letter-spacing: -.05em; } .brand span { font-size: 10px; color: #a9b3c8; letter-spacing: .18em; margin-left: 16px; vertical-align: middle; }
+    .live-label, .eyebrow { font-size: 10px; letter-spacing: .18em; color: #d3e890; font-weight: 700; } .headline { display: flex; align-items: end; justify-content: space-between; padding: 20px 0; gap: 20px; }
+    .eyebrow { margin: 0 0 6px; } h1 { margin: 0; font-size: clamp(24px, 3vw, 40px); letter-spacing: -.04em; } #broadcast-status { color: #a9b3c8; font-size: 13px; }
+    #broadcast-arena { aspect-ratio: 16/9; width: 100%; max-height: 66vh; background: #06090f; border: 1px solid #313747; overflow: hidden; }
+    iframe { width: 100%; height: 100%; border: 0; display: block; } .waiting { height: 100%; display: grid; place-content: center; text-align: center; color: #758099; } .waiting span { font-size: clamp(40px, 7vw, 100px); color: #293345; font-weight: 900; letter-spacing: -.05em; } .waiting p { font-size: 13px; }
+    .bracket { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; margin-top: 16px; border: 1px solid #313747; } .bracket > div { padding: 12px 16px; border-right: 1px solid #313747; } .bracket > div:last-child { border: 0; } h2 { margin: 0; font-size: 9px; letter-spacing: .16em; color: #8190aa; } .bracket p { font-size: 12px; font-weight: 700; margin: 9px 0 0; } .champion { background: #1e2930; } .champion h2, .champion p { color: #d3e890; }
+    @media (max-width: 700px) { #broadcast-cup { padding: 16px; } .live-label, .brand span { display: none; } .headline { display: block; } .bracket { grid-template-columns: 1fr 1fr; } .bracket > div { min-height: 70px; } #broadcast-arena { max-height: none; } }
+  </style>
+</head>
+<body><main id="broadcast-cup"></main><script type="module" src="/src/broadcast.ts"></script></body>
+</html>

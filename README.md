@@ -60,6 +60,16 @@ The nine built-in commands are `kuma`, `yume`, `bravow`, `beotim`, `quickcat`, `
 
 **Stream view** hides the host controls for a cleaner broadcast layout; **Host view** restores them. Keep the game tab visible during the stream. The cup runs in the browser, and a fresh page load does not restore an earlier tournament. A failed bout exposes **Retry match**, which retains its pairing and seed. **New cup** starts a fresh tournament; disconnecting also clears the old cup.
 
+## Agent exhibition renderer
+
+`/broadcast.html` is a separate stream view for a locally controlled agent runner. It starts idle and runs actual Phaser battles through the existing same-origin `fighter.html` host. It does not connect Twitch chat, register viewers, or process payments. The ordinary Twitch Cup modes remain unchanged.
+
+The runner calls `window.oddboutBroadcast.runCup({ jobId, leaseToken, seed, fighterIds })`. Protocol version 1 requires a uint32 seed and exactly four unique fighter IDs, for example `kuma`, `yume`, `bravow`, and `beotim`. The first two and last two meet in the semifinals; their winners meet in the final. Bout seeds are `(seed + index) >>> 0` for indices 0–2. Registered fighters use the existing runtime package loader and current approval checks.
+
+The returned promise contains `{ protocolVersion: 1, jobId, leaseToken, seed, winnerId, bouts }`; each bout contains `leftId`, `rightId`, `winnerId`, `seed`, and the engine's `winner`, `how`, `ms`, `hp`, `contacts`, and `digest`. The lease token may be a nonempty string or a positive safe integer fence; its type and value are preserved. `getStatus()` reads progress and `cancel()` stops pending work. Same-job retries with identical arguments reuse the in-memory result; changed arguments or leases conflict, and another active job is rejected. Failed or cancelled jobs stay terminal for that page session. Reloading clears this history: the runner must persist and reconcile jobs externally.
+
+Only validated origin, iframe source/document, attempt ID, pairing, seed, and result messages advance the bracket. An iframe document replacement during a cup rejects the job before replaying a start token. Readiness is not victory; errors/timeouts reject without producing a champion. Job and lease identifiers are not shown on stream. Keep credentials, wallet logic, and paid-job authorization in the runner/backend; this browser API is an exhibition renderer, not an authorization boundary. Keep the browser visible and prevent host sleep during execution.
+
 ## Connect Twitch
 
 1. Create an app in the [Twitch developer console](https://dev.twitch.tv/console/apps).
@@ -123,6 +133,7 @@ Stop `dev` before using `preview`, since both use port 5178. Rebuild after sourc
 | Path | Responsibility |
 | --- | --- |
 | `twitch.html` → `src/twitch.ts` | Lobby, bracket, roster, Twitch connection, iframe lifecycle |
+| `broadcast.html` → `src/broadcast.ts` | Agent exhibition API, stream bracket, validated iframe lifecycle |
 | `twitch-auth.html` → `src/twitchAuthCallback.ts` | OAuth callback page |
 | `fighter.html` → `src/fighter.ts` | Embedded battle entrypoint |
 | `src/app/TwitchTournament.ts` | Pure registration and tournament state transitions |
