@@ -12,6 +12,7 @@ export async function bootTwitchArenaBout(initialRequest: TwitchArenaBoutRequest
   const origin = location.origin;
   const acceptStart = createTwitchArenaStartGate();
   let disposed = false;
+  let terminalFailure = false;
   let game: Awaited<ReturnType<typeof bootGame>> | null = null;
   type Attempt = { request: TwitchArenaBoutRequest; settled: boolean; ready: boolean; deadline: number };
   let active: Attempt | null = null;
@@ -25,6 +26,9 @@ export async function bootTwitchArenaBout(initialRequest: TwitchArenaBoutRequest
     send({ ...attempt.request, type: "oddbout:twitch:bout-error", message });
   };
   const fatal = () => {
+    // GameBoot stops the loop on a global error. Even when the previous bout is
+    // already settled, later requests must fail promptly so the parent replaces this host.
+    terminalFailure = true;
     if (active) fail(active, "The battle could not continue. Retry this match.");
     else send({ ...initialRequest, type: "oddbout:twitch:bout-error", message: "Could not start the battle host." });
   };
@@ -48,22 +52,30 @@ export async function bootTwitchArenaBout(initialRequest: TwitchArenaBoutRequest
     game?.loop.stop(); sfx.shutdown();
   }, { once: true });
   try {
-    const [{ ArenaDuelScene }, { loadCityFighterPack }, { prepareRegisteredCupFighter, registeredArenaDuelReady }] = await Promise.all([
+    // Fetch the arena graph while GameBoot loads fonts and initializes Phaser. Observe
+    // failures immediately, even if the parent has not sent its first start command yet.
+    const resources = Promise.all([
       import("../scenes/ArenaDuelScene"), import("../art/CityFighterPacks"), import("../art/RegisteredArenaFighters"),
-    ]);
-    if (disposed) return;
-    // A registered corner comes in straight by id with every file (the cup's own load) and fights only while he may meet others.
-    const loadCorner = (id: string): Promise<boolean> => twitchArenaCorner(id) === "fighter"
-      ? loadCityFighterPack(id).then(pack => pack !== null)
-      : prepareRegisteredCupFighter(id).then(() => registeredArenaDuelReady(id), () => false);
+    ]).catch(() => { fatal(); return null; });
     const start = async (request: TwitchArenaBoutRequest): Promise<void> => {
       const hostGame = game;
       if (disposed || !hostGame || !acceptStart(request)) return;
+      if (terminalFailure) {
+        send({ ...request, type: "oddbout:twitch:bout-error", message: "The battle host failed. Retry this match." });
+        return;
+      }
       retireAttempt();
       const attempt: Attempt = { request, settled: false, ready: false, deadline: 0 };
       active = attempt;
       attempt.deadline = window.setTimeout(() => fail(attempt, "The battle did not become ready. Retry this match."), twitchBoutBootTimeoutMs(request));
       try {
+        const dependencies = await resources;
+        if (!current(attempt) || !dependencies) return;
+        const [{ ArenaDuelScene }, { loadCityFighterPack }, { prepareRegisteredCupFighter, registeredArenaDuelReady }] = dependencies;
+        // Registered corners load straight by id, with their current approval checked.
+        const loadCorner = (id: string): Promise<boolean> => twitchArenaCorner(id) === "fighter"
+          ? loadCityFighterPack(id).then(pack => pack !== null)
+          : prepareRegisteredCupFighter(id).then(() => registeredArenaDuelReady(id), () => false);
         const loaded = await Promise.all([request.a, request.b].map(loadCorner));
         if (!current(attempt)) return;
         if (!loaded.every(Boolean)) { fail(attempt, "Could not load the battle fighters"); return; }

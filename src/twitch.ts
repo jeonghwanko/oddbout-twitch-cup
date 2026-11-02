@@ -17,7 +17,7 @@ for (const [key, value] of Object.entries({ ink: PALETTE.oddboutInk, acid: PALET
 const artUrl = (id: string): string => new URL(arenaConceptArt(id, null)?.path ?? "", new URL(import.meta.env.BASE_URL, location.href)).href;
 const emptyArena = `<div class="arena-empty"><div class="stage-grid"></div><span class="stage-label">THE ARENA</span><span class="stage-vs" aria-hidden="true">VS</span><img class="stage-fighter fighter-left" src="${artUrl("kuma")}" alt="Kuma" /><img class="stage-fighter fighter-right" src="${artUrl("yume")}" alt="Yume" /><div class="stage-footer"><span>Kuma <b>×</b> Yume</span></div></div>`;
 root.innerHTML = `
-  <header><a href="./league.html?lang=en" class="wordmark">ODDBOUT<span>TWITCH CUP</span></a><div class="header-actions"><span id="connection" role="status">Offline</span><button id="connect">Connect Twitch <span aria-hidden="true">↗</span></button><button id="theater" class="quiet" aria-pressed="false">Stream view</button></div></header>
+  <header><a href="./twitch.html" class="wordmark">ODDBOUT<span>TWITCH CUP</span></a><div class="header-actions"><span id="connection" role="status">Offline</span><button id="connect">Connect Twitch <span aria-hidden="true">↗</span></button><button id="theater" class="quiet" aria-pressed="false">Stream view</button></div></header>
   <details class="settings" id="settings"><summary>Connection settings</summary><div class="settings-body"><div><label for="client-id">Twitch Client ID</label><input id="client-id" autocomplete="off" placeholder="Public Client ID" /></div><button id="disconnect" class="quiet" disabled>Disconnect</button><p><a href="https://dev.twitch.tv/console/apps" target="_blank" rel="noopener noreferrer">Register an app</a> · Chat Bot / Confidential<br>Redirect URL: <code id="redirect-uri"></code><br>Read-only chat access. Refreshing resets the cup.</p></div></details>
   <p id="local-host-help" hidden>To connect chat, <a id="local-host-link">open on localhost ↗</a></p>
   <section class="cup-heading"><div><p class="eyebrow" id="mode">TWITCH COMMUNITY TOURNAMENT</p><h1>YOUR CHAT.<br><em>YOUR CHAMPION.</em></h1><p class="tagline">From your chat. Into the ring.</p></div><div class="format"><strong>04<span>→</span>01</strong><span>Four fighters. One champion.</span></div></section>
@@ -76,9 +76,12 @@ function renderRoster(): void {
     const chip = document.createElement("button"); chip.className = "fighter-chip quiet"; chip.type = "button"; chip.title = fighter.label;
     const command = document.createElement("code"); command.textContent = line; chip.append(picture(fighter.id), command);
     chip.setAttribute("aria-label", `Copy ${line} (${fighter.label})`);
-    chip.addEventListener("click", () => { void navigator.clipboard.writeText(line).then(() => {
-      command.textContent = "Copied ✓"; setTimeout(() => { command.textContent = line; }, 1800);
-    }).catch(() => { command.textContent = line; notice(`Type ${line} in chat.`); }); });
+    chip.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(line);
+        command.textContent = "Copied ✓"; setTimeout(() => { command.textContent = line; }, 1800);
+      } catch { command.textContent = line; notice(`Type ${line} in chat.`); }
+    });
     chips.push(chip);
     const option = document.createElement("option"); option.value = fighter.command; option.textContent = fighter.command; options.push(option);
   }
@@ -165,6 +168,13 @@ function clearBout(removeFrame = true): void {
   if (removeFrame) { frame?.remove(); frame = null; hostReady = false; }
   request = null;
 }
+function resetCup(): void {
+  clearBout(); state = createTwitchTournament(rosterIds()); seeds.clear(); tournamentId = crypto.randomUUID(); failed = false;
+  recovery = createTwitchBoutRecovery();
+  el("activity").replaceChildren(); el("arena").replaceChildren(); el("champion").textContent = "";
+  el("round").textContent = "OPEN LOBBY"; el("pairing").textContent = "Registration open";
+  notice(""); render();
+}
 function failBout(text: string): void {
   failed = true; recovery = twitchBoutFailed(recovery);
   clearTimeout(watchdog); clearTimeout(bootWatchdog); clearTimeout(navigation);
@@ -238,9 +248,20 @@ window.addEventListener("message", event => {
   if (state.status === "running") nextMatch = setTimeout(() => runMatch(), 3500);
 });
 
-function disconnect(): void {
-  generation++; clearTimeout(authValidation); chat?.disconnect(); chat = null; session = null; connected = false; connecting = false;
+function disconnect(preserveSession = false): void {
+  generation++; clearTimeout(authValidation); chat?.disconnect(); chat = null;
+  if (!preserveSession) session = null;
+  connected = false; connecting = false;
   el("connection").textContent = "Offline"; render();
+}
+function attachChat(authorized: TwitchSession, stamp: number): void {
+  session = authorized;
+  chat = new TwitchChatClient({ login: authorized.login, accessToken: authorized.accessToken, channel: authorized.login }, {
+    onStatus: status => { if (stamp !== generation) return; connected = status === "connected"; el("connection").textContent = `${authorized.login} · ${status}`; render(); },
+    onMessage: message => { if (stamp === generation && !demo) join(message); },
+    onError: () => { if (stamp === generation) notice("Chat connection failed. Disconnect and try again."); },
+  });
+  scheduleValidation(authorized, stamp); chat.connect();
 }
 function scheduleValidation(current: TwitchSession, stamp: number): void {
   const revalidate = async (): Promise<void> => {
@@ -258,18 +279,12 @@ async function handleConnect(): Promise<void> {
   try {
     const authorized = await connectTwitch(el<HTMLInputElement>("client-id").value.trim());
     if (stamp !== generation) return;
-    session = authorized;
-    chat = new TwitchChatClient({ login: authorized.login, accessToken: authorized.accessToken, channel: authorized.login }, {
-      onStatus: status => { if (stamp !== generation) return; connected = status === "connected"; el("connection").textContent = `${authorized.login} · ${status}`; render(); },
-      onMessage: message => { if (stamp === generation && !demo) join(message); },
-      onError: () => { if (stamp === generation) notice("Chat connection failed. Disconnect and try again."); },
-    });
-    scheduleValidation(authorized, stamp); chat.connect();
+    attachChat(authorized, stamp);
   } catch (error) { if (stamp === generation) notice(error instanceof Error ? error.message : "Connection failed."); }
   finally { if (stamp === generation) { connecting = false; render(); } }
 }
 el("connect").addEventListener("click", () => { void handleConnect(); });
-el("disconnect").addEventListener("click", () => { disconnect(); state = createTwitchTournament(rosterIds()); render(); });
+el("disconnect").addEventListener("click", () => { disconnect(); resetCup(); });
 el("start").addEventListener("click", () => {
   if (!demo && !connected) return;
   const outcome = startTwitchTournament(state); if (!outcome.started) return;
@@ -290,9 +305,7 @@ el("solo").addEventListener("click", () => {
 });
 el("reset").addEventListener("click", () => {
   if (state.status === "running" && !failed) return;
-  clearBout(); state = createTwitchTournament(rosterIds()); seeds.clear(); tournamentId = crypto.randomUUID(); failed = false;
-  el("activity").replaceChildren(); el("arena").replaceChildren(); el("round").textContent = "OPEN LOBBY"; el("pairing").textContent = "Registration open";
-  notice(""); render();
+  resetCup();
 });
 el("demo").addEventListener("click", () => {
   if (connecting || session || state.status !== "registration" || state.entrants.length) return;
@@ -310,7 +323,26 @@ el("demo-fill").addEventListener("click", () => {
 });
 el("theater").addEventListener("click", () => { const active = root.classList.toggle("theater"); el("theater").textContent = active ? "Host view" : "Stream view"; el("theater").setAttribute("aria-pressed", String(active)); });
 window.addEventListener("beforeunload", event => { if (state.status === "running") { event.preventDefault(); event.returnValue = ""; } });
-window.addEventListener("pagehide", () => { clearBout(); disconnect(); });
+window.addEventListener("pagehide", event => {
+  clearBout();
+  // BFCache retains this document's memory. Keep its account for revalidation on return,
+  // while invalidating callbacks and retiring the host and socket that cannot resume safely.
+  disconnect(event.persisted);
+});
+window.addEventListener("pageshow", event => {
+  if (!event.persisted) return;
+  if (state.status === "running") failBout("The page was restored. Retry this match to keep the same fighters and seed.");
+  const current = session;
+  if (!current) return;
+  const stamp = ++generation; connecting = true; render();
+  void validateTwitchSession(current.accessToken, current.clientId).then(refreshed => {
+    if (stamp === generation) attachChat(refreshed, stamp);
+  }).catch(() => {
+    if (stamp === generation) { disconnect(); notice("Your Twitch session expired. Start a new cup and reconnect."); }
+  }).finally(() => {
+    if (stamp === generation) { connecting = false; render(); }
+  });
+});
 /**
  * Creators' fighters approved to meet others (2026-11-02 — a fighter made with an agent fights in the cup): read once, after the shipped ones. A cup already
  * under way keeps its four; registration open takes them at once. No registry: the shipped fighters only, with one activity line.

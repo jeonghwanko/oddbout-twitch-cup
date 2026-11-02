@@ -67,6 +67,8 @@ describe("Twitch IRC readonly adapter", () => {
     first.open();
     first.receive(":tmi.twitch.tv RECONNECT\r\n");
     expect(client.status).toBe("reconnecting");
+    client.connect();
+    expect(FakeSocket.instances).toHaveLength(1);
     vi.advanceTimersByTime(100);
     expect(FakeSocket.instances).toHaveLength(2);
     FakeSocket.instances[1]!.open();
@@ -77,6 +79,72 @@ describe("Twitch IRC readonly adapter", () => {
     expect(statuses).toContain("reconnecting");
     client.disconnect();
     vi.useRealTimers();
+  });
+
+  it.each(["opening", "joining"])("bounds a stalled %s handshake and exhausts retries", phase => {
+    vi.useFakeTimers();
+    FakeSocket.instances = [];
+    const errors = vi.fn();
+    const client = new TwitchChatClient({ login: "streamer", accessToken: "test", channel: "channel", WebSocketCtor: Ctor,
+      reconnectAttempts: 1, reconnectBaseDelayMs: 100 }, { onError: errors });
+    try {
+      client.connect();
+      const first = FakeSocket.instances[0]!;
+      if (phase === "joining") first.open();
+      vi.advanceTimersByTime(15_000);
+      expect(client.status).toBe("reconnecting");
+      expect(first.readyState).toBe(3);
+      vi.advanceTimersByTime(100);
+      expect(FakeSocket.instances).toHaveLength(2);
+      if (phase === "joining") FakeSocket.instances[1]!.open();
+      vi.advanceTimersByTime(15_000);
+      expect(client.status).toBe("error");
+      expect(errors).toHaveBeenCalled();
+      vi.advanceTimersByTime(60_000);
+      expect(FakeSocket.instances).toHaveLength(2);
+      expect(vi.getTimerCount()).toBe(0);
+    } finally { client.disconnect(); vi.useRealTimers(); }
+  });
+
+  it("discards complete lines and partial data from a retired socket after RECONNECT", () => {
+    vi.useFakeTimers();
+    FakeSocket.instances = [];
+    const messages = vi.fn();
+    const client = new TwitchChatClient({ login: "streamer", accessToken: "test", channel: "channel", WebSocketCtor: Ctor,
+      reconnectBaseDelayMs: 100 }, { onMessage: messages });
+    try {
+      client.connect();
+      const first = FakeSocket.instances[0]!;
+      first.open();
+      first.receive(":tmi.twitch.tv ROOMSTATE #channel\r\n");
+      first.receive(":tmi.twitch.tv RECONNECT\r\n:tmi.twitch.tv ROOMSTATE #channel\r\n"
+        + "@id=stale;user-id=17 :viewer!viewer@viewer.tmi.twitch.tv PRIVMSG #channel :!join kuma\r\n:partial");
+      expect(client.status).toBe("reconnecting");
+      expect(messages).not.toHaveBeenCalled();
+      vi.advanceTimersByTime(100);
+      const second = FakeSocket.instances[1]!;
+      second.open();
+      second.receive(":tmi.twitch.tv ROOMSTATE #channel\r\n"
+        + "@id=fresh;user-id=18 :viewer!viewer@viewer.tmi.twitch.tv PRIVMSG #channel :!join yume\r\n");
+      expect(client.status).toBe("connected");
+      expect(messages).toHaveBeenCalledExactlyOnceWith(expect.objectContaining({ messageId: "fresh" }));
+      vi.advanceTimersByTime(15_000);
+      expect(client.status).toBe("connected");
+      expect(FakeSocket.instances).toHaveLength(2);
+    } finally { client.disconnect(); vi.useRealTimers(); }
+  });
+
+  it("cancels the handshake deadline when disconnected", () => {
+    vi.useFakeTimers();
+    FakeSocket.instances = [];
+    const client = new TwitchChatClient({ login: "streamer", accessToken: "test", channel: "channel", WebSocketCtor: Ctor });
+    try {
+      client.connect(); client.disconnect();
+      vi.advanceTimersByTime(60_000);
+      expect(client.status).toBe("stopped");
+      expect(FakeSocket.instances).toHaveLength(1);
+      expect(vi.getTimerCount()).toBe(0);
+    } finally { client.disconnect(); vi.useRealTimers(); }
   });
 
   it("retains IRC data split across WebSocket frames without losing the CRLF boundary", () => {

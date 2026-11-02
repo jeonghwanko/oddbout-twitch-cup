@@ -1,6 +1,7 @@
 export const TWITCH_IRC_URL = "wss://irc-ws.chat.twitch.tv:443";
 const MAX_PENDING_IRC_CHARS = 32_768;
 const MAX_IRC_LINE_CHARS = 16_384;
+const CONNECT_TIMEOUT_MS = 15_000;
 
 export type TwitchChatStatus = "idle" | "connecting" | "joining" | "connected" | "reconnecting" | "stopped" | "error";
 export type TwitchChatIdentity = { kind: "twitch-user-id" | "twitch-login"; value: string };
@@ -88,6 +89,7 @@ export class TwitchChatClient {
   private stopped = true;
   private reconnectCount = 0;
   private reconnectTimer: ReturnType<typeof setTimeout> | null = null;
+  private connectTimer: ReturnType<typeof setTimeout> | null = null;
   private pendingData = "";
   private readonly seen = new Set<string>();
   private readonly login: string;
@@ -109,7 +111,7 @@ export class TwitchChatClient {
   get status(): TwitchChatStatus { return this.currentStatus; }
 
   connect(): void {
-    if (this.currentStatus === "connecting" || this.currentStatus === "joining" || this.currentStatus === "connected") return;
+    if (this.currentStatus === "connecting" || this.currentStatus === "joining" || this.currentStatus === "connected" || this.currentStatus === "reconnecting") return;
     this.stopped = false;
     this.reconnectCount = 0;
     this.openSocket(false);
@@ -117,6 +119,7 @@ export class TwitchChatClient {
 
   disconnect(): void {
     this.stopped = true;
+    this.clearConnectTimer();
     this.pendingData = "";
     if (this.reconnectTimer !== null) clearTimeout(this.reconnectTimer);
     this.reconnectTimer = null;
@@ -130,6 +133,11 @@ export class TwitchChatClient {
     if (this.currentStatus === status) return;
     this.currentStatus = status;
     this.callbacks.onStatus?.(status);
+  }
+
+  private clearConnectTimer(): void {
+    if (this.connectTimer !== null) clearTimeout(this.connectTimer);
+    this.connectTimer = null;
   }
 
   private openSocket(reconnecting: boolean): void {
@@ -149,6 +157,14 @@ export class TwitchChatClient {
       return;
     }
     this.socket = socket;
+    // Bound both opening the transport and waiting for the channel's join acknowledgement.
+    this.connectTimer = setTimeout(() => {
+      this.connectTimer = null;
+      if (this.socket !== socket || this.stopped) return;
+      this.socket = null; this.pendingData = "";
+      if (socket.readyState < 2) socket.close(1000, "Chat connection timed out");
+      this.scheduleReconnect();
+    }, CONNECT_TIMEOUT_MS);
     socket.addEventListener("open", () => {
       if (this.socket !== socket || this.stopped) return;
       this.setStatus("joining");
@@ -159,20 +175,21 @@ export class TwitchChatClient {
     });
     socket.addEventListener("message", event => {
       if (this.socket !== socket || this.stopped) return;
-      this.handleData(typeof event.data === "string" ? event.data : "");
+      this.handleData(typeof event.data === "string" ? event.data : "", socket);
     });
     socket.addEventListener("error", () => {
       if (this.socket === socket && !this.stopped) this.callbacks.onError?.("Twitch chat WebSocket error.");
     });
     socket.addEventListener("close", () => {
       if (this.socket !== socket) return;
+      this.clearConnectTimer();
       this.socket = null;
       this.pendingData = "";
       this.scheduleReconnect();
     });
   }
 
-  private handleData(data: string): void {
+  private handleData(data: string, socket: WebSocketLike): void {
     const combined = this.pendingData + data;
     let cursor = 0;
     let boundary = combined.indexOf("\r\n", cursor);
@@ -181,7 +198,9 @@ export class TwitchChatClient {
       cursor = boundary + 2;
       if (line.length > MAX_IRC_LINE_CHARS) this.callbacks.onError?.("Twitch chat sent an oversized IRC message; that line was discarded.");
       else if (line) this.handleLine(line);
-      if (this.stopped) break;
+      // RECONNECT or a consumer callback can retire this socket in the middle of one frame.
+      // Neither complete trailing messages nor a partial tail belong to the replacement socket.
+      if (this.stopped || this.socket !== socket) return;
       boundary = combined.indexOf("\r\n", cursor);
     }
     this.pendingData = this.stopped ? "" : combined.slice(cursor);
@@ -200,6 +219,7 @@ export class TwitchChatClient {
       return;
     }
     if (message.command === "RECONNECT") {
+      this.clearConnectTimer();
       const socket = this.socket;
       this.socket = null;
       this.pendingData = "";
@@ -209,6 +229,7 @@ export class TwitchChatClient {
     }
     if (message.command === "NOTICE" && /authentication failed|improperly formatted auth/i.test(message.params.at(-1) ?? "")) {
       this.stopped = true;
+      this.clearConnectTimer();
       if (this.reconnectTimer !== null) clearTimeout(this.reconnectTimer);
       this.reconnectTimer = null;
       this.pendingData = "";
@@ -219,10 +240,12 @@ export class TwitchChatClient {
     }
     if (message.command === "PRIVMSG") this.emitPrivmsg(message);
     if (message.command === "JOIN" && normalizeLogin(message.params[0] ?? "") === this.channel && prefixLogin(message.prefix) === this.login) {
+      this.clearConnectTimer();
       this.reconnectCount = 0;
       this.setStatus("connected");
     }
     if (message.command === "ROOMSTATE" && normalizeLogin(message.params[0] ?? "") === this.channel) {
+      this.clearConnectTimer();
       this.reconnectCount = 0;
       this.setStatus("connected");
     }

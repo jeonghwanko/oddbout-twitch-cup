@@ -8,7 +8,7 @@ import runtimeMediaFile from "./runtime-media.json";
 /**
  * standalone runtime 의 audio/font media 형태. Source metadata 는 build-time 검증에만 쓴다.
  */
-interface RuntimeMediaClient {
+export interface RuntimeMediaClient {
   readonly audio: readonly FightVoiceEntry[];
   readonly fonts: readonly (Omit<FontAssetDefinition, "role"> & { readonly role: string })[];
 }

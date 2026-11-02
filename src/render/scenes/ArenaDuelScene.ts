@@ -127,7 +127,7 @@ import { NativeCityFightStageBars } from "./village/NativeCityFightStageFraming"
 import { arenaFlatButton, fitArenaText } from "./arena/ArenaUi";
 import { arenaPlayerName } from "./arena/ArenaNames";
 import { nativeCityImpactKickFrame } from "./village/NativeCityFightCamera";
-import { nativeCityFightDeps, nativeCityPhaserDrawnFightArt } from "./village/NativeCityFightDeps";
+import { phaserFightDeps, nativeCityPhaserDrawnFightArt } from "./village/PhaserFightDeps";
 import { NativeCityFightSinks } from "./village/NativeCityFightSinks";
 import { cityFightSuperCast } from "../view/CityFightSuperCutIn";
 import { CITY_FIGHT_STARFALL } from "../view/CityFightStarfallView";
@@ -529,7 +529,7 @@ export class ArenaDuelScene extends Phaser.Scene {
     const traceView = new ArenaTraceView(this);
     this.traceView = traceView;
     this.scope.add(() => { traceView.destroy(); if (this.traceView === traceView) this.traceView = null; });
-    const art = nativeCityPhaserDrawnFightArt(this, nativeCityFightDeps(this).art);
+    const art = nativeCityPhaserDrawnFightArt(this, phaserFightDeps(this).art);
     this.fighters = corners.map((corner, i) => {
       // A village fighter stands at his own body scale and draws his own skin (KUMA none); a registered one at 1, his id as the skin.
       const own = this.ownRules(i);
