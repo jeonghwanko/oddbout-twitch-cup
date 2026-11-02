@@ -20,6 +20,7 @@ npm run lint:types
 | 방송 프레임 시계·rAF 정체·blur·timer 종료 | `test/twitch-frame-clock.test.ts` (실제 Phaser TimeStep) |
 | 등록/내장 선수 전투기 선택 | `test/twitch-arena-corners.test.ts` |
 | 화면·연결 해제·페이지 복원 | `test/twitch-ui.test.ts` |
+| Agent exhibition 대진·중복 job·취소·iframe lifecycle | `test/broadcast-cup.test.ts`, `test/broadcast-ui.test.ts` |
 | Vite 입력·포트 | `test/twitch-site-build.test.ts` |
 | 실제 청크 크기·불필요한 의존성 재유입 | `test/twitch-build-budget.test.ts` |
 | 빌드의 오디오·글꼴 목록 축약 | `test/twitch-runtime-media.test.ts` |
@@ -28,6 +29,16 @@ npm run lint:types
 | 측정 서버의 중단된 POST·UTF-8 분할 수신 | `test/first-bout-server.test.ts` |
 
 새 테스트는 `test/` 아래 `*.test.ts`로 만든다. 기본 환경은 Node이며 DOM이 필요한 파일만 `// @vitest-environment jsdom`을 사용한다. 외부 서비스와 브라우저 경계를 mock하고, 검증하려는 실제 상태 규칙은 유지한다. 가짜 타이머·전역 listener·mock은 테스트가 끝날 때 정리한다. [Vitest 환경 문서](https://vitest.dev/guide/environment)를 참고한다.
+
+`broadcast.html`은 별도 agent renderer다. `npm test -- test/broadcast-cup.test.ts test/broadcast-ui.test.ts test/twitch-site-build.test.ts`로 실제 순수 대진 규칙과 mock iframe 경계를 검사한다. 잘못된 origin/source/요청 ID/선수/seed, ready를 승리로 처리하지 않기, 세 경기 전환, 동일 job 충돌·재사용, 취소·페이지 종료·부팅/전투 timeout이 포함된다. 이 테스트는 실제 Phaser 실행이나 송출을 입증하지 않는다.
+
+Agent renderer는 iframe의 WindowProxy뿐 아니라 host-ready 시점의 동일 출처 Document도 고정한다. iframe reload가 자식의 소비된 토큰 기록을 초기화하더라도 새 Document의 early host-ready/load를 감지해 기존 cup을 실패로 끝내고 start를 재전송하지 않는다. 대진 adapter가 요청 객체를 수정하는 회귀 조건도 검사한다.
+
+빌드 후 preview의 `/broadcast.html`에서 외부 runner가 `window.oddboutBroadcast.runCup({jobId:"local-check",leaseToken:"local-attempt",seed:123,fighterIds:["kuma","yume","bravow","beotim"]})`을 호출해 세 경기·우승과 raw digest를 확인한다. 다음 job은 새 job ID를 사용하고, 취소·reload 후 서버 기록의 조정은 runner에서 검증한다. job/lease 문자열이 화면에 나타나지 않는지도 확인한다. OBS/Twitch 수신·유료 원장·실제 등록 선수 API는 각각 별도 연동 기록이 필요하다.
+
+2026-11-02 로컬 확인: 별도 production preview(5188), 설치된 Chrome의 격리된 visible Playwright 창에서 위 네 내장 선수, seed 123, 숫자 lease fence 1로 실제 세 경기를 실행했다. 결과는 Yume(준결승 1, seed 123, digest `4c99b17b`), Bravow(준결승 2, seed 124, `51cbeb4f`), Yume(결승, seed 125, `3d090aff`)였다. 전체 관측은 119.121초였고 엔진의 전투 시간은 각각 33.120/30.608/20.192초였다. 동일 완료 job 재호출은 같은 결과를 반환했고 실제 결과 이벤트는 3개로 유지됐다. page error와 실패한 요청은 없었으며 전투·우승 스크린샷을 직접 확인했다. 이는 한 번의 로컬 실행 기록이며 Twitch/OBS 송출, 서버 과금, 장시간 운전이나 등록 선수 검증 결과를 뜻하지 않는다.
+
+같은 날 Document 교체 방어를 추가한 뒤 같은 방법의 실제 컵을 다시 완료했다(관측 123.687초, 동일한 세 digest, 완료 job 재호출 시 결과 이벤트 3개 유지, page error/실패 요청 없음). 별도 visible Chrome 공격 재현에서는 첫 bout-ready 직후 자식 iframe을 실제 재탐색했다. 부모는 `broadcast_execution_failed`로 끝났고 start 수신은 처음 한 번 그대로였으며 완료 경기 0개와 iframe 제거를 확인했다. 이 기록은 로컬 renderer 검증이며 실제 송출이나 서버 지출 증명이 아니다.
 
 ## 최종 확인
 
