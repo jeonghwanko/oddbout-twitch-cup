@@ -1,4 +1,4 @@
-import { BroadcastCup, type BroadcastBout, type BroadcastBoutInput, type BroadcastCupInput, type BroadcastCupResult, type BroadcastCupStatus } from "./app/BroadcastCup";
+import { BroadcastCup, type BroadcastBout, type BroadcastBoutInput, type BroadcastCupHolds, type BroadcastCupInput, type BroadcastCupResult, type BroadcastCupStatus } from "./app/BroadcastCup";
 import { createTwitchArenaBoutUrl, twitchBoutBootTimeoutMs, validateTwitchArenaBoutMessage, validateTwitchArenaHostReady, TWITCH_ARENA_BOUT_TIMEOUT_MS, type TwitchArenaBoutRequest } from "./app/TwitchArenaBout";
 import { CITY_FIGHTER_IDS } from "./sim/cityFight/CityFighterIds";
 
@@ -10,8 +10,11 @@ export interface OddboutBroadcastApi {
 }
 declare global { interface Window { oddboutBroadcast: OddboutBroadcastApi } }
 
+/** The Twitch cup's 3.5 s between matches (twitch.ts); the champion card gets a little longer before the runner closes the browser. */
+export const BROADCAST_HOLDS: BroadcastCupHolds = Object.freeze({ betweenBoutsMs: 3500, afterFinalMs: 6000 });
+
 /** Same-origin iframe boundary. No credential, ledger or Twitch login code. */
-export function mountBroadcast(root: HTMLElement): () => void {
+export function mountBroadcast(root: HTMLElement, holds: BroadcastCupHolds = BROADCAST_HOLDS): () => void {
   root.innerHTML = `<header><div class="brand">ODDBOUT <span>EXHIBITION SERIES</span></div><div class="live-label">AGENT DIRECTED · FOUR FIGHTERS</div></header>
     <section class="headline"><div><p class="eyebrow">THE ARENA IS READY</p><h1 id="broadcast-round">Awaiting the next cup</h1></div><p id="broadcast-status" role="status">Four fighters. Three battles. One champion.</p></section>
     <section id="broadcast-arena" aria-label="Live battle"><div class="waiting"><span>ODDBOUT</span><p>The next exhibition starts here</p></div></section>
@@ -92,7 +95,7 @@ export function mountBroadcast(root: HTMLElement): () => void {
     });
   }
 
-  const cup = new BroadcastCup(runBout, render);
+  const cup = new BroadcastCup(runBout, render, holds);
   const api: OddboutBroadcastApi = Object.freeze({ protocolVersion: 1 as const,
     runCup: (input: BroadcastCupInput) => disposed ? Promise.reject(new Error("broadcast_page_disposed")) : cup.runCup(input),
     getStatus: () => cup.getStatus(), cancel: () => { cup.cancel(); disposeBout?.(); frame?.remove(); frame = null; hostReady = false; },

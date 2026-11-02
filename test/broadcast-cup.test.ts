@@ -73,3 +73,33 @@ describe("agent exhibition bracket", () => {
     expect(cup.getStatus().bouts).toHaveLength(0);
   });
 });
+
+describe("winner card holds", () => {
+  it("holds between bouts and after the final; a cancel between bouts ends the cup, during the champion card it does not", async () => {
+    vi.useFakeTimers();
+    try {
+      const holds = { betweenBoutsMs: 3500, afterFinalMs: 6000 };
+      const calls: BroadcastBoutInput[] = [];
+      const cup = new BroadcastCup(async request => { calls.push(request); return outcome(request); }, () => {}, holds);
+      let settled = false;
+      const result = cup.runCup(input).then(value => { settled = true; return value; });
+      await vi.advanceTimersByTimeAsync(0); expect(calls).toHaveLength(1);
+      await vi.advanceTimersByTimeAsync(3499); expect(calls).toHaveLength(1);
+      await vi.advanceTimersByTimeAsync(1); expect(calls).toHaveLength(2);
+      await vi.advanceTimersByTimeAsync(3500); expect(calls).toHaveLength(3);
+      await vi.advanceTimersByTimeAsync(5999); expect(settled).toBe(false);
+      await vi.advanceTimersByTimeAsync(1); expect((await result).winnerId).toBe("kuma");
+
+      const between = new BroadcastCup(async request => outcome(request), () => {}, holds);
+      const cancelled = between.runCup({ ...input, jobId: "job-2" });
+      const rejected = expect(cancelled).rejects.toThrow("broadcast_cancelled");
+      await vi.advanceTimersByTimeAsync(100); between.cancel(); await rejected;
+      expect(between.getStatus().status).toBe("cancelled");
+
+      const champion = new BroadcastCup(async request => outcome(request), () => {}, { betweenBoutsMs: 0, afterFinalMs: 6000 });
+      const finished = champion.runCup({ ...input, jobId: "job-3" });
+      await vi.advanceTimersByTimeAsync(100); champion.cancel();
+      expect((await finished).bouts).toHaveLength(3);
+    } finally { vi.useRealTimers(); }
+  });
+});

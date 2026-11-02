@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { parseTwitchArenaBoutRequest, twitchBoutBootTimeoutMs, TWITCH_ARENA_BOUT_TIMEOUT_MS, type TwitchArenaBoutRequest } from "../src/app/TwitchArenaBout";
-import { mountBroadcast } from "../src/broadcast";
+import { BROADCAST_HOLDS, mountBroadcast } from "../src/broadcast";
 
 const input = { jobId: "private-job-1", leaseToken: "private-lease-1", seed: 123, fighterIds: ["kuma", "yume", "bravow", "beotim"] };
 let dispose: () => void;
@@ -17,7 +17,9 @@ function boot(): { mounted: HTMLIFrameElement; request: TwitchArenaBoutRequest; 
   return { mounted, request, post };
 }
 
-beforeEach(() => { vi.useFakeTimers(); document.body.innerHTML = '<main id="test-broadcast"></main>'; dispose = mountBroadcast(document.getElementById("test-broadcast")!); });
+beforeEach(() => { vi.useFakeTimers(); document.body.innerHTML = '<main id="test-broadcast"></main>'; dispose = mountBroadcast(document.getElementById("test-broadcast")!, { betweenBoutsMs: 0, afterFinalMs: 0 }); });
+// The holds themselves are covered in broadcast-cup.test.ts; the page passes the Twitch cup's pace.
+it("the broadcast page holds the winner card as the Twitch cup does", () => { expect(BROADCAST_HOLDS).toEqual({ betweenBoutsMs: 3500, afterFinalMs: 6000 }); });
 afterEach(async () => { dispose(); await flush(); vi.clearAllTimers(); vi.useRealTimers(); vi.restoreAllMocks(); document.body.replaceChildren(); });
 
 describe("broadcast browser API with the real bracket and iframe message contract", () => {
