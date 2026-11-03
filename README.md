@@ -196,4 +196,4 @@ This extraction preserves the Twitch URL parameters and iframe messaging protoco
 
 Some inherited files support systems outside the Cup. A file's presence does not prove it runs in this build; inspect imports and callers before removing it. Do not copy private creator packages, credentials, or unrelated personal documents into the public repository.
 
-See [NOTICE.md](NOTICE.md) for shipped third-party media and font credits. No project license is granted by this repository; the owner decides the license.
+The source code is licensed under the [MIT License](LICENSE). ODDBOUT artwork, voices, names, and logo are not covered by the MIT License; they may be used unmodified only to build, run, test, and evaluate this project. See [NOTICE.md](NOTICE.md) for those terms and for shipped third-party media and font credits.
