@@ -195,6 +195,8 @@ The current build expects hosting at the origin root; fonts use `/fonts/...` pat
 
 Set public environment values before building and add the production callback URL to the Twitch app. Uploading source changes to GitHub and publishing a new static build are separate actions.
 
+`twitch.html` defines the ODDBOUT BET Open Graph and Twitter sharing preview for `https://oddbout.com/twitch.html`, using `public/art/social/oddbout-bet-og.png`. The metadata and image must be included in the deployed static build before public sharing previews can update; a local edit or GitHub push alone does not publish them.
+
 ## Troubleshooting
 
 | Symptom | Check |
