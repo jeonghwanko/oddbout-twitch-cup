@@ -21,6 +21,7 @@ npm run lint:types
 | 등록/내장 선수 전투기 선택 | `test/twitch-arena-corners.test.ts` |
 | 화면·연결 해제·페이지 복원 | `test/twitch-ui.test.ts` |
 | Agent exhibition 대진·중복 job·취소·iframe lifecycle | `test/broadcast-cup.test.ts`, `test/broadcast-ui.test.ts` |
+| 배팅 부스 명령·정산·원장·루프·화면 | `test/bet-round.test.ts`, `test/bet-ledger.test.ts`, `test/bet-booth.test.ts`, `test/bet-ui.test.ts` (러너를 공유하므로 `test/broadcast-ui.test.ts`도 함께) |
 | Vite 입력·포트 | `test/twitch-site-build.test.ts` |
 | 실제 청크 크기·불필요한 의존성 재유입 | `test/twitch-build-budget.test.ts` |
 | 빌드의 오디오·글꼴 목록 축약 | `test/twitch-runtime-media.test.ts` |
@@ -35,6 +36,8 @@ npm run lint:types
 Agent renderer는 iframe의 WindowProxy뿐 아니라 host-ready 시점의 동일 출처 Document도 고정한다. iframe reload가 자식의 소비된 토큰 기록을 초기화하더라도 새 Document의 early host-ready/load를 감지해 기존 cup을 실패로 끝내고 start를 재전송하지 않는다. 대진 adapter가 요청 객체를 수정하는 회귀 조건도 검사한다.
 
 빌드 후 preview의 `/broadcast.html`에서 외부 runner가 `window.oddboutBroadcast.runCup({jobId:"local-check",leaseToken:"local-attempt",seed:123,fighterIds:["kuma","yume","bravow","beotim"]})`을 호출해 세 경기·우승과 raw digest를 확인한다. 다음 job은 새 job ID를 사용하고, 취소·reload 후 서버 기록의 조정은 runner에서 검증한다. job/lease 문자열이 화면에 나타나지 않는지도 확인한다. OBS/Twitch 수신·유료 원장·실제 등록 선수 API는 각각 별도 연동 기록이 필요하다.
+
+`bet.html`은 배팅 부스다. `npm test -- test/bet-round.test.ts test/bet-ledger.test.ts test/bet-booth.test.ts test/bet-ui.test.ts test/broadcast-ui.test.ts`로 명령 파서, 패리뮤추얼 정산과 하한, 마감 뒤 seed 추첨, void·연속 실패 정지, 일시정지, 데모 원장 분리, 시청자 이름의 textContent 출력을 검사한다. 수동 확인은 `/bet.html?lang=en`에서 **Try without Twitch** → **Start betting**으로 실제 경기 두 라운드 이상을 돌려 배팅자 목록·배당·정산·순위와 새로고침 뒤 잔액 유지를 본다. 실제 Twitch 채팅의 `!bet`·`!balance`는 연결한 채널에서 따로 확인한다.
 
 2026-11-02 로컬 확인: 별도 production preview(5188), 설치된 Chrome의 격리된 visible Playwright 창에서 위 네 내장 선수, seed 123, 숫자 lease fence 1로 실제 세 경기를 실행했다. 결과는 Yume(준결승 1, seed 123, digest `4c99b17b`), Bravow(준결승 2, seed 124, `51cbeb4f`), Yume(결승, seed 125, `3d090aff`)였다. 전체 관측은 119.121초였고 엔진의 전투 시간은 각각 33.120/30.608/20.192초였다. 동일 완료 job 재호출은 같은 결과를 반환했고 실제 결과 이벤트는 3개로 유지됐다. page error와 실패한 요청은 없었으며 전투·우승 스크린샷을 직접 확인했다. 이는 한 번의 로컬 실행 기록이며 Twitch/OBS 송출, 서버 과금, 장시간 운전이나 등록 선수 검증 결과를 뜻하지 않는다.
 

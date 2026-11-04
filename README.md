@@ -11,6 +11,7 @@ This repository is the standalone Twitch Cup client extracted from ODDBOUT: a Ty
 | Goal | Read |
 | --- | --- |
 | Run a cup locally | [Quick start](#quick-start-without-twitch) |
+| Run a betting stream | [Bet booth](#bet-booth) |
 | Connect a Twitch channel | [Twitch setup](#connect-twitch) |
 | Understand the code | [Architecture](docs/architecture.md) |
 | Develop with Codex | [AGENTS.md](AGENTS.md) and [development workflow](docs/development.md) |
@@ -71,6 +72,22 @@ The runner calls `window.oddboutBroadcast.runCup({ jobId, leaseToken, seed, figh
 The returned promise contains `{ protocolVersion: 1, jobId, leaseToken, seed, winnerId, bouts }`; each bout contains `leftId`, `rightId`, `winnerId`, `seed`, and the engine's `winner`, `how`, `ms`, `hp`, `contacts`, and `digest`. The lease token may be a nonempty string or a positive safe integer fence; its type and value are preserved. `getStatus()` reads progress and `cancel()` stops pending work. Same-job retries with identical arguments reuse the in-memory result; changed arguments or leases conflict, and another active job is rejected. Failed or cancelled jobs stay terminal for that page session. Reloading clears this history: the runner must persist and reconcile jobs externally.
 
 Only validated origin, iframe source/document, attempt ID, pairing, seed, and result messages advance the bracket. An iframe document replacement during a cup rejects the job before replaying a start token. Readiness is not victory; errors/timeouts reject without producing a champion. Job and lease identifiers are not shown on stream. Keep credentials, wallet logic, and paid-job authorization in the runner/backend; this browser API is an exhibition renderer, not an authorization boundary. Keep the browser visible and prevent host sleep during execution.
+
+## Bet booth
+
+`/bet.html` is a stream page for endless one-on-one bouts that viewers bet on from Twitch chat with free points. Each round draws two different fighters from the roster (the nine built-in fighters plus approved creator fighters), avoiding the latest pairings. Red is on the left and blue on the right. The round takes bets for the betting window (40 seconds by default, adjustable from 20 to 90 seconds), then locks, and only then draws the bout seed. The bout runs in the same validated `fighter.html` host as the other pages. After the result is shown for 8 seconds, the next round opens.
+
+| Chat command | Effect |
+| --- | --- |
+| `!bet red 500` | Bet 500 points on red. The side can be `red`/`r`/`left`, `blue`/`b`/`right`, or either corner's roster command (`!bet kuma 500`). |
+| `!bet blue 10k`, `!bet red 25%`, `!bet blue all` | Amounts can be whole numbers, `k`/`m` suffixes, a percentage of the balance, or `all`. |
+| `!balance` / `!bal` | Shows the viewer's balance on the stream ticker, at most once every 30 seconds per viewer. |
+
+Each message must contain only the command. A viewer has one bet per round; another `!bet` while the round is open replaces it. Bets above the balance, and bets after the lock, are rejected and noted briefly on the ticker. New viewers start with 1,000 points. Payouts are parimutuel: a winning bet earns `floor(stake × losing pool / winning pool)` and a losing bet loses its stake. A round with bets on only one side moves no points, and settlement never leaves a balance below 100.
+
+Points are free and have no cash value. They cannot be bought, cashed out, or exchanged; do not connect them to Bits, payments, or prizes. The page never posts to chat (it uses the same read-only `chat:read` connection and callback as the Cup) and shows all feedback on screen.
+
+Balances change only when a validated bout result settles a round. A failed or timed-out bout voids the round without moving points, and the loop pauses after three failures in a row. Reloading during a round discards that round; settled balances remain. The ledger lives in this browser's `localStorage` (`kaito_web.betLedger.v1`). Use **Points ledger → Export backup** regularly, because another browser or computer starts empty. **Try without Twitch** runs simulated bettors on a separate demo ledger. Use **Stream view** for OBS capture at 1920×1080, and keep the tab visible.
 
 ## Connect Twitch
 
@@ -136,6 +153,9 @@ Stop `dev` before using `preview`, since both use port 5178. Rebuild after sourc
 | --- | --- |
 | `twitch.html` → `src/twitch.ts` | Lobby, bracket, roster, Twitch connection, iframe lifecycle |
 | `broadcast.html` → `src/broadcast.ts` | Agent exhibition API, stream bracket, validated iframe lifecycle |
+| `bet.html` → `src/bet.ts` | Bet booth stream page, chat bets, demo bettors, ledger backup |
+| `src/app/BetRound.ts`, `BetBooth.ts`, `BetLedger.ts`, `BetMatchmaker.ts` | Betting rules, round loop, points ledger, matchmaking |
+| `src/arenaFrameRunner.ts` | Shared broadcast/bet booth battle iframe runner |
 | `twitch-auth.html` → `src/twitchAuthCallback.ts` | OAuth callback page |
 | `fighter.html` → `src/fighter.ts` | Embedded battle entrypoint |
 | `src/app/TwitchTournament.ts` | Pure registration and tournament state transitions |
@@ -169,7 +189,7 @@ npm run check
 npm run preview
 ```
 
-Deploy the complete `dist/` directory to a static HTTP(S) host. Serve production over HTTPS. Keep all three HTML entrypoints, generated scripts/styles, and media together on the same origin. There is no application server or database migration to run in this repository.
+Deploy the complete `dist/` directory to a static HTTP(S) host. Serve production over HTTPS. Keep all HTML entrypoints (`twitch.html`, `twitch-auth.html`, `fighter.html`, `broadcast.html`, `bet.html`), generated scripts/styles, and media together on the same origin. There is no application server or database migration to run in this repository.
 
 The current build expects hosting at the origin root; fonts use `/fonts/...` paths. Subpath hosting requires an explicit asset-path/base configuration review. Point users to `/twitch.html`, or configure a root redirect to it. Do not rewrite the OAuth callback, battle HTML, or asset requests to the lobby page.
 

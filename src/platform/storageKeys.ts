@@ -124,6 +124,13 @@ export const STORAGE_KEYS = Object.freeze({
   cityFightLog: "kaito_web.cityFightLog.v1",
   /** `?playtest=kuma` 의 지금 테스터 세션 `{version:1, id, name, serial, startedAt, seeded, retired}`(`app/KumaPlaytest`). */
   playtestSession: "kaito_web.playtestSession.v1",
+  /**
+   * 배팅 부스(`bet.html`)의 포인트 원장(`app/BetLedger` — 시청자별 정산 잔액·선수 전적·경기 수, `{version:1, accounts, fighters, matches}`).
+   * 방송자 브라우저에만 있고 현금 가치가 없다. 정산 때만 쓴다(`platform/betLedgerStorage`).
+   */
+  betLedger: "kaito_web.betLedger.v1",
+  /** 배팅 부스 로컬 데모(Try without Twitch)의 원장. 실제 시청자 원장과 섞이지 않게 따로 둔다. */
+  betLedgerDemo: "kaito_web.betLedgerDemo.v1",
 
   // --- localStorage: ai-fighter. 접두사 (예외, 제작자 페이지가 먼저 배포한 주소) ---
   /**
@@ -221,6 +228,8 @@ export const STORAGE_KEY_SCOPES: Readonly<Record<StorageKeyName, StorageScope>> 
   facilityResume: "slot",
   cityFightLog: "global",
   playtestSession: "global",
+  betLedger: "global",
+  betLedgerDemo: "global",
   oddboutLocale: "global",
   coopGuestToken: "global",
   coopControls: "global",
