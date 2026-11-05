@@ -1,6 +1,14 @@
 # Media credits and licenses
 
+The source code in this repository is licensed under the [MIT License](LICENSE). The MIT License does not cover the ODDBOUT artwork, voices, names, and logo described below, or the third-party media and fonts, which keep their own licenses.
+
 This standalone Twitch Cup bundles combat and interface sound effects, generated fighter voices, and the fonts loaded by its pages. The source, checksum, cue, and license record for each shipped media file is in [`src/assets/runtime-media.json`](src/assets/runtime-media.json). The bout does not bundle background music.
+
+## ODDBOUT artwork, voices, and names
+
+The images under `public/art/`, the fight voice and announcer clips under `public/audio/voice/`, the ODDBOUT name and logo, and the names and designs of the built-in fighters are copyright jeonghwanko. All rights are reserved, except that you may use these files unmodified to build, run, test, and evaluate this project, including for judging and reviewing it. Any other use, including redistribution outside this project, modification, or commercial use, requires the owner's permission.
+
+Approved creator fighters that the page loads at runtime from the ODDBOUT service are not part of this repository and are not licensed by it.
 
 ## Sound effects
 
