@@ -8,6 +8,12 @@ This repository is the standalone Twitch Cup client extracted from ODDBOUT: a Ty
 
 ## Start here
 
+`spotlight.html` is the public, read-only exhibition adapter for ODDBOUT Showrunner web programs.
+It accepts a fixed built-in matchup and seed, validates same-origin fighter-host messages, and
+displays only observed results. It creates no paid job, ranking result, Twitch stream or audience metric.
+The campaign service owns the program schedule and sponsor media; late viewers render the current
+matchup locally. This adapter does not assert synchronized video delivery or completed ad impressions.
+
 | Goal | Read |
 | --- | --- |
 | Run a cup locally | [Quick start](#quick-start-without-twitch) |
