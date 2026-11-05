@@ -2,7 +2,7 @@
 
 ## 페이지와 실행 흐름
 
-Vite는 네 HTML 페이지를 빌드한다. 개발 서버는 포트 5178을 strict하게 사용한다.
+Vite는 다섯 HTML 페이지를 빌드한다. 개발 서버는 포트 5178을 strict하게 사용한다.
 
 | 페이지 | 진입 모듈 | 역할 |
 | --- | --- | --- |
@@ -10,6 +10,7 @@ Vite는 네 HTML 페이지를 빌드한다. 개발 서버는 포트 5178을 stri
 | `twitch-auth.html` | `src/twitchAuthCallback.ts` | OAuth 응답을 읽고 주소 fragment를 지운 뒤 opener에 결과 전달 |
 | `fighter.html` | `src/fighter.ts` | `twitchBout` 런타임 옵션을 읽고 전투 호스트 부팅 |
 | `broadcast.html` | `src/broadcast.ts` | 별도 agent exhibition 화면·브라우저 API·동일 출처 전투 iframe 제어 |
+| `bet.html` | `src/bet.ts` | 배팅 부스: 1:1 무한 경기, 채팅 `!bet`/`!balance`, 무료 포인트 원장, 데모 봇 |
 
 Cup 흐름은 채팅에서 `!join`을 받아 등록된 선수 command와 대조하고, `TwitchTournament` 상태 전이로 네 참가자의 대진을 구성한다. 활성 경기는 `TwitchArenaBout` 계약에 맞춰 같은 출처의 `fighter.html` iframe에 전달한다. 호스트는 선수를 로드하고 Phaser `ArenaDuelScene`을 실행한다. 검증된 경기 결과만 Cup 상태에 반영되어 다음 경기 또는 챔피언으로 이어진다.
 
@@ -17,6 +18,9 @@ Cup 흐름은 채팅에서 `!join`을 받아 등록된 선수 command와 대조�
 
 - `src/app/BroadcastCup.ts`: Twitch 등록과 독립적인 4인 exhibition 상태 규칙. 두 준결승과 결승의 순서, uint32 seed 증가, job 입력 충돌·중복·취소를 처리한다. `src/broadcast.ts`만 DOM·iframe 경계를 조립한다. 기존 Twitch 참가 정책은 변경하지 않는다.
 
+- `src/app/BetRound.ts`·`BetLedger.ts`·`BetMatchmaker.ts`: 배팅 부스의 순수 규칙. `!bet`/`!balance` 파서, 라운드당 1건(열린 동안 교체), 패리뮤추얼 정산(한쪽만 건 라운드는 0), 시작 1,000·하한 100, 원장 디코드, 최근 대진 회피.
+- `src/app/BetBooth.ts`: 배팅 라운드 루프(open → lock → bout → settle/void). seed는 마감 **뒤에** 뽑는다. 원장은 검증된 결과로 정산할 때만 한 번 저장하고(`platform/betLedgerStorage`, `sessionBackedStore`), 실패·시간 초과·페이지 숨김은 void로 끝나 포인트가 움직이지 않는다. 연속 3회 실패하면 멈춘다. `src/bet.ts`는 DOM·채팅·데모 봇만 조립하며 시청자 문자열은 textContent로만 쓴다.
+- `src/arenaFrameRunner.ts`: `broadcast.ts`와 `bet.ts`가 함께 쓰는 전투 iframe 러너. 기존 origin/source/요청 ID/선수/seed 검증과 문서 교체 거부·watchdog을 그대로 옮긴 것이다.
 - `src/app/TwitchTournament.ts`: 순수한 토너먼트 상태 규칙. 참가, 시작, 결과 반영, solo rehearsal 정책을 다룬다.
 - `src/app/TwitchCupRoster.ts`: 기본 선수와 승인된 등록 선수의 공개 command 목록을 만든다.
 - `src/platform/twitchAuth.ts` 및 `src/twitchAuthCallback.ts`: 브라우저 OAuth popup 왕복과 세션 검증. 현재 필요한 권한은 `chat:read`이다.
@@ -49,7 +53,9 @@ Cup 흐름은 채팅에서 `!join`을 받아 등록된 선수 command와 대조�
 
 부모는 기존 `TwitchArenaBout` 검증으로 origin/source/요청 ID/선수/seed를 확인하고 host-ready마다 현재 start를 전달한다. bout-ready 후 유효한 result만 대진을 전진시킨다. 기존 호스트가 등록 선수의 실제 승인·패키지를 확인하며 로딩·전투 timeout, 취소, 페이지 종료는 오류로 끝나고 결과를 합성하지 않는다. job/lease는 화면에 렌더하지 않고 OAuth·결제·wallet 코드를 이 경로에 넣지 않는다.
 
-`vitest.config.ts`는 `test/**/*.test.ts`를 실행한다. 테스트는 토너먼트 규칙, command roster, IRC adapter, OAuth 경계, iframe 계약, 실패 복구, 등록 선수의 전투기 선택, 네 페이지 빌드 설정을 다룬다. `twitch-ui.test.ts`는 jsdom에서 실제 화면 제어 코드와 상태 규칙을 함께 실행하며 외부 인증·채팅·선수 API를 mock한다. `twitch-arena-host.test.ts`는 Phaser와 에셋 로더를 mock하고 실제 호스트 제어 코드의 연속 경기·오류 복구를 검증한다. 통합 확인 명령은 `npm run check`이다.
+배팅 부스의 포인트는 현금 가치가 없다(구매·환전·교환 불가). 원장은 방송자 브라우저의 `localStorage`에만 있고(`STORAGE_KEYS.betLedger`, 데모는 `betLedgerDemo`), 서버 원장이나 지갑이 아니다. 채팅은 Cup과 같은 읽기 전용 `chat:read` 연결을 쓰고 채팅에 글을 쓰지 않는다. `bet-round`·`bet-ledger`·`bet-booth`·`bet-ui` 테스트가 규칙·저장·루프·화면을 다룬다.
+
+`vitest.config.ts`는 `test/**/*.test.ts`를 실행한다. 테스트는 토너먼트 규칙, command roster, IRC adapter, OAuth 경계, iframe 계약, 실패 복구, 등록 선수의 전투기 선택, 다섯 페이지 빌드 설정을 다룬다. `twitch-ui.test.ts`는 jsdom에서 실제 화면 제어 코드와 상태 규칙을 함께 실행하며 외부 인증·채팅·선수 API를 mock한다. `twitch-arena-host.test.ts`는 Phaser와 에셋 로더를 mock하고 실제 호스트 제어 코드의 연속 경기·오류 복구를 검증한다. 통합 확인 명령은 `npm run check`이다.
 
 `twitch-frame-clock.test.ts`는 실제 Phaser TimeStep으로 rAF 정체·blur delta 손실·timer 진행과 종료를 검사한다. 별도 `npm run test:browser`는 로컬 Chrome에서 실제 iframe 전투 세 경기·우승·New cup을 확인하며 CI의 `check`에는 포함하지 않는다. Twitch 로그인·실제 채팅은 별도 확인이 필요하다. `twitch-site-build.test.ts`는 Vite 입력 페이지와 포트 설정을 검사하며, 프로덕션 산출물의 전 화면 동작을 검증하지 않는다. 점검 조건과 기능별 테스트 선택은 [testing.md](testing.md)를 따른다.
 
