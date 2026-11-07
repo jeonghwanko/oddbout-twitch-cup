@@ -4,6 +4,10 @@ Turn Twitch chat into a four-fighter tournament. Viewers pick a fighter with `!j
 
 **[Play the hosted cup](https://oddbout.com/twitch.html)** · **[Project on Devpost](https://devpost.com/software/oddbout-x-twitch-cup)** · **[Watch the video demo](https://youtu.be/Nu2VzDw-ilY)**
 
+**Judges:** start with the **[judging guide](JUDGES.md)**. It covers trying the cup in a browser without installing anything, running it from source, and running the automated checks.
+
+**Hackathon submission scope.** The Devpost entry documents the project as submitted. Any features added or modified in this repository after submission are separate work and fall outside the scope of the hackathon entry.
+
 This repository is the standalone Twitch Cup client extracted from ODDBOUT: a TypeScript/Vite application with a Phaser battle host. It includes built-in fighters and can load approved creator fighters from the public ODDBOUT service. The creator agent, MCP server, and plugin described in the wider project are separate from this repository.
 
 ## Start here
@@ -16,6 +20,7 @@ matchup locally. This adapter does not assert synchronized video delivery or com
 
 | Goal | Read |
 | --- | --- |
+| Evaluate the hackathon entry | [Judging guide](JUDGES.md) |
 | Run a cup locally | [Quick start](#quick-start-without-twitch) |
 | Run a betting stream | [Bet booth](#bet-booth) |
 | Connect a Twitch channel | [Twitch setup](#connect-twitch) |
