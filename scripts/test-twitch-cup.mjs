@@ -4,7 +4,8 @@ import { resolve } from 'node:path';
 
 // Real local Chrome, isolated profile. Optional rAF cadence/seed are test-only fault injection.
 const args = Object.fromEntries(process.argv.slice(2).map(arg => arg.replace(/^--/, '').split(/=(.*)/s).slice(0, 2)));
-const url = args.url ?? 'http://127.0.0.1:5178/twitch.html?lang=en';
+// Match the dev server's host: Vite listens on `localhost`, which can resolve to IPv6 only.
+const url = args.url ?? 'http://localhost:5178/twitch.html?lang=en';
 if (!['127.0.0.1', 'localhost', '[::1]'].includes(new URL(url).hostname)) throw new Error('Use a local test server');
 const rafMs = Number(args['raf-ms'] ?? 0), seed = args.seed === undefined ? null : Number(args.seed);
 const durationMs = Number(args['duration-ms'] ?? 780000);
